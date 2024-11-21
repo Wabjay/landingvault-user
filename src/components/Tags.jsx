@@ -73,7 +73,7 @@ export default function Tags() {
         {/* Tags Container */}
         <div
           ref={tagsContainerRef}
-          className="flex overflow-x-auto gap-3 py-2 px-4 scrollbar-hide w-full max-w-full"
+          className="flex overflow-x-auto gap-3 py-2 px-4 scrollbar-hide w-full max-w-full  no-scrollbar"
         >
           {tags &&
             tags.map((tag) => (

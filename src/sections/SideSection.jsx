@@ -79,7 +79,7 @@ const SideSection = ({ page }) => {
       </div>
 
       <div className="px-3 py-2 border-blue-400 border shadow-supportButton text-center font-medium bg-blueBg bg-blue-400 text-white rounded-lg">
-      <Link href={page?.websiteUrl} >
+      <Link target="_blank" href={page?.websiteUrl} >
       View Website
       </Link>
     </div>

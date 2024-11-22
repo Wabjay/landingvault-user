@@ -64,7 +64,7 @@ export default function Search() {
         onFocus={handleFocus} // Set typing to true on focus
         onBlur={handleBlur} // Set typing to false on blur
         onChange={e => setSearch(e.target.value)}
-        className="outline-none w-full"
+        className="outline-none w-full bg-transparent"
       />
     </div>
   )

@@ -58,7 +58,7 @@ const SideSection = ({ page }) => {
           </Skeleton>
           <Skeleton>
             <span className="col-span-2 text-grey-600">Color Palette</span>
-            <span className="col-span-3 text-grey-800">
+            <span className="col-span-3 ml-6 text-grey-800">
   {page?.colorPalette.map(color => (
     <span
       key={color}

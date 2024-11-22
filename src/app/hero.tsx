@@ -61,7 +61,7 @@ const sendEmail =()=>{
         onChange={(e) => setEmail(e.target.value)}
         onFocus={handleFocus} // Set typing to true on focus
         onBlur={handleBlur} // Set typing to false on blur
-        className="w-full outline-none border-none placeholder-grey-300"
+        className="w-full outline-none border-none bg-transparent placeholder-grey-300"
       />
       <button
         onClick={sendEmail}

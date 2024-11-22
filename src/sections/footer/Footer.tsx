@@ -47,8 +47,8 @@ const Footer = () => {
           <Link  href='/' className='text-sm font-normal laptop:text-[16px] leading-[22px]'>Templates</Link>
             <Link  href='/about-us' className='text-sm font-normal laptop:text-[16px] leading-[22px]'>About Us</Link>
             <Link  href='/' className='text-sm font-normal laptop:text-[16px] leading-[22px]'>Become a sponsor</Link>
-            <p onClick={()=>setPromoteProduct(true)} className='text-sm font-normal laptop:text-[16px] leading-[22px]'>Subscribe</p>
-            <p  onClick={()=>setSubmitWebsite(true)} className='text-sm font-normal laptop:text-[16px] leading-[22px]'>Submit your website</p>
+            <p onClick={()=>setPromoteProduct(true)} className='cursor-pointer text-sm font-normal laptop:text-[16px] leading-[22px]'>Subscribe</p>
+            <p  onClick={()=>setSubmitWebsite(true)} className='cursor-pointer text-sm font-normal laptop:text-[16px] leading-[22px]'>Submit your website</p>
           </div>
           <div className='flex flex-col gap-3 desktop:gap-4'>
           <h2 className='text-16 text-grey-200  mb-2'>FREE TOOLS</h2>

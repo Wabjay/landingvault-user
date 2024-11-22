@@ -27,6 +27,8 @@ const SubmitWebsite = () => {
     url: false,
     about: false,
   });
+  const [typing, setTyping] = useState(false)
+
   const { setSubmitWebsite, submitWebsite } = store();
 
 
@@ -96,6 +98,16 @@ const SubmitWebsite = () => {
     setSubmitWebsite(false);
   };
 
+    // Handle focus/typing state
+    const handleFocus = () => {
+      setTyping(true)
+    }
+  
+    const handleBlur = () => {
+      setTyping(false)
+    }
+
+    
   return (
     submitWebsite && (
       <div className="w-[100vw] h-[100vh] flex items-baseline justify-center bg-overlay fixed top-0 left-0 z-20">
@@ -106,20 +118,20 @@ const SubmitWebsite = () => {
               alt="Logo"
               width={27}
               height={32}
-              className="p-[6px] w-fit h-8"
+              className="w-fit h-8"
             />
             <Image
               src="/cancel.svg"
               alt="Close"
               width={20}
               height={20}
-              className="p-[6px] w-8 h-8"
+              className="w-8 h-8"
               onClick={close}
             />
           </div>
 
           <div className="w-full">
-            <p className="text-left text-20 font-bold tablet:text-32">Submit your website</p>
+            <p className="text-left text-20 text-grey-900 font-bold tablet:text-32 mb-6">Submit your website</p>
           </div>
 <div className="w-full max-w-[460px] mx-auto flex flex-col gap-6">
           {["name", "url"].map((field) => (

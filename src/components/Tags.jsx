@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { store } from "@/store";
+import Image from "next/image";
 
 export default function Tags() {
   const [activeTag, setActiveTag] = useState("All Tags");
@@ -61,30 +62,30 @@ export default function Tags() {
   };
 
   return (
-            <div className="relative flex items-center mb-10">
+            <div className="relative flex items-center mb-6">
         {/* Left Arrow */}
         <button
-          className="absolute left-0 z-10 px-[5px] bg-white rounded-full shadow-md hover:bg-gray-200"
+          className="absolute left-0 z-10 p-2 bg-grey-10 border-grey-10 border rounded-full hover:bg-grey-200"
           onClick={() => scrollTags("left")}
         >
-          &#9664;
+          <Image src="/navArrow.svg" alt="" width={20} height={20} />
         </button>
 
         {/* Tags Container */}
         <div
           ref={tagsContainerRef}
-          className="flex overflow-x-auto gap-3 py-2 px-4 scrollbar-hide w-full max-w-full  no-scrollbar"
+          className="flex overflow-x-auto gap-3 py-2 scrollbar-hide w-full max-w-full  no-scrollbar"
         >
           {tags &&
             tags.map((tag) => (
               <p
                 key={tag.name}
                 onClick={() => sortTag(tag.name)}
-                className={`whitespace-nowrap cursor-pointer text-sm font-medium rounded-full px-4 py-2 border capitalize transition-all ${
+                className={`whitespace-nowrap cursor-pointer text-14 font-medium rounded-full px-4 py-2 border capitalize transition-all ${
                   activeTag === tag.name
                     ? "border-blue-500 text-blue-500 bg-blue-100"
-                    : "border-gray-200 text-gray-600 bg-gray-100"
-                } hover:border-blue-300 hover:text-blue-500 hover:bg-blue-50`}
+                    : "border-grey-50 text-grey-800 bg-white hover:border-grey-50 hover:text-grey-600 hover:bg-grey-10"
+                } `}
               >
                 {tag.name}
               </p>
@@ -93,11 +94,11 @@ export default function Tags() {
 
         {/* Right Arrow */}
         <button
-          className="absolute right-0 z-10 px-[5px] bg-white rounded-full shadow-md hover:bg-gray-200"
+          className="absolute right-0 z-10 p-2 bg-grey-10 border-grey-10 border rounded-full hover:bg-grey-200"
           onClick={() => scrollTags("right")}
         >
-          &#9654; {/* Right arrow */}
-        </button>
+          <Image src="/navArrow.svg" alt="" width={20} height={20} className="rotate-180"/>
+          </button>
       </div>
   );
 }

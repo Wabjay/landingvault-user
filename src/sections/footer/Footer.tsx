@@ -22,10 +22,10 @@ const Footer = () => {
               } `}
             >
               <Image
-                className="h-9 w-fit"
-                src="/footer-logo.svg"
+                className="h-10 w-[209px]"
+                src="/footer-logo.png"
                 fill
-                alt="Domainslug Logo"
+                alt="Landingvault Logo"
               />
             </Link>
             <h2 className="w-full max-w-[388px] text-16 mt-4 text-grey-100">
@@ -33,7 +33,7 @@ const Footer = () => {
               inspiration for your designs.
             </h2>
             </div>
-            <div className="flex flex-col laptop:flex-row gap-4 laptop:gap-10">
+            <div className="flex flex-col laptop:flex-row gap-4 laptop:gap-16">
             <div className='flex flex-col gap-3 desktop:gap-4'>
             <h2 className='text-16 text-grey-200  mb-2'>COMPONENTS</h2>
             <Link  href='/' className='text-sm font-normal laptop:text-[16px] leading-[22px]'>Landing page</Link>

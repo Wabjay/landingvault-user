@@ -22,11 +22,11 @@ const SideSection = ({ page }) => {
         <Skeleton>{page?.brandDescription}</Skeleton>
       </p>
 
-      <div className="flex flex-col gap-4 p-4 bg-grey-50 border border-grey-10 rounded-xl mb-10">
+      <div className="flex flex-col gap-4 p-4 bg-grey-10 border border-grey-50 rounded-xl mb-10">
         <p className="w-full text-grey-600 grid grid-cols-5 text-14 gap-y-4 font-normal">
           <Skeleton>
             <span className="col-span-2 text-grey-600">Industry</span>
-            <span className="col-span-2 text-grey-800 capitalize">{page?.industry.join(', ')}</span>
+            <span className="col-span-3 text-grey-800 capitalize">{page?.industry.join(', ')}</span>
           </Skeleton>
           <Skeleton>
             <span className="col-span-2 text-grey-600">Component Type</span>
@@ -34,35 +34,42 @@ const SideSection = ({ page }) => {
           </Skeleton>
           <Skeleton>
             <span className="col-span-2 text-grey-600">Stack</span>
-           <span className="col-span-2 text-grey-800 capitalize"> {page?.stacks.join(', ')}</span>
+           <span className="col-span-3 text-grey-800 capitalize"> {page?.stacks.join(', ')}</span>
           </Skeleton>
           <Skeleton>
             <span className="col-span-2 text-grey-600">Type</span>
-            <span className="col-span-2 text-grey-800 capitalize">{page?.type.join(', ')}</span>
+            <span className="col-span-3 text-grey-800 capitalize">{page?.type.join(', ')}</span>
           </Skeleton>
           <Skeleton>
             <span className="col-span-2 text-grey-600">Style</span>
-            <span className="col-span-2 text-grey-800 capitalize">{page?.style.join(', ')}</span>
+            <span className="col-span-3 text-grey-800 capitalize">{page?.style.join(', ')}</span>
           </Skeleton>
           <Skeleton>
             <span className="col-span-2 text-grey-600">Mode</span>
-            <span className="col-span-2 text-grey-800 capitalize">{page?.mode}</span>
+            <span className="col-span-3 text-grey-800 capitalize">{page?.mode}</span>
           </Skeleton>
           <Skeleton>
             <span className="col-span-2 text-grey-600">Date</span>
-            <span className="col-span-2 text-grey-800 capitalize">{moment(page?.date).format("LL")}</span>
+            <span className="col-span-3 text-grey-800 capitalize">{moment(page?.date).format("LL")}</span>
           </Skeleton>
           <Skeleton>
             <span className="col-span-2 text-grey-600">Font</span>
-            <span className="col-span-2 text-grey-800 capitalize">{page?.font?.join(', ')}</span>
+            <span className="col-span-3 text-grey-800 capitalize">{page?.font?.join(', ')}</span>
           </Skeleton>
           <Skeleton>
             <span className="col-span-2 text-grey-600">Color Palette</span>
-            <span className="col-span-2 text-grey-800">{page?.colorPalette.join(', ')}</span>
-          </Skeleton>
+            <span className="col-span-3 text-grey-800">
+  {page?.colorPalette.map(color => (
+    <span
+      key={color}
+      className="ml-[-24px] w-6 h-6 rounded-full inline-block mr-2"
+      style={{ backgroundColor: `#${color}` }}
+    ></span>
+  ))}
+</span>          </Skeleton>
           <Skeleton>
             <span className="col-span-2 text-grey-600">Website Link</span>
-            <span className="col-span-2 text-grey-800">
+            <span className="col-span-3 text-grey-800">
               <a href={page?.websiteUrl} target="_blank" rel="noopener noreferrer">
                 {page?.websiteUrl}
               </a>
@@ -71,8 +78,8 @@ const SideSection = ({ page }) => {
         </p>
       </div>
 
-      <div className="px-3 py-2 text-center bg-blue-800 text-white rounded-lg">
-      <Link href="/make-deck" >
+      <div className="px-3 py-2 border-blue-400 border shadow-supportButton text-center font-medium bg-blueBg bg-blue-400 text-white rounded-lg">
+      <Link href={page?.websiteUrl} >
       View Website
       </Link>
     </div>

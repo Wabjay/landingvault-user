@@ -6,6 +6,7 @@ import LoadImage from "@/components/LoadImage";
 import SideSection from "@/sections/SideSection";
 import { store } from "@/store";
 import { usePathname } from "next/navigation";
+import Skeleton from "@/components/Skeleton";
 
 const SinglePage = () => {
   const {fetchSinglePage, page: pageData } = store();
@@ -31,6 +32,7 @@ console.log(pathname)
               <SideSection page={pageData?.data[0]} />
               <div className=" order-first w-full">
                 <div className="mx-auto px-4 tablet:px-6 laptop:px-8 desktop:px-0">
+                  <Skeleton width={'w-full'} height={'90vh'}>
                   <div className="flex flex-col gap-8 laptop:w-fit">
                     <LoadImage
                       alt={pageData?.data[0].brandName || "Page Image"}
@@ -38,6 +40,7 @@ console.log(pathname)
                       style="w-full h-full laptop:w-[640px]"
                     />
                   </div>
+                  </Skeleton>
                 </div>
               </div>
             </div>

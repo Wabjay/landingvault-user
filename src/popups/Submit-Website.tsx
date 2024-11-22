@@ -3,6 +3,7 @@ import axios from "@/lib/axios";
 import { store } from "@/store";
 import Image from "next/image";
 
+// Define types for form data and error states
 interface FormData {
   name: string;
   url: string;
@@ -13,6 +14,13 @@ interface Errors {
   name: boolean;
   url: boolean;
   about: boolean;
+}
+
+// Enum for field names
+enum FieldName {
+  Name = "name",
+  Url = "url",
+  About = "about",
 }
 
 const SubmitWebsite = () => {
@@ -27,25 +35,31 @@ const SubmitWebsite = () => {
     url: false,
     about: false,
   });
-  const [typing, setTyping] = useState(false)
+
+  const [typingState, setTypingState] = useState<{ [key in FieldName]: boolean }>({
+    name: false,
+    url: false,
+    about: false,
+  });
 
   const { setSubmitWebsite, submitWebsite } = store();
 
+  const urlPattern =
+    /^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,6}(\/[\w\-]*)*$/i;
 
-  const urlPattern = /^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,6}(\/[\w\-]*)*$/i;
-
-
-  const validateField = (name: string, value: string): boolean => {
-    if(value.length > 5){
-    if (name === "name") return value.trim() !== "";
-    if (name === "url") return urlPattern.test(value);
-    if (name === "about") return  value.trim() !== "";
+  const validateField = (name: FieldName, value: string): boolean => {
+    if (value.length > 5) {
+      if (name === FieldName.Name) return value.trim() !== "";
+      if (name === FieldName.Url) return urlPattern.test(value);
+      if (name === FieldName.About) return value.trim() !== "";
     }
     return true;
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-    const { name, value } = e.target;
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void => {
+    const { name, value } = e.target as { name: FieldName; value: string };
     // Update form data
     setFormData((prev) => ({ ...prev, [name]: value }));
 
@@ -54,7 +68,20 @@ const SubmitWebsite = () => {
       ...prev,
       [name]: !validateField(name, value),
     }));
-    
+  };
+
+  const handleFocus = (field: FieldName) => {
+    setTypingState((prev) => ({
+      ...prev,
+      [field]: true,
+    }));
+  };
+
+  const handleBlur = (field: FieldName) => {
+    setTypingState((prev) => ({
+      ...prev,
+      [field]: false,
+    }));
   };
 
   const validateInputs = (): boolean => {
@@ -80,34 +107,21 @@ const SubmitWebsite = () => {
       console.error("Error submitting form:", error);
     }
   };
- 
+
   const close = () => {
-    // Reset form data and errors
     setFormData({
       name: "",
-    url: "",
-    about: "",
+      url: "",
+      about: "",
     });
-  
     setErrors({
       name: false,
       url: false,
       about: false,
     });
-  
     setSubmitWebsite(false);
   };
 
-    // Handle focus/typing state
-    const handleFocus = () => {
-      setTyping(true)
-    }
-  
-    const handleBlur = () => {
-      setTyping(false)
-    }
-
-    
   return (
     submitWebsite && (
       <div className="w-[100vw] h-[100vh] flex items-baseline justify-center bg-overlay fixed top-0 left-0 z-20">
@@ -125,78 +139,87 @@ const SubmitWebsite = () => {
               alt="Close"
               width={20}
               height={20}
-              className="w-8 h-8"
+              className="w-8 h-8 cursor-pointer"
               onClick={close}
             />
           </div>
 
           <div className="w-full">
-            <p className="text-left text-20 text-grey-900 font-bold tablet:text-32 mb-6">Submit your website</p>
+            <p className="text-left text-20 text-grey-900 font-bold tablet:text-32 mb-6">
+              Submit your website
+            </p>
           </div>
-<div className="w-full max-w-[460px] mx-auto flex flex-col gap-6">
-          {["name", "url"].map((field) => (
-            <div className="text-left flex flex-col" key={field}>
-              <label
-                htmlFor={field}
-                className="text-14 text-grey-900 font-medium mb-2"
-              >
-                {field === "name" ? "Website Name" :  "Website URL"}
-              </label>
-              <input
-                type="text"
-                name={field}
-                placeholder={
-                  field === "name"
-                    ? "Enter your website name"
-                    : "https://www.landingvault.com/"
-                }
-                className={`bg-white rounded-lg border text-grey-900 outline-none h-11 px-3 py-2 shadow-shareLinks ${
-                  errors[field as keyof Errors] ? "border-[#E03C00]" : "border-grey-50"
-                }`}
-                value={formData[field as keyof FormData]}
-                onChange={handleChange}
-                aria-invalid={errors[field as keyof Errors]}
-              />
-              {errors[field as keyof Errors] && (
-                <p className="mt-[8px] text-[#E03C00] text-[10px]">
-                  {field === "name"
-                    ? "Please enter website name"
-                    :"Invalid website URL"}
-                </p>
-              )}
-            </div>
-          ))}
- <div className="text-left flex flex-col">
-              <label
-                htmlFor="about"
-                className="text-14 text-grey-900 font-medium mb-2"
-              >
-                About Website
-              </label>
-              <textarea
-              name="about"
-              placeholder="Tell us about your website"
-              value={formData.about}
-              onChange={handleChange}
-              className={`bg-white text-14 mb-4 rounded-lg border text-grey-900 outline-none h-24 px-3 py-2 shadow-shareLinks ${
-                errors.about ? "border-[#E03C00]" : "border-grey-50"
-              }`}
-              aria-invalid={errors.about}
-            />
-            {errors.about && (
-              <p className="mt-[-8px] text-[#E03C00] text-[10px]">
-                Please Tell us about your website
-              </p>
-            )}
-            </div>
-          <button
-            onClick={handleSubmit}
-            className="bg-blue-200 rounded-lg cursor-pointer border-blue-400 hover:bg-blue-100 hover:border-blue-100 shadow-shareLinks inline-flex items-center justify-center py-3 px-6 text-white text-sm leading-5 font-medium focus:outline-none"
-            aria-label="Submit your website"
-          >
-           Send Message
-          </button>
-        </div>
+          <div className="w-full max-w-[460px] mx-auto flex flex-col gap-6">
+            {Object.values(FieldName).map((field) => (
+              <div className="text-left flex flex-col" key={field}>
+                <label
+                  htmlFor={field}
+                  className="text-14 text-grey-900 font-medium mb-2"
+                >
+                  {field === FieldName.Name
+                    ? "Website Name"
+                    : field === FieldName.Url
+                    ? "Website URL"
+                    : "About Website"}
+                </label>
+                {field === FieldName.About ? (
+                  <textarea
+                    name={field}
+                    placeholder="Tell us about your website"
+                    value={formData[field]}
+                    onChange={handleChange}
+                    onFocus={() => handleFocus(field)}
+                    onBlur={() => handleBlur(field)}
+                    className={`bg-white text-14 mb-4 rounded-lg border text-grey-900 outline-none h-24 px-3 py-2 shadow-shareLinks ${
+                      errors[field as keyof Errors]
+                      ? "border-[#E03C00]" :  typingState[field as keyof typeof typingState] 
+                      ? "border-blue-400 shadow-buttonFocus bg-white hover:bg-white"
+                      : "border-grey-50 hover:bg-grey-10 hover:border-grey-50"
+                    }`}
+                    aria-invalid={errors[field as keyof Errors]}
+                  />
+                ) : (
+                  <input
+                    type="text"
+                    name={field}
+                    placeholder={
+                      field === FieldName.Name
+                        ? "Enter your website name"
+                        : "https://www.landingvault.com/"
+                    }
+                    value={formData[field as keyof FormData]}
+                    onChange={handleChange}
+                    onFocus={() => handleFocus(field)}
+                    onBlur={() => handleBlur(field)}
+                    className={`bg-white rounded-lg border text-grey-900 outline-none h-11 px-3 py-2 shadow-shareLinks ${
+                      errors[field as keyof Errors]
+                        ? "border-[#E03C00]" :  typingState[field as keyof typeof typingState] 
+                        ? "border-blue-400 shadow-buttonFocus bg-white hover:bg-white"
+                        : "border-grey-50 hover:bg-grey-10 hover:border-grey-50"
+                    }`}
+                    aria-invalid={errors[field as keyof Errors]}
+                  />
+                )}
+                {errors[field as keyof Errors] && (
+                  <p className="mt-[8px] text-[#E03C00] text-[10px]">
+                    {field === FieldName.Name
+                      ? "Please enter website name"
+                      : field === FieldName.Url
+                      ? "Invalid website URL"
+                      : "Please tell us about your website"}
+                  </p>
+                )}
+              </div>
+            ))}
+
+            <button
+              onClick={handleSubmit}
+              className="bg-blue-400 rounded-lg cursor-pointer border-blue-400 hover:bg-blue-500 hover:border-blue-400 shadow-shareLinks inline-flex items-center justify-center py-3 px-6 text-white text-14 font-medium focus:outline-none"
+              aria-label="Submit your website"
+            >
+              Send Message
+            </button>
+          </div>
         </div>
       </div>
     )

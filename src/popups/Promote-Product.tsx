@@ -126,7 +126,7 @@ const PromoteProduct = () => {
               alt="Close"
               width={20}
               height={20}
-              className=" w-8 h-8"
+              className="w-8 h-8 cursor-pointer"
               onClick={close}
             />
           </div>

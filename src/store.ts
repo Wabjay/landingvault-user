@@ -2,7 +2,6 @@
 import axios from "@/lib/axios";
 import  { create, StateCreator } from "zustand";
 import { persist, PersistOptions, PersistStorage } from "zustand/middleware";
-import Subscribe from './popups/Subscribe';
 
 
 

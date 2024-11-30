@@ -1,7 +1,4 @@
-import { useState, ChangeEvent } from "react";
-import axios from "@/lib/axios";
-import { store } from "@/store";
-import Image from "next/image";
+
 import LoadImage from "@/components/LoadImage";
 
 interface SubscribeProps {

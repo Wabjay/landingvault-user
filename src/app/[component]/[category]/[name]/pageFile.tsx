@@ -39,7 +39,7 @@ console.log(pathname)
           <div className="w-full laptop:max-w-[1152px] mx-auto px-4 tablet:px-6 laptop:px-0 desktop:px-0 bg-white">
             <BackButton color={""} />
             <ISRFetcher<PagesResponse>
-          url={`${process.env.NEXT_PUBLIC_API_URL}/page/name/${pageName}`}
+          url={`https://landing-vault.onrender.com/api/v1/page/name/${pageName}`}
           fallback={<SinglePageFallBack/>}
           errorFallback={<ErrorFallback />}
           render={(page) => (

@@ -3,11 +3,12 @@ import { useState, useEffect } from "react";
 import searchIcon from "/public/search.svg";
 import Image from "next/image";
 import { store } from "@/store";
-import { PageModal } from "./Modal/PageModal";
+// import { PageModal } from "./Modal/PageModal";
 
 export default function Search() {
   const [typing, setTyping] = useState(false);
-  const { fetchAllPages, loadedPages, fetchPages, fetchSearchedPages, setSearch, searchInput, showSearch } = store();
+  const { fetchAllPages, loadedPages, fetchPages, fetchSearchedPages, setSearch, searchInput } = store();
+  // const { fetchAllPages, loadedPages, fetchPages, fetchSearchedPages, setSearch, searchInput, showSearch } = store();
 
   useEffect(() => {
     fetchAllPages();

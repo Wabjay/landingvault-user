@@ -2,23 +2,28 @@
 import axios from "@/lib/axios";
 import  { create, StateCreator } from "zustand";
 import { persist, PersistOptions, PersistStorage } from "zustand/middleware";
+import Subscribe from './popups/Subscribe';
 
 
 
 // Create a custom storage object that adheres to PersistStorage<Store>
-const customStorage: PersistStorage<Store> = {
+const customStorage: PersistStorage<any> = {
   getItem: (name) => {
-    const item = localStorage.getItem(name);
-    return item ? JSON.parse(item) : null; // Return parsed data or null
+    const item = typeof window !== "undefined" ? localStorage.getItem(name) : null;
+    return item ? JSON.parse(item) : null;
   },
   setItem: (name, value) => {
-    // We need to store a stringified version of the state
-    localStorage.setItem(name, JSON.stringify(value));
+    if (typeof window !== "undefined") {
+      localStorage.setItem(name, JSON.stringify(value));
+    }
   },
   removeItem: (name) => {
-    localStorage.removeItem(name);
-  }
+    if (typeof window !== "undefined") {
+      localStorage.removeItem(name);
+    }
+  },
 };
+
 type Page = {
   _id: string;
   pageImage: string;
@@ -84,6 +89,7 @@ type StoreState = {
   componentLoading: boolean;
   overlayLoading: boolean;
   submitWebsite: boolean;
+  subscribe: boolean;
   promoteProduct: boolean;
   token: string;
   link: string;
@@ -110,6 +116,10 @@ type StoreState = {
     pagination: { total: number; page: number; pages: number };
   };
   error: string | null;  // Added error state
+  hydrated: boolean, // New flag to track hydration
+  searchInput: string,
+  showSearch: boolean,
+  searchedPages: Page[];
 };
 
 // Initial state setup
@@ -154,13 +164,18 @@ const initialState: StoreState = {
   // types: [],
   pages: [],
   submitWebsite: false,
+  subscribe: false,
   promoteProduct: false,
+  hydrated: false,
+  searchedPages: [],
+  showSearch: false,
+  searchInput: ""
 };
 
 // Store interface defining state and actions
 interface Store extends StoreState {
   fetchUsers: (token: string) => void;
-  fetchComponents: (token: string) => void;
+  fetchComponents: () => void;
   fetchIndustries: (token: string) => void;
   fetchStacks: (token: string) => void;
   fetchTypes: (token: string) => void;
@@ -168,20 +183,24 @@ interface Store extends StoreState {
   setToken: (token: string) => void;
   setShowLogin: (show: boolean) => void;
   setShowData: (show: boolean) => void;
+  setSearch: (show: string) => void;
   setIsLoggedin: (status: boolean) => void;
   setIsLoading: (status: boolean) => void;
   setIsComponentLoading: (status: boolean) => void;
   setIsOverlayLoading: (status: boolean) => void;
   setSubmitWebsite: (status: boolean) => void;
+  setSubscribe: (status: boolean) => void;
   setPromoteProduct: (status: boolean) => void;
   // setTags: () => void;
   setImages: (images: string[]) => void;
   fetchAllPages: () => void;
   fetchPages: (pages: Page[]) => void;
+  fetchSearchedPages: (pages: Page[]) => void;
   fetchSinglePage: (id: string) => void;
   fetchSingle: (id: string, type: string) => void;
   resetState: () => void;
   setError: (message: string) => void;  // Action to set error state
+  setHydrated: (status:boolean) => void,
 }
 
 // Helper function for API requests
@@ -212,13 +231,16 @@ export const store = create<Store>(
       resetState: () => set(() => initialState),
 
       setToken: (token) => set({ token }),
+      setHydrated: (status) => set({ hydrated: status }),
       setShowLogin: (show) => set({ showLogin: show }),
       setShowData: (show) => set({ showData: show }),
+      setSearch: (value) => (value !== "" ? set({ showSearch: true, searchInput: value }) : set({ showSearch: false, searchInput:"" })),
       setIsLoggedin: (status) => set({ isLogged: status }),
       setIsLoading: (status) => set({ loading: status }),
       setIsComponentLoading: (status) => set({ componentLoading: status }),
       setIsOverlayLoading: (status) => set({ overlayLoading: status }),
       setSubmitWebsite: (status) => set({ submitWebsite: status }),
+      setSubscribe: (status) => set({ subscribe: status }),
       setPromoteProduct: (status) => set({ promoteProduct: status }),
       // setTags: (tags) => set({ tags }),
       setImages: (images) => set({ images }),
@@ -249,6 +271,10 @@ export const store = create<Store>(
       fetchPages: async (response: any) => {
         // console.log(response)
         set({ pages: response });
+      },
+      fetchSearchedPages: async (response: any) => {
+        // console.log(response)
+        set({ searchedPages: response });
       },
 
       fetchSinglePage: async (title: string) => {
@@ -291,6 +317,10 @@ export const store = create<Store>(
     {
       name: "app-storage", // Name of the storage key
       storage: customStorage, // Use custom storage implementation 
+      onRehydrateStorage: () => (state) => {
+        // Mark hydration as complete after rehydration
+        state?.setHydrated(true);
+      },
     }
   )
 );

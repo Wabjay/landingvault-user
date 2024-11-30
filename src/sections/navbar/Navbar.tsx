@@ -1,19 +1,18 @@
-"use client"
+"use client";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import Logo from '/public/Logo.svg';
-import Ham from '/public/hambugger.svg';
+import Logo from "/public/Logo.svg";
+import Ham from "/public/hambugger.svg";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-// import MobileNavbar from "./MobileNavbar";
-// import DesktopNavbar from "./DesktopNavbar";
 import Image from "next/image";
 import Search from "@/components/Search";
-import Vault from '/public/Vault icons.svg';
+import Vault from "/public/Vault icons.svg";
 import { store } from "@/store";
 import SubmitWebsite from "@/popups/Submit-Website";
 import PromoteProduct from "@/popups/Promote-Product";
-
+import Subscribe from "@/popups/Subscribe";
+import ConfirmSubscription from "@/popups/Confirm-Subscription";
 
 const getLinkClassName = (path: string, params: string) =>
   params === `/${path}` ? "active-link" : "";
@@ -22,13 +21,22 @@ const Navbar = () => {
   const isSmallScreen = useMediaQuery({ query: "(max-width: 1023px)" });
   const params = usePathname();
   const [visibility, setVisibility] = useState<boolean>(false);
-const {setSubmitWebsite, setPromoteProduct} = store()
+  const [confirm, setConfirm] = useState<boolean>(false);
+  const { setSubmitWebsite, setSubscribe, setPromoteProduct, setSearch } =
+    store();
+  // const [search, setSearch] = useState(''); // To control the search input
   const toggleNavbar = () => setVisibility((prev) => !prev);
 
-  // useEffect(() => {
-  //   console.log(pages)
-  // },[pages])
-  
+  // Helper function to handle link click, clear search, and close modal
+  const handleLinkClick = () => {
+    setSearch(""); // Clear the search input
+    setVisibility(false); // Close the mobile navbar if it's open
+  };
+
+    // Helper function to handle link click, clear search, and close modal
+    const setConfirmation = (res: boolean) => {
+     setConfirm(res)
+    };
 
   return (
     <header className="w-full bg-white px-4 tablet:px-6 laptop:px-8 xl:px-0 fixed top-0 z-40  border-b border-b-grey-700">
@@ -37,7 +45,10 @@ const {setSubmitWebsite, setPromoteProduct} = store()
           <Link
             href="/"
             className={`flex items-center w-[126px] h-fit`}
-            onClick={() => setVisibility(false)}
+            onClick={() => {
+              setSearch(""); // Clear the search input when the logo is clicked
+              setVisibility(false);
+            }}
           >
             <Image src={Logo} alt="Logo" width="126" height="37" />
           </Link>
@@ -46,71 +57,124 @@ const {setSubmitWebsite, setPromoteProduct} = store()
             <>
               <div className="flex items-center gap-2">
                 <div className="w-6 h-6" onClick={toggleNavbar}>
-                  <Image src={Ham} alt="Hamburger Icon" width="100" height="100" />
+                  <Image
+                    src={Ham}
+                    alt="Hamburger Icon"
+                    width="100"
+                    height="100"
+                  />
                 </div>
               </div>
 
               {visibility && (
                 <div className="fixed top-[60px] left-0 h-full bg-white w-full py-4 px-6 tablet:px-8">
-                <ul className="flex flex-col font-medium gap-8">
-                  <li>
-                    <Link href="/" className={getLinkClassName("pitchdecks", params)}>
-                    Landing Pages
-                    </Link>
-                  </li>
-                <Search />
-                <li className="flex gap-x-1 mr-4">
-                          <Image src={Vault} alt="" width={20} height={20} /> Become a Sponsor
-                          <Link href="/" className={`${getLinkClassName("template", params)}`}>
-                          </Link>
-                        </li>
-                        <li className="p-2 bg-white shadow-shareLinks border text-black rounded-lg">
-                          <p className={'cursor-pointer font-medium text-14 text-grey-800'} onClick={()=>setPromoteProduct(true)}>
-                          Subscribe
-                          </p>
-                        </li>
-                        <li className="px-3 py-2 border-blue-400 border shadow-supportButton bg-blueBg text-white rounded-lg">
-                          <p className={'cursor-pointer font-medium text-14 text-white'} onClick={()=>setSubmitWebsite(true)}>
-                          Submit your website
-                          </p>
-                        </li>
-                </ul>
-              </div>
+                  <ul className="flex flex-col font-medium gap-8">
+                    <li>
+                      <Link
+                        href="/"
+                        className={getLinkClassName("pitchdecks", params)}
+                        onClick={handleLinkClick}
+                      >
+                        Landing Pages
+                      </Link>
+                    </li>
+                    <Search />{" "}
+                    <li
+                      className="cursor-pointer flex gap-x-1 mr-4"
+                      onClick={() => {
+                        setPromoteProduct(true);
+                        setSearch(""); // Clear the search input
+                      }}
+                    >
+                      <Image src={Vault} alt="" width={20} height={20} /> Become
+                      a Sponsor
+                    </li>
+                    <li className="w-fit px-6 py-2 bg-white shadow-shareLinks border text-black rounded-lg">
+                      <p
+                        className={
+                          "cursor-pointer font-medium text-14 text-grey-800"
+                        }
+                        onClick={() => {
+                          setSubscribe(true);
+                          setSearch(""); // Clear the search input
+                        }}
+                      >
+                        Subscribe
+                      </p>
+                    </li>
+                    <li className="w-fit px-6 py-2 border-blue-400 border shadow-supportButton bg-blueBg bg-blue-200 rounded-lg">
+                      <p
+                        className={
+                          "cursor-pointer font-medium text-14 text-white"
+                        }
+                        onClick={() => {
+                          setSubmitWebsite(true);
+                          setSearch(""); // Clear the search input
+                        }}
+                      >
+                        Submit your website
+                      </p>
+                    </li>
+                  </ul>
+                </div>
               )}
             </>
           ) : (
             <ul className="whitespace-nowrap text-14 flex w-full font-medium flex-row items-center gap-6 desktop:gap-10">
-            <li className="">
-              <Link href="/" className={getLinkClassName("", params)}>
-              Landing Pages
-              </Link>
-            </li>
-        <Search />
-        <ul className="whitespace-nowrap flex w-fit font-medium flex-row items-center gap-4">
-           
-            <li className="flex gap-x-1 mr-4">
-              <Image src={Vault} alt="" width={20} height={20} /> Become a Sponsor
-              <Link href="/template" className={`${getLinkClassName("template", params)}`}>
-              </Link>
-            </li>
-            <li className="p-2 bg-white shadow-shareLinks border text-black rounded-lg">
-                          <p className={'cursor-pointer font-medium text-14 text-grey-800'} onClick={()=>setPromoteProduct(true)}>
-                          Subscribe
-                          </p>
-                        </li>
-                        <li className="px-3 py-2 border-blue-400 border shadow-supportButton bg-blueBg bg-blue-200 rounded-lg">
-                          <p className={'cursor-pointer font-medium text-14 text-white'} onClick={()=>setSubmitWebsite(true)}>
-                          Submit your website
-                          </p>
-                        </li>
-        
+              <li>
+                <Link
+                  href="/"
+                  className={getLinkClassName("", params)}
+                  onClick={handleLinkClick}
+                >
+                  Landing Pages
+                </Link>
+              </li>
+              <Search />
+              <ul className="whitespace-nowrap flex w-fit font-medium flex-row items-center gap-4">
+                <li
+                  className="cursor-pointer flex gap-x-1 mr-4"
+                  onClick={() => {
+                    setPromoteProduct(true);
+                    setSearch(""); // Clear the search input
+                  }}
+                >
+                  <Image src={Vault} alt="" width={20} height={20} /> Become a
+                  Sponsor
+                </li>
+                <li className="p-2 bg-white shadow-shareLinks border text-black rounded-lg">
+                  <p
+                    className={
+                      "cursor-pointer font-medium text-14 text-grey-800"
+                    }
+                    onClick={() => {
+                      setSubscribe(true);
+                      setSearch(""); // Clear the search input
+                    }}
+                  >
+                    Subscribe
+                  </p>
+                </li>
+                <li className="px-3 py-2 border-blue-400 border shadow-supportButton bg-blueBg bg-blue-200 rounded-lg">
+                  <p
+                    className={"cursor-pointer font-medium text-14 text-white"}
+                    onClick={() => {
+                      setSubmitWebsite(true);
+                      setSearch(""); // Clear the search input
+                    }}
+                  >
+                    Submit your website
+                  </p>
+                </li>
+              </ul>
             </ul>
-          </ul>
           )}
         </div>
       </nav>
       <SubmitWebsite />
       <PromoteProduct />
+      <Subscribe setConfirm={setConfirmation}/>
+      <ConfirmSubscription setConfirm={setConfirmation} confirm={confirm} />
     </header>
   );
 };

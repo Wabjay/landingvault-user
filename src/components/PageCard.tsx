@@ -1,41 +1,56 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { createSlug } from './slug'
-import { Page } from '../../types'
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+import { createSlug } from "./slug";
+import { Page } from "../../types";
+import { store } from "@/store";
 
 const PageCard = ({ page }: { page: Page }) => {
-  // Ensure the page and its properties exist before using them
   const { brandName, pageCoverImage, componentType } = page;
+  const { setSearch } = store();
 
-  // Provide fallback images or content
-  const imageUrl = pageCoverImage || '/path/to/default-image.jpg';  // Default image if no cover image is provided
-  const slug = createSlug(brandName || 'default'); // Fallback to a default slug if no brandName
-  const tag = createSlug(componentType[0] || 'tag'); // Fallback to a default slug if no brandName
-  const components = "landing-page"
-
+  const imageUrl = pageCoverImage || "/path/to/default-image.jpg"; // Default image
+  const slug = createSlug(brandName || "default"); // Fallback slug
+  const tag = createSlug(componentType?.[0] || "tag"); // Fallback tag
+  const components = "landing-page"; // Static value
 
   return (
-    <div className="w-full max-w-[264px] flex h-[auto] hover:bg-gray-50 text-16 font-medium focus:outline-none mb-6">
-      <Link href={`/${components}/${tag}/${slug}`} className="flex flex-col text-left gap-y-2 tablet:max-w-[528px]">
-        {/* Image section with fallback */}
+    <div className="w-full max-w-[264px] flex h-auto text-16 font-medium focus:outline-none mb-6">
+      <Link
+        href={`/${components}/${tag}/${slug}`}
+        className="flex flex-col text-left gap-y-2 tablet:max-w-[528px] group" // Added `group` class for hover effects
+        onClick={() => setSearch("")}
+      >
+        {/* Image section */}
         <Image
           src={imageUrl}
-          alt={brandName ? `${brandName} logo` : 'No image available for this brand'}
+          alt={brandName ? `${brandName} logo` : "No image available for this brand"}
           width={264}
           height={278}
-          className="w-[264px] h-[278px] object-cover" // Ensure image covers the space properly
+          className="w-[264px] h-[278px] object-cover  group-hover:border-grey-50 group-hover:border"
         />
-        <div className="p-2">
-          <p className="font-semibold w-full max-w-[255px] text-16 text-[#2E2E27] mb-1">
-            {brandName || 'Unnamed Brand'}
-          </p>
-          <p className="text-16 text-[#64645F] font-normal underline">
-            {brandName || 'No Brand Name'}
-          </p>
+        <div className="py-2 flex justify-between w-full">
+          <div>
+            <p className="font-semibold w-full max-w-[255px] text-16 text-[#2E2E27] mb-1">
+              {brandName || "Unnamed Brand"}
+            </p>
+            <p className="text-16 text-[#64645F] font-normal underline">
+              {brandName || "No Brand Name"}
+            </p>
+          </div>
+
+          {/* Arrow button - visibility controlled by hover */}
+          <Image
+            src="/arrow-button.png"
+            alt="Arrow button"
+            width={32}
+            height={32}
+            className="w-8 h-8 object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-in-out"
+          />
         </div>
       </Link>
     </div>
-  )
-}
+  );
+};
 
-export default PageCard
+export default PageCard;

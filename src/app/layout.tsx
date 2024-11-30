@@ -1,20 +1,9 @@
 import type { Metadata } from "next";
-// import localFont from "next/font/local";
+import { Suspense } from "react";
 import "./globals.css";
 import Navbar from "@/sections/navbar/Navbar";
 import Footer from "@/sections/footer/Footer";
-// import Navbar from "@/sections/Navbar";
-
-// const Switzer = localFont({
-//   src: "https://fonts.cdnfonts.com/css/switzer",
-//   variable: "--font-geist-sans",
-//   weight: "100 900",
-// });
-// const geistMono = localFont({
-//   src: "./fonts/GeistMonoVF.woff",
-//   variable: "--font-geist-mono",
-//   weight: "100 900",
-// });
+import LayoutFallBack from "@/components/FallBack/LayoutFallback";
 
 export const metadata: Metadata = {
   title: "Landingvault",
@@ -28,13 +17,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`font-Switzer antialiased`}
-      >
-
+      <body className={`font-Switzer antialiased`}>
         <Navbar />
         <div className="mt-[60px]">
-        {children}
+          {/* Wrap children in Suspense for fallback */}
+          <Suspense fallback={<LayoutFallBack />}>
+            {children}
+          </Suspense>
         </div>
         <Footer />
       </body>

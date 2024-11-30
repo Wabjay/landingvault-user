@@ -1,71 +1,74 @@
-"use client"
-import { useState, useEffect } from 'react'
-import searchIcon from '/public/search.svg'
-import Image from 'next/image'
-import { store } from '@/store'
+"use client";
+import { useState, useEffect } from "react";
+import searchIcon from "/public/search.svg";
+import Image from "next/image";
+import { store } from "@/store";
+import { PageModal } from "./Modal/PageModal";
 
 export default function Search() {
-  const [search, setSearch] = useState('')
-  const [typing, setTyping] = useState(false)
-  const { fetchAllPages, loadedPages, fetchPages } = store()
+  const [typing, setTyping] = useState(false);
+  const { fetchAllPages, loadedPages, fetchPages, fetchSearchedPages, setSearch, searchInput, showSearch } = store();
 
   useEffect(() => {
-    fetchAllPages()
-  }, [fetchAllPages])
+    fetchAllPages();
+  }, [fetchAllPages]);
 
   useEffect(() => {
-    const wordsArray = search?.split(/\s+/)
+
+
+    // Proceed with search logic
+    const wordsArray = searchInput.split(/\s+/);
     const sortPagesByTagOrSearch = () => {
-      if (!search) {
-        return loadedPages.data
+      if (!searchInput) {
+        return loadedPages.data;
       }
 
-      // Filter the original array to get objects containing the keyword
-      if (search) {
-        const newArray = loadedPages.data.filter(page =>
-          wordsArray.some(
-            word =>
-              page.brandName.toLowerCase().includes(word) ||
-              page.brandDescription.includes(word)
-          )
-        )
-        return newArray
-      }
-      return loadedPages.data
-    }
+      return loadedPages.data.filter((page) =>
+        wordsArray.some(
+          (word) =>
+            page.brandName.toLowerCase().includes(word) ||
+            page.brandDescription.toLowerCase().includes(word)
+        ) || page.componentType.some((type) => type.toLowerCase().includes(searchInput.toLowerCase()))
+      );
+    };
 
-    fetchPages(sortPagesByTagOrSearch())
-    console.log(sortPagesByTagOrSearch())
-  }, [fetchPages, loadedPages.data, search])
+    fetchSearchedPages(sortPagesByTagOrSearch());
+    fetchPages(sortPagesByTagOrSearch());
+  }, [searchInput, fetchSearchedPages, loadedPages.data]);
 
   // Handle focus/typing state
   const handleFocus = () => {
-    setTyping(true)
-  }
+    setTyping(true);
+  };
 
   const handleBlur = () => {
-    setTyping(false)
-  }
+    setTyping(false);
+  };
 
   return (
-    <div
-      className={`flex gap-2 p-2 bg-white w-[80%] rounded-lg max-w-[600px] border ${
-        typing
-          ? 'border-blue-400 shadow-buttonFocus bg-white hover:bg-white'
-          : 'border-grey-50 hover:bg-grey-10 hover:border-grey-50'
-      }`}
-      onMouseLeave={handleBlur} // Set typing to false on mouseout
-    >
-      <Image src={searchIcon} alt="search icon" width="24px" height="24px" />
-      <input
-        type="text"
-        placeholder="Search for a pagedeck"
-        value={search}
-        onFocus={handleFocus} // Set typing to true on focus
-        onBlur={handleBlur} // Set typing to false on blur
-        onChange={e => setSearch(e.target.value)}
-        className="outline-none w-full bg-transparent"
-      />
-    </div>
-  )
+    <>
+      <div
+        className={`flex gap-2 p-2 bg-white w-[80%] rounded-lg max-w-[600px] border ${
+          typing
+            ? "border-blue-400 shadow-buttonFocus bg-white hover:bg-white"
+            : "border-grey-50 hover:bg-grey-10 hover:border-grey-50"
+        }`}
+        onMouseLeave={handleBlur} // Set typing to false on mouseout
+      >
+        <Image src={searchIcon} alt="search icon" width="24px" height="24px" />
+        <input
+          type="text"
+          placeholder="Search for a page deck"
+          value={searchInput} // Use the prop value directly
+          onFocus={handleFocus} // Set typing to true on focus
+          onBlur={handleBlur} // Set typing to false on blur
+          onChange={(e) => setSearch(e.target.value)} // Update the parent state
+          className="outline-none w-full bg-transparent"
+        />
+      </div>
+
+      {/* Show modal when search is not empty */}
+      {/* {showSearch && <PageModal />} */}
+    </>
+  );
 }

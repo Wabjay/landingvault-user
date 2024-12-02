@@ -111,42 +111,43 @@ const Footer = () => {
               </div>
 
               <div className="flex flex-col gap-3 desktop:gap-4">
-                <h2 className="text-16 text-grey-200 mb-2">FREE TOOLS</h2>
+                <h2 className="text-16 text-grey-200 mb-2">OTHER PRODUCTS</h2>
                 <FooterLink
-                  href="https://www.wordiebox.com/word-of-the-day"
+                  href="https://www.pixelgumstudio.com"
                   onClick={handleLinkClick}
                   target="_blank"
                 >
-                  Word of the day
+                  Pixelgumstudio
                 </FooterLink>
                 <FooterLink
-                  href="https://www.wordiebox.com/capitalization-tool"
+                  href="https://www.pitchdeck.design"
                   onClick={handleLinkClick}
                   target="_blank"
                 >
-                  Capitalise my title
+                  Pitch Deck Design
                 </FooterLink>
                 <FooterLink
-                  href="https://www.wordiebox.com/morse-code-translator"
+                  href="https://www.indieniche.substack.com"
                   onClick={handleLinkClick}
                   target="_blank"
                 >
-                  Morse code generator
+                  Indieniche News letter
                 </FooterLink>
                 <FooterLink
-                  href="https://www.wordiebox.com/character-counter"
+                  href="https://www.pixelfounder.substack.com"
                   onClick={handleLinkClick}
                   target="_blank"
                 >
-                  Character counter
+                  Pixelfounder News letter 
                 </FooterLink>
                 <FooterLink
-                  href="https://www.wordiebox.com/word-counter"
+                  href="https://www.wordiebox.com"
                   onClick={handleLinkClick}
                   target="_blank"
                 >
-                  Word counter
+                  Wordiebox
                 </FooterLink>
+               
               </div>
             </div>
           </div>

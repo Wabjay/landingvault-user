@@ -33,6 +33,7 @@ interface Page {
   id: string; 
 };
 interface PagesResponse {
+  _id: Key | null | undefined;
   data: Page[];
   status: boolean;
   statusCode: number;

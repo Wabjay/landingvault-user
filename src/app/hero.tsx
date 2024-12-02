@@ -31,10 +31,10 @@ const sendEmail =()=>{
         <div className="grid laptop:grid-cols-7 items-center justify-between gap-8">
   {/* Main Content (Text Block) */}
   <div className="laptop:h-full laptop:flex laptop:flex-col laptop:justify-between text-left laptop:col-span-4">
-    <h1 className="text-black font-bold text-32 tablet:text-48 laptop:text-60 mb-6">
+    <h1 className="text-black font-bold text-24 tablet:text-40 laptop:text-48 desktop:text-60 mb-6">
       The best Landing Page Design inspiration
     </h1>
-    <p className="text-grey-500 mb-10 laptop:mb-0 text-24">
+    <p className="text-grey-500 mb-10 laptop:mb-0 text-16 tablet:text-20 laptop:text-24">
       Explore top landing page design inspiration on Landingvault. Get inspired with curated, high-quality landing page examples.
     </p>
   </div>
@@ -49,7 +49,7 @@ const sendEmail =()=>{
       every week
     </p>
 
-    <div className={`border bg-white   rounded-xl h-11 flex justify-between items-center px-3  ${typing
+    <div className={`border bg-white py-2 rounded-xl tablet:h-11 flex flex-col gap-2 tablet:gap-0 tablet:flex-row justify-between items-center px-3  ${typing
           ? 'border-blue-400 shadow-buttonFocus bg-white hover:bg-white'
           : 'border-grey-50 shadow-buttonDefault hover:bg-grey-10 hover:border-grey-50'}
           `}  onMouseLeave={handleBlur} // Set typing to false on mouseout
@@ -65,7 +65,7 @@ const sendEmail =()=>{
       />
       <button
         onClick={sendEmail}
-        className="bg-grey-900 py-[6px] px-3 h-8 rounded-lg shadow-supportButton text-white text-14 font-medium whitespace-nowrap ml-1"
+        className="bg-grey-900 py-[6px] w-full px-3 h-8 rounded-lg shadow-supportButton text-white text-14 font-medium whitespace-nowrap ml-1"
       >
         Send me Inspiration
       </button>

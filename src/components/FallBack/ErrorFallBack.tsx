@@ -9,15 +9,10 @@ const ErrorFallback: React.FC<{ errorMessage?: string }> = ({ errorMessage }) =>
         <p className="text-gray-700">
           {errorMessage || "We encountered an unexpected issue. Please try again later."}
         </p>
-        <div className="mt-6">
+        <div className="mt-6 mx-auto">
           <Link href="/">
             <a className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-200">
               Go to Homepage
-            </a>
-          </Link>
-          <Link href="/help">
-            <a className="ml-4 text-blue-600 underline hover:text-blue-800">
-              Visit Help Center
             </a>
           </Link>
         </div>

@@ -64,7 +64,7 @@ const SideSection = ({ page }) => {
   {page?.colorPalette.map((color, index) => (
     <span
       key={index}
-      className="relative group ml-[-24px] w-6 h-6 rounded-full inline-block mr-2"
+      className="relative group ml-[-10px] w-6 h-6 rounded-full inline-block mr-2"
       style={{ backgroundColor: `#${color}` }}
     >
       {/* Tooltip */}

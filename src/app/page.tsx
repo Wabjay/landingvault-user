@@ -15,9 +15,9 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-y-10 tablet:gap-y-20 laptop:gap-y-[100px] py-10 tablet:py-20 laptop:py-[100px]">
       <Hero />
-      <div className="w-full max-w-[1150px] mx-auto overflow-hidden no-scrollbar">
+      <div className="w-full max-w-[1150px] mx-auto overflow-hidden no-scrollbar px-4 tablet:px-6 laptop:px-8 desktop:px-0">
         <Tags />
-        <div className="flex flex-wrap gap-7 px-4 tablet:px-10 desktop:px-0 justify-start">
+        <div className="grid tablet:grid-cols-2 laptop:grid-cols-4 gap-5 desktop:gap-6 justify-between">
           {isLoading
             ? <IndexFallback />  :  pages.length < 1 ? <EmptyPage /> 
             : pages?.map((page) => (

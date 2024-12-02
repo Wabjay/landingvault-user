@@ -15,7 +15,7 @@ const PageCard = ({ page }: { page: Page }) => {
   const components = "landing-page"; // Static value
 
   return (
-    <div className="w-full max-w-[264px] flex h-auto text-16 font-medium focus:outline-none mb-6">
+    <div className="w-full flex h-auto text-16 font-medium focus:outline-none mb-6">
       <Link
         href={`/${components}/${tag}/${slug}`}
         className="flex flex-col text-left gap-y-2 tablet:max-w-[528px] group" // Added `group` class for hover effects
@@ -25,17 +25,17 @@ const PageCard = ({ page }: { page: Page }) => {
         <Image
           src={imageUrl}
           alt={brandName ? `${brandName} logo` : "No image available for this brand"}
-          width={264}
-          height={278}
-          className="w-[264px] h-[278px] object-cover  group-hover:border-grey-50 group-hover:border"
+          width={300}
+          height={380}
+          className="w-[300px] h-[380px] object-cover  group-hover:border-grey-50 group-hover:border"
         />
         <div className="py-2 flex justify-between w-full">
           <div>
             <p className="font-semibold w-full max-w-[255px] text-16 text-[#2E2E27] mb-1">
               {brandName || "Unnamed Brand"}
             </p>
-            <p className="text-16 text-[#64645F] font-normal underline">
-              {brandName || "No Brand Name"}
+            <p className="text-16 text-[#64645F] font-normal">
+              {componentType[0] || "No Brand Name"}
             </p>
           </div>
 

@@ -70,7 +70,7 @@ export default function Tags() {
   };
 
   return (
-    <div className="relative flex items-center mb-6">
+    <div className="relative flex items-center mb-6 ">
       {/* Left Arrow */}
       <button
         className="absolute left-0 z-10 p-2 bg-grey-10 border-grey-10 border rounded-full hover:bg-grey-200"

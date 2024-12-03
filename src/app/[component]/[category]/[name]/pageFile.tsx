@@ -30,6 +30,8 @@ const SinglePage = () => {
     return <div>Error: Page name is missing in the URL.</div>;
   }
 
+  
+
 console.log(pathname)
   return (
     <div className="w-full">

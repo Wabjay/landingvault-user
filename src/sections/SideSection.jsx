@@ -18,9 +18,9 @@ const SideSection = ({ page }) => {
       <h1 className="text-24 font-bold mb-2">
         <Skeleton>{page?.brandName}</Skeleton>
       </h1>
-      <p className="text-[16px] leading-6 mb-6">
+      <h2 className="text-[16px] leading-6 mb-6">
         <Skeleton>{page?.brandDescription}</Skeleton>
-      </p>
+      </h2>
 
       <div className="flex flex-col gap-4 p-4 bg-grey-10 border border-grey-50 rounded-xl mb-10">
         <p className="w-full text-grey-600 grid grid-cols-5 text-14 gap-y-4 font-normal">
@@ -64,7 +64,7 @@ const SideSection = ({ page }) => {
   {page?.colorPalette.map((color, index) => (
     <span
       key={index}
-      className="relative group ml-[-10px] w-6 h-6 rounded-full inline-block mr-2"
+      className="relative group ml-[-16px] w-6 h-6 rounded-full inline-block mr-2"
       style={{ backgroundColor: `#${color}` }}
     >
       {/* Tooltip */}
@@ -79,14 +79,14 @@ const SideSection = ({ page }) => {
 </span>
 
 </span>          </Skeleton>
-          <Skeleton>
+          {/* <Skeleton>
             <span className="col-span-2 text-grey-600">Website Link</span>
             <span className="col-span-3 text-grey-800">
               <a href={page?.websiteUrl} target="_blank" rel="noopener noreferrer">
                 {page?.websiteUrl}
               </a>
             </span>
-          </Skeleton>
+          </Skeleton> */}
         </p>
       </div>
 

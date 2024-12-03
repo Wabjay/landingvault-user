@@ -1,89 +1,134 @@
-// import { Metadata } from "next";
+import { Metadata } from "next";
 import SinglePage from "./pageFile";
-// import { createSlug } from "@/components/slug";
-// import axios from "@/lib/axios";
-// import { PagesResponse } from "../../../../../types";
+import { createSlug } from "@/components/slug";
+import axios from "@/lib/axios";
+import { PagesResponse } from "../../../../../types";
 
+interface Params {
+  name: string;
+  category: string;
+  component: string;
+}
 
-// interface Params {
-//   name: string;
-//   category: string;
-//   component: string;
-// }
+interface PageProps {
+  params: Promise<Params>; // Always treat `params` as a Promise
+}
 
-// interface PageProps {
-//   params: Params | Promise<Params>; // Accommodate the possibility of async params
-// }
+const fetchPageData = async (name: string): Promise<PagesResponse> => {
+  try {
+    const response = await axios.get(`/page/name/${name}`);
+    return response.data as PagesResponse;
+  } catch (error) {
+    console.error("Error fetching page data:", error);
+    return {
+      data: [],
+      status: false,
+      statusCode: 0,
+      message: "",
+      errors: null,
+    };
+  }
+};
 
-// export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-//   // Resolve params if it's a Promise
-//   const resolvedParams = params instanceof Promise ? await params : params;
-//   const { category, component, name } = resolvedParams;
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const resolvedParams = await params; // Always resolve the Promise
+  const { category, component, name } = resolvedParams;
 
-//   // Fetch page data asynchronously
-//   let pageData: PagesResponse = {
-//     data: [],
-//     status: false,
-//     statusCode: 0,
-//     message: "",
-//     errors: null
-//   };
-//   try {
-//     const response = await axios.get(`/page/name/${name}`);
-//     pageData = response.data as PagesResponse;
-//     console.log(response.data )
-//   } catch (error) {
-//     console.error("Error fetching page data:", error);
-//   }
+  const pageData = await fetchPageData(name);
+  const formattedName = (name || "").replace(/-/g, " ");
+  const title = formattedName.charAt(0).toUpperCase() + formattedName.slice(1);
 
-//   // Convert the name into a readable format (replace dashes with spaces)
-//   const formattedName = (name || "").replace(/-/g, " ");
-//   const title = formattedName.charAt(0).toUpperCase() + formattedName.slice(1); // Capitalize the first letter
+  const pageTitle = pageData.data[0]?.brandName || "Default Brand Name";
+  const pageDescription = pageData.data[0]?.brandDescription || "";
+  const pageDesc =
+    pageDescription.length > 150
+      ? pageDescription.slice(0, 150) + "..."
+      : pageDescription ||
+        "Landingvault offers a wide range of learning tools designed to improve your learning experience.";
+  const pageIcon =
+    pageData.data[0]?.pageCoverImage || "https://landingvault.com/seo-card.png";
 
-//   // Extract metadata values from pageData or use defaults
-//   const pageTitle = pageData.data[0]?.brandName || "Default Brand Name";
-//   const pageIcon = pageData.data[0]?.pageCoverImage || "https://landingvault.com/seo-card.png";
+  return {
+    title: `${pageTitle} | Landingvault`,
+    description: `${pageDesc} Landingvault`,
+    icons: {
+      icon: "https://landingvault.com/icon.png",
+    },
+    openGraph: {
+      type: "website",
+      siteName: "Landingvault",
+      title: `${pageTitle} | Landingvault`,
+      description: `${pageDesc} Landingvault`,
+      url: `https://landingvault.com/${createSlug(component)}/${createSlug(
+        category
+      )}/${createSlug(title)}`,
+      images: [
+        {
+          url: pageIcon,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${pageTitle} | Landingvault`,
+      description: `${pageDesc} Landingvault`,
+      images: [
+        {
+          url: pageIcon,
+        },
+      ],
+    },
+  };
+}
 
-//   // Construct the metadata object
-//   return {
-//     title: `Landingvault | ${pageTitle}`,
-//     description:
-//       "Landingvault offers a wide range of learning tools designed to improve your learning experience. It includes a random word generator, word counter, character counter and so much more!",
-//     icons: {
-//       icon: "https://landingvault.com/icon.png", // Sets the favicon for this specific page
-//     },
-//     openGraph: {
-//       type: "website",
-//       siteName: "Landingvault",
-//       title: `Landingvault | ${pageTitle}`,
-//       description:
-//         "Landingvault offers a wide range of learning tools designed to improve your learning experience. It includes a random word generator, word counter, character counter and so much more!",
-//       url: `https://landingvault.com/${createSlug(component)}/${createSlug(category)}/${createSlug(title)}`,
-//       images: [
-//         {
-//           url: pageIcon,
-//         },
-//       ],
-//     },
-//     twitter: {
-//       card: "summary_large_image",
-//       site: `https://landingvault.com/${createSlug(component)}/${createSlug(category)}/${createSlug(title)}`,
-//       title: `Landingvault | ${pageTitle}`,
-//       description:
-//         "Landingvault offers a wide range of learning tools designed to improve your learning experience. It includes a random word generator, word counter, character counter and so much more!",
-//       images: [
-//         {
-//           url: pageIcon,
-//         },
-//       ],
-//     },
-//   };
-// }
+const Page = async ({ params }: PageProps) => {
+  const resolvedParams = await params;
+  const { category, component, name } = resolvedParams;
 
-const Page = () => {
+  const pageData = await fetchPageData(name);
+  const pageTitle = pageData.data[0]?.brandName || "Default Brand Name";
+  const pageDescription = pageData.data[0]?.brandDescription || "";
+  const pageDesc =
+    pageDescription.length > 150
+      ? pageDescription.slice(0, 150) + "..."
+      : pageDescription ||
+        "Landingvault offers a wide range of learning tools designed to improve your learning experience.";
+  const pageIcon =
+    pageData.data[0]?.pageCoverImage || "https://landingvault.com/seo-card.png";
 
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: `${pageTitle} | Landingvault`,
+    description: `${pageDesc} Landingvault`,
+    url: `https://landingvault.com/${createSlug(component)}/${createSlug(
+      category
+    )}/${createSlug(name)}`,
+    author: {
+      "@type": "Person",
+      name: "Landingvault",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Pixelgum Studio",
+      logo: {
+        "@type": "ImageObject",
+        url: pageIcon,
+      },
+    },
+  };
 
-  return <SinglePage />;
+  return (
+    <>
+      <SinglePage />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
+    </>
+  );
 };
 
 export default Page;

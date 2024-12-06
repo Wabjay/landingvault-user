@@ -14,13 +14,13 @@ const ConfirmSubscription = ({confirm, setConfirm = () => {} }: SubscribeProps) 
   return (
     confirm && (
       <div className="w-[100vw] h-[100vh] flex items-baseline justify-center bg-overlay fixed top-0 left-0 z-20">
-        <div className="w-[90%] max-w-[480px] mt-[5%] flex flex-col gap-6  py-6 rounded-[12px] bg-white border-[rgb(232,232,234)] border">
-            <LoadImage alt="pop-image2" src="/pop-image2.png" style={"w-full h-auto"} />
+        <div className="w-[90%] max-w-[480px] mt-[5%] flex flex-col gap-8 overflow-hidden pb-6 rounded-[12px] bg-white border-[rgb(232,232,234)] border">
+            <LoadImage alt="pop-image2" src="/pop-image2.png" style={"w-full h-auto py-6 bg-grey-10"} height={undefined} />
           <div className="w-full text-center px-6 ">
             <p className="text-20 text-grey-900 font-semibold tablet:text-24 mb-2">
             We have got this
             </p>
-            <p className="text-14 text-grey-600 mb-6">
+            <p className="text-14 text-grey-600 mx-auto w-full max-w-[380px]">
             Thanks for joining , your support means a lot. Catch you in 
  the inbox soon.
             </p>
@@ -30,7 +30,7 @@ const ConfirmSubscription = ({confirm, setConfirm = () => {} }: SubscribeProps) 
 
           <button
             onClick={close}
-            className="bg-blue-400 rounded-lg cursor-pointer border-blue-400 hover:bg-blue-500 hover:border-blue-400 shadow-shareLinks inline-flex items-center justify-center py-3 px-6 mx-6 text-white text-14 font-medium focus:outline-none"
+            className="bg-blue-400 rounded-lg cursor-pointer border-blue-400 hover:bg-blue-500 hover:border-blue-400 shadow-shareLinks inline-flex items-center justify-center py-3 px-6 mt-2 mx-6 text-white text-14 font-medium focus:outline-none"
             aria-label="Submit your website"
           >
             Close

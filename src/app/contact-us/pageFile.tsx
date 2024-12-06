@@ -99,9 +99,9 @@ const PageFile = () => {
   return (
     <div className="w-full bg-[#FFFFFF] py-[50px] tablet:py-[80px] laptop:py-[100px]">
       <div className="relative px-4 tablet:px-6 laptop:px-8 desktop:px-0 max-w-[1152px] mx-auto text-left mb-8">
-        <div className="w-[90%] max-w-[660px] mx-auto flex flex-col gap-12 p-6 bg-white">
-          <div className="w-full mb-12">
-            <p className="text-center text-24 font-semibold text-grey-900 mb-2 tablet:text-32 laptop:text-48">
+        <div className="w-[90%] max-w-[660px] mx-auto flex flex-col gap-12.5 p-6 bg-white">
+          <div className="w-full">
+            <p className="text-center text-24 font-semibold text-grey-900 mb-2 tablet:text-32 laptop:text-48 capitalize">
               How can we help?
             </p>
             <p className="text-16 tablet:text-24 text-center text-grey-700">
@@ -185,7 +185,7 @@ const PageFile = () => {
 
             <button
               onClick={handleSubmit}
-              className="bg-blue-200 rounded-lg cursor-pointer border-blue-400 hover:bg-blue-100 hover:border-blue-100 shadow-shareLinks inline-flex items-center justify-center py-3 px-6 text-white text-sm leading-5 font-medium focus:outline-none"
+              className="bg-blue-200 rounded-lg cursor-pointer border-blue-400 hover:bg-blue-100 hover:border-blue-100 shadow-shareLinks inline-flex items-center justify-center mt-4 py-3 px-6 text-white text-sm leading-5 font-medium focus:outline-none"
               aria-label="Submit your website"
             >
               Send Message

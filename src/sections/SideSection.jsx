@@ -14,11 +14,11 @@ const SideSection = ({ page }) => {
   if (!page) return <Skeleton>Loading...</Skeleton>;
 
   return (
-    <div className="laptop:sticky laptop:top-[80px] py-6 text-[#2E2E27] bg-white laptop:h-fit laptop:mt-[-34px] mb-10 w-full laptop:max-w-[400px] pb-4 laptop:pb-[100px]">
-      <h1 className="text-24 font-bold mb-2">
+    <div className="laptop:sticky laptop:top-[80px] py-6 bg-white laptop:h-fit laptop:mt-[-34px] mb-10 w-full laptop:max-w-[400px] pb-4 laptop:pb-[100px]">
+      <h1 className="text-24 text-grey-800 font-semibold mb-2">
         <Skeleton>{page?.brandName}</Skeleton>
       </h1>
-      <h2 className="text-[16px] leading-6 mb-6">
+      <h2 className="text-[14px] text-grey-600 mb-6">
         <Skeleton>{page?.brandDescription}</Skeleton>
       </h2>
 
@@ -60,7 +60,7 @@ const SideSection = ({ page }) => {
             <span className="col-span-2 text-grey-600">Color Palette</span>
             <span className="col-span-3 ml-6 text-grey-800">
 
-  <span className="col-span-3 ml-6 text-grey-800">
+  <span className="col-span-3 ml-[-8px] text-grey-800">
   {page?.colorPalette.map((color, index) => (
     <span
       key={index}
@@ -89,12 +89,12 @@ const SideSection = ({ page }) => {
           </Skeleton> */}
         </p>
       </div>
-
-      <div className="px-3 py-2 border-blue-400 border shadow-supportButton text-center font-medium bg-blueBg bg-blue-400 text-white rounded-lg">
-      <Link target="_blank" href={page?.websiteUrl} >
+<Link target="_blank" href={page?.websiteUrl} >
+      <div className="px-3 py-2 border-blue-400 border shadow-supportButton bg-blue-200 bg-blueBg rounded-lg text-center font-medium  text-white">
+      
       View Website
-      </Link>
-    </div>
+     
+    </div> </Link>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { createSlug } from "./slug";
 import { Page } from "../../types";
 import { store } from "@/store";
+import LoadImage from "./LoadImage";
 
 const PageCard = ({ page }: { page: Page }) => {
   const { brandName, pageCoverImage, componentType } = page;
@@ -22,12 +23,18 @@ const PageCard = ({ page }: { page: Page }) => {
         onClick={() => setSearch("")}
       >
         {/* Image section */}
-        <Image
+        {/* <Image
           src={imageUrl}
           alt={brandName ? `${brandName} logo` : "No image available for this brand"}
           width={300}
           height={380}
           className="w-[300px] h-[380px] object-cover  group-hover:border-grey-50 group-hover:border"
+        /> */}
+          <LoadImage
+          src={imageUrl}
+          alt={brandName ? `${brandName} logo` : "No image available for this brand"}
+          height={380}
+          style={`w-[300px] h-[380px] object-cover group-hover:bg-overlay  group-hover:border-grey-50 group-hover:border`}
         />
         <div className="py-2 flex justify-between w-full">
           <div>

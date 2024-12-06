@@ -54,32 +54,26 @@ const Subscribe = ({ setConfirm = () => {} }: SubscribeProps) => {
         role="dialog"
         aria-modal="true"
       >
-        <div className="w-[90%] max-w-[480px] mt-[5%] flex flex-col gap-6 py-6 rounded-[12px] bg-white border-[rgb(232,232,234)] border">
-          <div className="flex justify-between w-full px-6">
-            <Image
-              src="/Fav-Logo.png"
-              alt="Logo"
-              width={27}
-              height={32}
-              className="w-fit h-8"
-            />
+        <div className="relative w-[90%] max-w-[480px] mt-[5%] flex flex-col gap-6 pb-6  overflow-hidden rounded-[12px] bg-white border-[rgb(232,232,234)] border">
+          <div className="absolute z-50 flex justify-end w-full p-4">
+            
             <Image
               src="/cancel.svg"
               alt="Close"
               width={20}
               height={20}
-              className="w-8 h-8 cursor-pointer"
+              className="w-8 h-8 cursor-pointer bg-white rounded-full"
               onClick={close}
             />
           </div>
 
-          <LoadImage alt="pop-image2" src="/pop-image2.png" style="w-full h-auto" />
+          <LoadImage alt="pop-image2" src="/pop-image2.png" style="w-full h-auto bg-grey-10 py-6" height={undefined} />
 
           <div className="w-full text-left px-6">
             <p className="text-20 text-grey-900 font-semibold tablet:text-24 mb-2">
               Subscribe to our weekly Suggestions
             </p>
-            <p className="text-14 text-grey-600 mb-6">
+            <p className="text-14 text-grey-600">
               Stay ahead of trends, get a weekly roundup of the top websites in your inbox every Monday.
             </p>
           </div>
@@ -123,12 +117,12 @@ const Subscribe = ({ setConfirm = () => {} }: SubscribeProps) => {
 
           <button
             onClick={handleSubmit}
-            className="bg-blue-400 rounded-lg cursor-pointer border-blue-400 hover:bg-blue-500 hover:border-blue-400 shadow-shareLinks inline-flex items-center justify-center py-3 px-6 mx-6 text-white text-14 font-medium focus:outline-none"
+            className="bg-blue-400 rounded-lg cursor-pointer border-blue-400 hover:bg-blue-500 hover:border-blue-400 shadow-shareLinks inline-flex items-center justify-center py-3 px-6 mt-4 mx-6 text-white text-14 font-medium focus:outline-none capitalize"
             aria-label="Submit your email"
           >
             Send Proposal
           </button>
-          <p className="text-center text-14 text-grey-600">
+          <p className="text-center text-14 text-grey-600 capitalize">
             No spam, just design
           </p>
         </div>

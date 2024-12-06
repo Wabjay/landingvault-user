@@ -17,13 +17,14 @@ export default function Home() {
       <Hero />
       <div className="w-full max-w-[1150px] mx-auto overflow-hidden no-scrollbar px-4 tablet:px-6 laptop:px-8 desktop:px-0">
         <Tags />
-        <div className="grid tablet:grid-cols-2 laptop:grid-cols-4 gap-5 desktop:gap-6 justify-between">
-          {isLoading
+         {isLoading
             ? <IndexFallback />  :  pages.length < 1 ? <EmptyPage /> 
-            : pages?.map((page) => (
+            :
+        <div className="grid tablet:grid-cols-2 laptop:grid-cols-4 gap-5 desktop:gap-6 justify-between">
+          {pages?.map((page) => (
                 <PageCard key={page._id} page={page} />
               ))}
-        </div>
+        </div>}
       </div>
     </div>
   );

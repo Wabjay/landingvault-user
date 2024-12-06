@@ -6,7 +6,7 @@ import Footer from "@/sections/footer/Footer";
 import LayoutFallBack from "@/components/FallBack/LayoutFallback";
 
 export const metadata: Metadata = {
-  title: ` Landingvault`,
+  title: `Landingvault: The best landing page design inspiration and Examples`,
   description: ` Landingvault`,
   icons: {
     icon: "/icon.png",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Landingvault",
-    title: ` Landingvault`,
+    title: ` Landingvault: The best landing page design inspiration and Examples`,
     description: `Explore top landing page design inspiration on Landingvault. Get inspired with curated, high-quality landing page examples.`,
     url: `https://landingvault.com`,
     images: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `Landingvault`,
+    title: `Landingvault: The best landing page design inspiration and Examples`,
     description: `Explore top landing page design inspiration on Landingvault. Get inspired with curated, high-quality landing page examples.`,
     images: [
       {
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 export const schemaData = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: `Landingvault`,
+  name: `Landingvault: The best landing page design inspiration and Examples`,
   description: `Explore top landing page design inspiration on Landingvault. Get inspired with curated, high-quality landing page examples.`,
   url: `https://landingvault.com`,
   author: {

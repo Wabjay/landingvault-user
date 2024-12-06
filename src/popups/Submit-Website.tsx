@@ -126,7 +126,7 @@ const SubmitWebsite = () => {
     submitWebsite && (
       <div className="w-[100vw] h-[100vh] flex items-baseline justify-center bg-overlay fixed top-0 left-0 z-20">
         <div className="w-[90%] max-w-[480px] mt-[5%] flex flex-col gap-6 p-6 rounded-[12px] bg-white border-[rgb(232,232,234)] border">
-          <div className="flex justify-between w-full">
+          <div className="flex justify-between w-full mb-4">
             <Image
               src="/Fav-Logo.png"
               alt="Logo"
@@ -145,7 +145,7 @@ const SubmitWebsite = () => {
           </div>
 
           <div className="w-full">
-            <p className="text-left text-20 text-grey-900 font-bold tablet:text-32 mb-6">
+            <p className="text-left text-20 text-grey-900 font-bold tablet:text-32">
               Submit your website
             </p>
           </div>
@@ -170,7 +170,7 @@ const SubmitWebsite = () => {
                     onChange={handleChange}
                     onFocus={() => handleFocus(field)}
                     onBlur={() => handleBlur(field)}
-                    className={`bg-white text-14 mb-4 rounded-lg border text-grey-900 outline-none h-24 px-3 py-2 shadow-shareLinks ${
+                    className={`bg-white text-14 rounded-lg border text-grey-900 outline-none h-24 px-3 py-2 shadow-shareLinks ${
                       errors[field as keyof Errors]
                       ? "border-[#E03C00]" :  typingState[field as keyof typeof typingState] 
                       ? "border-blue-400 shadow-buttonFocus bg-white hover:bg-white"
@@ -214,10 +214,10 @@ const SubmitWebsite = () => {
 
             <button
               onClick={handleSubmit}
-              className="bg-blue-400 rounded-lg cursor-pointer border-blue-400 hover:bg-blue-500 hover:border-blue-400 shadow-shareLinks inline-flex items-center justify-center py-3 px-6 text-white text-14 font-medium focus:outline-none"
+              className="bg-blue-400 rounded-lg cursor-pointer border-blue-400 hover:bg-blue-200 hover:border-blue-400 shadow-shareLinks inline-flex items-center justify-center mt-4 py-3 px-6 text-white text-14 font-medium focus:outline-none"
               aria-label="Submit your website"
             >
-              Send Message
+              Submit
             </button>
           </div>
         </div>

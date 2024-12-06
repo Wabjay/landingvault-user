@@ -48,14 +48,13 @@ console.log(pathname)
             <div className="laptop:flex laptop:gap-6 desktop:gap-8 laptop:justify-between">
               <SideSection page={page?.data[0]} />
               <div className=" order-first w-full">
-                <div className="mx-auto px-4 tablet:px-6 laptop:px-8 desktop:px-0">
+                <div className="mx-auto ">
                   <Skeleton width={'w-full'} height={'90vh'}>
                   <div className="flex flex-col gap-8 laptop:w-fit">
                     <LoadImage
-                      alt={page?.data[0].brandName || "Page Image"}
-                      src={page?.data[0].pageImage || "/path/to/placeholder.jpg"}
-                      style="w-full h-full laptop:w-[640px]"
-                    />
+                        alt={page?.data[0].brandName || "Page Image"}
+                        src={page?.data[0].pageImage || "/path/to/placeholder.jpg"}
+                        style="w-full h-full laptop:w-[640px]" height={undefined}                    />
                   </div>
                   </Skeleton>
                 </div>

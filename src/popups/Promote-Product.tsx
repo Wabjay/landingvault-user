@@ -113,7 +113,7 @@ const PromoteProduct = () => {
     promoteProduct && (
       <div className="w-[100vw] h-[100vh] flex items-baseline justify-center bg-overlay fixed top-0 left-0 z-20">
         <div className="w-[90%] max-w-[480px] mt-[5%] flex flex-col gap-6 p-6 rounded-[12px] bg-white border-[rgb(232,232,234)] border">
-          <div className="flex justify-between w-full">
+          <div className="flex justify-between w-full mb-2">
             <Image
               src="/Fav-Logo.png"
               alt="Logo"
@@ -135,7 +135,7 @@ const PromoteProduct = () => {
             <p className="text-left text-20 text-grey-900 font-bold tablet:text-32 mb-2">
               Promote your product
             </p>
-            <p className="text-14 text-grey-600 mb-6">
+            <p className="text-14 text-grey-600">
               Anyone or any organization can promote their products on our page.
               Just fill in the following details.
             </p>
@@ -190,7 +190,7 @@ const PromoteProduct = () => {
 
           <button
             onClick={handleSubmit}
-            className="bg-blue-400 rounded-lg cursor-pointer border-blue-400 hover:bg-blue-500 hover:border-blue-400 shadow-shareLinks inline-flex items-center justify-center py-3 px-6 text-white text-14 font-medium focus:outline-none"
+            className="bg-blue-400 rounded-lg cursor-pointer border-blue-400 hover:bg-blue-500 hover:border-blue-400 shadow-shareLinks inline-flex items-center justify-center mt-4 py-3 px-6 text-white text-14 font-medium focus:outline-none"
             aria-label="Submit your website"
           >
             Send Proposal

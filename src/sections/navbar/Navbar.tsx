@@ -44,13 +44,13 @@ const Navbar = () => {
         <div className="flex gap-16 place-self-center items-center justify-between w-full laptop:max-w-[1152px] mx-auto">
           <Link
             href="/"
-            className={`flex items-center w-[126px] h-fit`}
+            className={`flex items-center w-[144px] h-fit`}
             onClick={() => {
               setSearch(""); // Clear the search input when the logo is clicked
               setVisibility(false);
             }}
           >
-            <Image src={Logo} alt="Logo" width="126" height="37" />
+            <Image src={Logo} alt="Logo" width="144" height="38" />
           </Link>
 
           {isSmallScreen ? (
@@ -72,7 +72,7 @@ const Navbar = () => {
                     <li>
                       <Link
                         href="/"
-                        className={getLinkClassName("pitchdecks", params)}
+                        className={`${getLinkClassName("", params)} text-grey-500`}
                         onClick={handleLinkClick}
                       >
                         Landing Pages
@@ -92,7 +92,7 @@ const Navbar = () => {
                     <li className="w-fit px-6 py-2 bg-white shadow-shareLinks border text-black rounded-lg">
                       <p
                         className={
-                          "cursor-pointer font-medium text-14 text-grey-800"
+                          "cursor-pointer font-medium text-14 desktop:text-16 text-grey-800"
                         }
                         onClick={() => {
                           setSubscribe(true);
@@ -105,7 +105,7 @@ const Navbar = () => {
                     <li className="w-fit px-6 py-2 border-blue-400 border shadow-supportButton bg-blueBg bg-blue-200 rounded-lg">
                       <p
                         className={
-                          "cursor-pointer font-medium text-14 text-white"
+                          "cursor-pointer font-medium text-14 desktop:text-16 text-white"
                         }
                         onClick={() => {
                           setSubmitWebsite(true);
@@ -120,11 +120,11 @@ const Navbar = () => {
               )}
             </>
           ) : (
-            <ul className="whitespace-nowrap text-14 flex w-full font-medium flex-row items-center gap-6 desktop:gap-10">
+            <ul className="whitespace-nowrap text-14 desktop:text-16 flex w-fit font-medium flex-row items-center gap-6 desktop:gap-10">
               <li>
                 <Link
                   href="/"
-                  className={getLinkClassName("", params)}
+                  className={`${getLinkClassName("", params)} text-grey-500`}
                   onClick={handleLinkClick}
                 >
                   Landing Pages
@@ -133,7 +133,7 @@ const Navbar = () => {
               <Search />
               <ul className="whitespace-nowrap flex w-fit font-medium flex-row items-center gap-4">
                 <li
-                  className="cursor-pointer flex gap-x-1 mr-4"
+                  className="cursor-pointer px-3 py-2 flex items-center gap-x-1 text-grey-500 mr-3"
                   onClick={() => {
                     setPromoteProduct(true);
                     setSearch(""); // Clear the search input
@@ -142,10 +142,10 @@ const Navbar = () => {
                   <Image src={Vault} alt="" width={20} height={20} /> Become a
                   Sponsor
                 </li>
-                <li className="p-2 bg-white shadow-shareLinks border text-black rounded-lg">
+                <li className="p-2 bg-white shadow-shareLinks border border-grey-50 rounded-lg">
                   <p
                     className={
-                      "cursor-pointer font-medium text-14 text-grey-800"
+                      "cursor-pointer font-medium text-14 desktop:text-16 text-grey-800"
                     }
                     onClick={() => {
                       setSubscribe(true);
@@ -155,9 +155,9 @@ const Navbar = () => {
                     Subscribe
                   </p>
                 </li>
-                <li className="px-3 py-2 border-blue-400 border shadow-supportButton bg-blueBg bg-blue-200 rounded-lg">
+                <li className="px-3 py-2 border-blue-400 border shadow-supportButton bg-blue-200 bg-blueBg rounded-lg">
                   <p
-                    className={"cursor-pointer font-medium text-14 text-white"}
+                    className={"cursor-pointer font-medium text-14 desktop:text-16 text-white"}
                     onClick={() => {
                       setSubmitWebsite(true);
                       setSearch(""); // Clear the search input

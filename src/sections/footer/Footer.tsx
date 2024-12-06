@@ -42,8 +42,8 @@ const Footer = () => {
             <div>
               <Link
                 href="/"
-                className={`flex relative items-center w-full  h-10 ${
-                  isSmallScreen ? "max-w-[140px] mr-0" : " max-w-[180px] mr-3"
+                className={`flex relative items-center w-full  h-10 max-w-[209px] ${
+                  isSmallScreen ? "mr-0" : "mr-3"
                 }`}
               >
                 <Image
@@ -61,7 +61,7 @@ const Footer = () => {
 
             <div className="flex flex-col laptop:flex-row gap-4 laptop:gap-16">
               <div className="flex flex-col gap-3 desktop:gap-4">
-                <h2 className="text-16 text-grey-200 mb-2">COMPONENTS</h2>
+                <h5 className="text-16 text-grey-200 mb-2">COMPONENTS</h5>
                 <FooterLink href="/" onClick={handleLinkClick}>
                   Landing page
                 </FooterLink>
@@ -80,7 +80,7 @@ const Footer = () => {
               </div>
 
               <div className="flex flex-col gap-3 desktop:gap-4">
-                <h2 className="text-16 text-grey-200 mb-2">PRODUCTS</h2>
+                <h5 className="text-16 text-grey-200 mb-2">PRODUCTS</h5>
                 <FooterLink href="/" onClick={handleLinkClick}>
                   Templates
                 </FooterLink>
@@ -111,7 +111,7 @@ const Footer = () => {
               </div>
 
               <div className="flex flex-col gap-3 desktop:gap-4">
-                <h2 className="text-16 text-grey-200 mb-2">OTHER PRODUCTS</h2>
+                <h5 className="text-16 text-grey-200 mb-2">OTHER PRODUCTS</h5>
                 <FooterLink
                   href="https://www.pixelgumstudio.com"
                   onClick={handleLinkClick}

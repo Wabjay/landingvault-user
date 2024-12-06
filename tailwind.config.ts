@@ -16,14 +16,17 @@ export default {
       'laptop': '1024px',
       'desktop': '1280px',
     },
-    // fontFamily: {
-    //   'Switzer': ['Switzer', 'San-serif'],
-    // },
+    fontFamily: {
+      'Switzer': ['Switzer', 'San-serif'],
+    },
 
     extend: {
       fontFamily: {
         Switzer: ['Switzer', 'sans-serif'],
         Fraunces: ['Fraunces', 'serif'],
+      },
+      spacing: {
+        '12.5': '50px', // Custom spacing value
       },
       flexBasis: {
         'big': '362px',
@@ -48,15 +51,14 @@ export default {
       backgroundImage: {
         'tools-bg': 'linear-gradient(305deg, rgba(23, 219, 123, 0.88) -73.62%, #E8E6D7 71.96%);',
         'tools-button': 'linear-gradient(180deg, rgba(0, 12, 20, 0.00) 3.13%, rgba(0, 12, 20, 0.03) 96.87%), #FFFFFF',
-        'blueBg': 'linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.00) 100%), #0A69DB',
+        'blueBg': "var(--Blue-Blue-default, linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.00) 100%), #0A69DB)",
         'green-tick': "url('/src/assets/green_tick.png')",
         'white-tick': "url('/src/assets/white_tick.png')",
         'check-icon': "url('/src/assets/Check icons.svg')",
         'testimonial': "url('/src/assets/Testimonial-logo.svg')",
-        overlay: "var(--Overlay-color, linear-gradient(180deg, rgba(1, 26, 39, 0.28) 4.69%, rgba(1, 26, 39, 0.25) 56.25%, rgba(1, 26, 39, 0.37) 100%))",
+        "overlay": "var(--Overlay-color, linear-gradient(180deg, rgba(1, 26, 39, 0.28) 4.69%, rgba(1, 26, 39, 0.25) 56.25%, rgba(1, 26, 39, 0.37) 100%))",
         'disabled': 'linear-gradient(180deg, rgba(0, 12, 20, 0.00) 3.13%, rgba(0, 12, 20, 0.03) 96.87%), #FFF',
         'priceBg': 'linear-gradient(180deg, rgba(0, 12, 20, 0.00) 3.13%, rgba(0, 12, 20, 0.03) 96.87%), #FFF',
-
       },
       colors: {
         'blue': {
@@ -66,6 +68,7 @@ export default {
           400: "#0275FF",
           500: "#0065E0",
           900: "#001229",
+          'Bg': 'linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.00) 100%), #0A69DB)',
           
         },
         'grey': {
@@ -75,6 +78,7 @@ export default {
           200: "#BFBFBF",
           500: "#757575",
           600: "#636363",
+          700: "#484848",
           800: "#2D2D2D",
           900: "#1C1C1C",
         },

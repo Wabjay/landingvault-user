@@ -42,14 +42,14 @@ const sendEmail =()=>{
   {/* Subscription Box */}
   <div className="relative flex flex-col gap-4 w-full laptop:col-span-3">
   
-    <LoadImage alt="Hero" src="/subscribe.png" style=" ml-[10%] !w-fit" />
-    <LoadImage alt="Hero" src="/pointer.png" style="animate-bounce ml-[12%] h-[59px] !w-auto" />
+    <LoadImage alt="Hero" src="/subscribe.png" style=" ml-[10%] !w-fit" height={undefined} />
+    <LoadImage alt="Hero" src="/pointer.png" style="animate-bounce ml-[12%] h-[59px] !w-auto" height={undefined} />
     <p className="text-grey-500 text-16">
       Get weekly design inspiration sent to your email <br />
       every week
     </p>
 
-    <div className={`border bg-white py-2 rounded-xl tablet:h-11 flex flex-col gap-2 tablet:gap-0 tablet:flex-row justify-between items-center px-3  ${typing
+    <div className={`border bg-white py-2 rounded-xl tablet:h-11 flex flex-col gap-2 tablet:gap-0 tablet:flex-row justify-between items-center pl-3 pr-2 ${typing
           ? 'border-blue-400 shadow-buttonFocus bg-white hover:bg-white'
           : 'border-grey-50 shadow-buttonDefault hover:bg-grey-10 hover:border-grey-50'}
           `}  onMouseLeave={handleBlur} // Set typing to false on mouseout
@@ -61,11 +61,11 @@ const sendEmail =()=>{
         onChange={(e) => setEmail(e.target.value)}
         onFocus={handleFocus} // Set typing to true on focus
         onBlur={handleBlur} // Set typing to false on blur
-        className="w-full outline-none border-none bg-transparent placeholder-grey-300"
+        className="w-full h-5 outline-none border-none bg-transparent placeholder-grey-300"
       />
       <button
         onClick={sendEmail}
-        className="bg-grey-900 py-[6px] w-full px-3 h-8 rounded-lg shadow-supportButton text-white text-14 font-medium whitespace-nowrap ml-1"
+        className="bg-grey-900 py-[6px] w-fit px-3 h-8 rounded-lg shadow-supportButton text-white text-14 font-medium whitespace-nowrap ml-1"
       >
         Send me Inspiration
       </button>

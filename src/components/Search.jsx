@@ -49,21 +49,21 @@ export default function Search() {
   return (
     <>
       <div
-        className={`flex gap-2 p-2 bg-white w-[80%] rounded-lg max-w-[600px] border ${
+        className={`flex gap-2 p-2 bg-white w-[80%] laptop:w-full desktop:w-[313px] rounded-lg max-w-[313px] border ${
           typing
             ? "border-blue-400 shadow-buttonFocus bg-white hover:bg-white"
             : "border-grey-50 hover:bg-grey-10 hover:border-grey-50"
         }`}
-        onMouseLeave={handleBlur} // Set typing to false on mouseout
+        onMouseLeave={handleBlur} 
       >
         <Image src={searchIcon} alt="search icon" width="24px" height="24px" />
         <input
           type="text"
           placeholder="Search for a page deck"
-          value={searchInput} // Use the prop value directly
-          onFocus={handleFocus} // Set typing to true on focus
-          onBlur={handleBlur} // Set typing to false on blur
-          onChange={(e) => setSearch(e.target.value)} // Update the parent state
+          value={searchInput} 
+          onFocus={handleFocus} 
+          onBlur={handleBlur} 
+          onChange={(e) => setSearch(e.target.value)} 
           className="outline-none w-full bg-transparent"
         />
       </div>

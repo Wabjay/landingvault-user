@@ -5,31 +5,25 @@ import { createSlug } from "./slug";
 import { Page } from "../../types";
 import { store } from "@/store";
 import LoadImage from "./LoadImage";
+import Skeleton from "./Skeleton";
 
 const PageCard = ({ page }: { page: Page }) => {
   const { brandName, pageCoverImage, componentType } = page;
   const { setSearch } = store();
 
-  const imageUrl = pageCoverImage || "/path/to/default-image.jpg"; // Default image
-  const slug = createSlug(brandName || "default"); // Fallback slug
-  const tag = createSlug(componentType?.[0] || "tag"); // Fallback tag
-  const components = "landing-page"; // Static value
+  const imageUrl = pageCoverImage || "/path/to/default-image.jpg"; 
+  const slug = createSlug(brandName || "default");
+  const tag = createSlug(componentType?.[0] || "tag");
+  const components = "categories";
 
   return (
     <div className="w-full flex h-auto text-16 font-medium focus:outline-none mb-6">
+      <Skeleton width={300} height={undefined}>
       <Link
         href={`/${components}/${tag}/${slug}`}
-        className="flex flex-col text-left gap-y-2 tablet:max-w-[528px] group" // Added `group` class for hover effects
+        className="flex flex-col text-left gap-y-2 tablet:max-w-[528px] group" 
         onClick={() => setSearch("")}
       >
-        {/* Image section */}
-        {/* <Image
-          src={imageUrl}
-          alt={brandName ? `${brandName} logo` : "No image available for this brand"}
-          width={300}
-          height={380}
-          className="w-[300px] h-[380px] object-cover  group-hover:border-grey-50 group-hover:border"
-        /> */}
           <LoadImage
           src={imageUrl}
           alt={brandName ? `${brandName} logo` : "No image available for this brand"}
@@ -45,8 +39,6 @@ const PageCard = ({ page }: { page: Page }) => {
               {componentType[0] || "No Brand Name"}
             </p>
           </div>
-
-          {/* Arrow button - visibility controlled by hover */}
           <Image
             src="/arrow-button.png"
             alt="Arrow button"
@@ -56,6 +48,7 @@ const PageCard = ({ page }: { page: Page }) => {
           />
         </div>
       </Link>
+      </Skeleton>
     </div>
   );
 };

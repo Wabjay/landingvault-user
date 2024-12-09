@@ -71,7 +71,7 @@ const Footer = () => {
                 <FooterLink href="/" onClick={handleLinkClick}>
                   Pricing
                 </FooterLink>
-                <FooterLink href="/contact-us" onClick={handleLinkClick}>
+                <FooterLink href="/contact-us-page" onClick={handleLinkClick}>
                   Contact us
                 </FooterLink>
                 <FooterLink href="/" onClick={handleLinkClick}>
@@ -84,7 +84,7 @@ const Footer = () => {
                 <FooterLink href="/" onClick={handleLinkClick}>
                   Templates
                 </FooterLink>
-                <FooterLink href="/about-us" onClick={handleLinkClick}>
+                <FooterLink href="/about-us-page" onClick={handleLinkClick}>
                   About Us
                 </FooterLink>
                 <FooterLink href="/" onClick={handleLinkClick}>

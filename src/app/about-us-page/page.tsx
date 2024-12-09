@@ -14,14 +14,14 @@ export const metadata: Metadata = {
     siteName: "Wordiebox",
     title: 'Wordiebox About us',
     description: 'Wordiebox offers a wide range of learning tools designed to improve your learning experience. It includes a random word generator, word counter, character counter and so much more!',
-    url: 'https://wordiebox.com/about-us',
+    url: 'https://wordiebox.com/about-us-page',
     images: [{
       url: 'https://wordiebox.com/seo-card.png',
     }],
   },
   twitter: {
     card: "summary_large_image",
-    site: 'https://wordiebox.com/about-us',
+    site: 'https://wordiebox.com/about-us-page',
     title: 'Wordiebox About us',
     description: 'Wordiebox offers a wide range of learning tools designed to improve your learning experience. It includes a random word generator, word counter, character counter and so much more!',
     images: [{

@@ -31,7 +31,7 @@ const sendEmail =()=>{
         <div className="grid laptop:grid-cols-7 items-center justify-between gap-8">
   {/* Main Content (Text Block) */}
   <div className="laptop:h-full laptop:flex laptop:flex-col laptop:justify-between text-left laptop:col-span-4">
-    <h1 className="text-black font-bold text-24 tablet:text-40 laptop:text-48 desktop:text-60 mb-6">
+    <h1 className="text-black font-semibold text-24 tablet:text-40 laptop:text-48 desktop:text-60 mb-6">
       The best Landing Page Design inspiration
     </h1>
     <p className="text-grey-500 mb-10 laptop:mb-0 text-16 tablet:text-20 laptop:text-24">
@@ -43,7 +43,7 @@ const sendEmail =()=>{
   <div className="relative flex flex-col gap-4 w-full laptop:col-span-3">
   
     <LoadImage alt="Hero" src="/subscribe.png" style=" ml-[10%] !w-fit" height={undefined} />
-    <LoadImage alt="Hero" src="/pointer.png" style="animate-bounce ml-[12%] h-[59px] !w-auto" height={undefined} />
+    <LoadImage alt="Hero" src="/pointer.png" style="animate-bounce overflow-visible ml-[12%] h-[59px] !w-auto" height={undefined} />
     <p className="text-grey-500 text-16">
       Get weekly design inspiration sent to your email <br />
       every week

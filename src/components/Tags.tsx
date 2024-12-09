@@ -2,6 +2,8 @@
 import { useState, useEffect, useRef } from "react";
 import { store } from "@/store";
 import Image from "next/image";
+import Link from "next/link";
+import { createSlug, removeSlug } from "./slug";
 
 interface Tag {
   id: string;
@@ -9,8 +11,8 @@ interface Tag {
   title: string;
 }
 
-export default function Tags() {
-  const [activeTag, setActiveTag] = useState<string>("All Tags");
+export default function Tags({component}:{component: string}) {
+  const [activeTag, setActiveTag] = useState<string>(component);
   const [tags, setTags] = useState<Tag[]>([]);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
@@ -28,34 +30,40 @@ export default function Tags() {
   }, [fetchComponents]);
 
   useEffect(() => {
-    const tag = {
-      id: "672c7b173c4f",
-      name: "All Tags",
-      title: "All Tags",
-    };
     if (components?.data?.length) {
-      const newTags = [tag, ...components.data];
+      const newTags = [...components.data];
+    
+      // Sort the tags so "Landing Page" comes first, and the others follow
+      newTags.sort((a, b) => {
+        if (a.name === "Landing page") return -1;  // Move "Landing Page" to the front
+        if (b.name === "Landing page") return 1;   // Keep "Landing Page" at the front
+        return 0; // Keep other tags in the same order
+      });
+    
       setTags(newTags);
     } else {
-      setTags([tag]);
+      setTags([]);
     }
   }, [components?.data]);
+  
+  const cleanSlugA = removeSlug(activeTag.replace('/', ''));
 
   useEffect(() => {
-    const sortPagesByTagOrSearch = () => {
-      if (activeTag === "All Tags") {
-        return loadedPages?.data;
-      }
-      if (activeTag) {
-        return loadedPages?.data?.filter((page) =>
-          page.componentType.includes(activeTag)
-        );
-      }
-      return loadedPages?.data;
-    };
-
-    fetchPages(sortPagesByTagOrSearch());
-  }, [activeTag, loadedPages?.data, fetchPages]);
+    // const sortPagesByTagOrSearch = () => {
+    //   if (activeTag === "All Tags") {
+    //     return loadedPages?.data;
+    //   }
+    //   if (activeTag) {
+    //     return loadedPages?.data?.filter((page) =>
+    //       page.componentType.includes(activeTag)
+    //     );
+    //   }
+    //   return loadedPages?.data;
+    // };
+console.log(cleanSlugA)
+    fetchPages(loadedPages?.data);
+    // fetchPages(sortPagesByTagOrSearch());
+  }, []);
 
   const updateArrowsVisibility = () => {
     const container = tagsContainerRef.current;
@@ -78,6 +86,7 @@ export default function Tags() {
       }
     }
   };
+
 
   useEffect(() => {
     const container = tagsContainerRef.current;
@@ -112,17 +121,17 @@ export default function Tags() {
         className="flex overflow-x-auto gap-3 py-2 scrollbar-hide w-full max-w-full no-scrollbar"
       >
         {tags.map((tag) => (
-          <p
+          <Link href={`/${createSlug(tag.name.toLowerCase().replace("page", "").trim())}`} 
             key={tag.id}
             onClick={() => sortTag(tag.name)}
             className={`whitespace-nowrap cursor-pointer text-14 font-medium rounded-full px-3 py-2 border capitalize transition-all ${
-              activeTag === tag.name
+              tag.name.toLowerCase().includes(cleanSlugA.toLowerCase())
                 ? "border-blue-500 text-blue-500 bg-blue-100"
                 : "border-grey-50 text-grey-800 bg-white hover:border-grey-50 hover:text-grey-600 hover:bg-grey-10"
             }`}
           >
             {tag.name}
-          </p>
+          </Link>
         ))}
       </div>
 

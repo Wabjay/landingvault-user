@@ -15,7 +15,7 @@ function BackButton({color='green-600'}: {color:string}) {
     <button
       className={`flex gap-2 h-10 mb-6 bg-${color}}`}
       onClick={goBack} type="button">
-      <Image src="/back.svg" width={24} height={24} alt="" className="" />
+      <Image src="/back.svg" width={24} height={24} alt="" className="bg-white rounded-full" />
       {/* <span className={`text-${color === 'green-600' ? 'white' : 'green-600'}`}>Back</span> */}
     </button>
   </div>

@@ -2,6 +2,7 @@ import React from "react";
 import moment from "moment";
 import Skeleton from "@/components/Skeleton";
 import Link from "next/link";
+import Image from "next/image";
 
 
 const SideSection = ({ page }) => {
@@ -14,7 +15,7 @@ const SideSection = ({ page }) => {
   if (!page) return <Skeleton>Loading...</Skeleton>;
 
   return (
-    <div className="laptop:sticky laptop:top-[80px] py-6 bg-white laptop:h-fit laptop:mt-[-34px] mb-10 w-full laptop:max-w-[400px] pb-4 laptop:pb-[100px]">
+    <div className="laptop:sticky laptop:top-[66px] py-6 bg-white laptop:h-fit laptop:mt-[-66px] mb-10 w-full laptop:max-w-[500px] pb-4 px-4 tablet:px-6 laptop:px-10 laptop:pb-[100px]">
       <h1 className="text-24 text-grey-800 font-semibold mb-2">
         <Skeleton>{page?.brandName}</Skeleton>
       </h1>
@@ -79,20 +80,14 @@ const SideSection = ({ page }) => {
 </span>
 
 </span>          </Skeleton>
-          {/* <Skeleton>
-            <span className="col-span-2 text-grey-600">Website Link</span>
-            <span className="col-span-3 text-grey-800">
-              <a href={page?.websiteUrl} target="_blank" rel="noopener noreferrer">
-                {page?.websiteUrl}
-              </a>
-            </span>
-          </Skeleton> */}
         </p>
       </div>
 <Link target="_blank" href={page?.websiteUrl} >
-      <div className="px-3 py-2 border-blue-400 border shadow-supportButton bg-blue-200 bg-blueBg rounded-lg text-center font-medium  text-white">
+      <div className="px-3 py-2 flex items-center justify-center border-blue-400 border shadow-supportButton bg-blue-200 bg-blueBg rounded-lg text-center font-medium  text-white">
       
       View Website
+      <Image src="/arrow-button.svg" width={24} height={24} alt="" className="" />
+
      
     </div> </Link>
     </div>

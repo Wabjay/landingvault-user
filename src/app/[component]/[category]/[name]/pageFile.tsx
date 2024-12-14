@@ -11,6 +11,7 @@ import ISRFetcher from "@/lib/ISRFetcher";
 import { PagesResponse } from "../../../../../types";
 import SinglePageFallBack from "@/components/FallBack/SinglePageFallback";
 import ErrorFallback from "@/components/FallBack/ErrorFallBack";
+import FooterPages from "@/sections/FooterPages";
 
 const SinglePage = () => {
   // const {hydrated, fetchSinglePage, page: pageData } = store();
@@ -24,7 +25,8 @@ const SinglePage = () => {
   //   }
   // }, [fetchSinglePage, pathname, hydrated]);
   const pathname = usePathname();
-  const pageName = pathname.split("/")[3]?.toLowerCase(); // Extract page name from URL
+  const slug = pathname.split("/")[2]?.toLowerCase();
+  const pageName = pathname.split("/")[3]?.toLowerCase();
 
   if (!pageName) {
     return <div>Error: Page name is missing in the URL.</div>;
@@ -35,11 +37,11 @@ const SinglePage = () => {
 console.log(pathname)
   return (
     <div className="w-full">
-    <div className="bg-[#FFF]">
-      <div className="w-full laptop:max-w-[1152px] desktop:max-w-full mx-auto p-4 tablet:p-6 laptop:p-8 xl:px-0 flex flex-col gap-6 tablet:gap-10 laptop:gap-14 desktop:gap-24">
+    <div className="bg-grey-10">
+      <div className="w-full laptop:max-w-[1440px] mx-auto px-4 tablet:px-6 laptop:px-0 xl:px-0 flex flex-col gap-6 tablet:gap-10 laptop:gap-14 desktop:gap-24">
         <div className="">
-          <div className="w-full laptop:max-w-[1152px] mx-auto px-4 tablet:px-6 laptop:px-0 desktop:px-0 bg-white">
-            <BackButton color={""} />
+          <div className="w-full laptop:max-w-[1299px] mx-auto px-4 tablet:px-6 laptop:pl-8 laptop:pr-0 desktop:px-0 desktop:mr-0 desktop:ml-auto">
+          <BackButton color={""} />
             <ISRFetcher<PagesResponse>
           url={`page/name/${pageName}`}
           fallback={<SinglePageFallBack/>}
@@ -48,7 +50,7 @@ console.log(pathname)
             <div className="laptop:flex laptop:gap-6 desktop:gap-8 laptop:justify-between">
               <SideSection page={page?.data[0]} />
               <div className=" order-first w-full">
-                <div className="mx-auto ">
+                <div className="mx-auto w-fit">
                   <Skeleton width={'w-full'} height={'90vh'}>
                   <div className="flex flex-col gap-8 laptop:w-fit">
                     <LoadImage
@@ -64,6 +66,7 @@ console.log(pathname)
              />
           </div>
         </div>
+        <FooterPages slug={slug} />
       </div>
     </div>
   </div>

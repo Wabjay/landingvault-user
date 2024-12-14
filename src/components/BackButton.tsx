@@ -4,14 +4,14 @@ import React from 'react'
 import { useNavigation } from '@/lib/navigations';
 
 
-function BackButton({color='green-600'}: {color:string}) {
+function BackButton({color='green-600', position="sticky"}: {color?:string, position?:string}) {
     // const router = 
     const { goBack } = useNavigation()
     // const appRouterInstance: AppRouterInstance = useRouter();
 
 
   return (
-    <div className="w-full mx-auto laptop:px-0 laptop:bg-transparent desktop:px-0  sticky top-20 z-50 ">
+    <div className={`w-full mx-auto laptop:px-0 laptop:bg-transparent desktop:px-0  ${position} top-20 z-50 `}>
     <button
       className={`flex gap-2 h-10 mb-6 bg-${color}}`}
       onClick={goBack} type="button">

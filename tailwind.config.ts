@@ -51,7 +51,7 @@ export default {
       backgroundImage: {
         'tools-bg': 'linear-gradient(305deg, rgba(23, 219, 123, 0.88) -73.62%, #E8E6D7 71.96%);',
         'tools-button': 'linear-gradient(180deg, rgba(0, 12, 20, 0.00) 3.13%, rgba(0, 12, 20, 0.03) 96.87%), #FFFFFF',
-        'blueBg': "var(--Blue-Blue-default, linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.00) 100%), #0A69DB)",
+        'blueBg': "linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(10, 105, 219, 1) 100%);",
         'green-tick': "url('/src/assets/green_tick.png')",
         'white-tick': "url('/src/assets/white_tick.png')",
         'check-icon': "url('/src/assets/Check icons.svg')",

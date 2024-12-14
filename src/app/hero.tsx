@@ -1,10 +1,11 @@
 "use client"
 import LoadImage from "@/components/LoadImage"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-const Hero = () => {  
+const Hero = ({component}:{component: string}) => {  
 const [email, setEmail] = useState<string>("")
 const [typing, setTyping] = useState(false)
+const [pageName, setPageName] = useState<string>("")
 
 
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -15,6 +16,11 @@ const sendEmail =()=>{
   }
   
 }
+
+useEffect(()=>{
+  const pageName = component.replace(/[-/]/g, " ").replace(/\b\w/g, (char) => char.toUpperCase())
+setPageName(pageName)
+},[component])
 
   // Handle focus/typing state
   const handleFocus = () => {
@@ -30,26 +36,26 @@ const sendEmail =()=>{
         <div className='w-full laptop:max-w-[1152px] px-4 tablet:px-6 laptop:px-8 desktop:px-0 mx-auto'>
         <div className="grid laptop:grid-cols-7 items-center justify-between gap-8">
   {/* Main Content (Text Block) */}
-  <div className="laptop:h-full laptop:flex laptop:flex-col laptop:justify-between text-left laptop:col-span-4">
-    <h1 className="text-black font-semibold text-24 tablet:text-40 laptop:text-48 desktop:text-60 mb-6">
-      The best Landing Page Design inspiration
+  <div className="laptop:h-full flex flex-col gap-6 text-left laptop:col-span-4">
+    <h1 className="text-black font-semibold text-24 tablet:text-40 laptop:text-48 desktop:text-60">
+    The Best <span>{pageName}</span> Page Design Inspiration 
     </h1>
-    <p className="text-grey-500 mb-10 laptop:mb-0 text-16 tablet:text-20 laptop:text-24">
-      Explore top landing page design inspiration on Landingvault. Get inspired with curated, high-quality landing page examples.
+    <p className="text-grey-500 text-16 tablet:text-20 laptop:text-24 laptop:leading-9">
+    Explore top <span>{pageName}</span> design inspiration  on Landingvault. Get inspired with curated, high-quality <span>{pageName}</span> examples.
     </p>
   </div>
 
   {/* Subscription Box */}
-  <div className="relative flex flex-col gap-4 w-full laptop:col-span-3">
+  <div className="relative flex flex-col w-full laptop:col-span-3">
   
     <LoadImage alt="Hero" src="/subscribe.png" style=" ml-[10%] !w-fit" height={undefined} />
     <LoadImage alt="Hero" src="/pointer.png" style="animate-bounce overflow-visible ml-[12%] h-[59px] !w-auto" height={undefined} />
-    <p className="text-grey-500 text-16">
+    <p className="text-grey-500 text-16 mb-4">
       Get weekly design inspiration sent to your email <br />
       every week
     </p>
 
-    <div className={`border bg-white py-2 rounded-xl tablet:h-11 flex flex-col gap-2 tablet:gap-0 tablet:flex-row justify-between items-center pl-3 pr-2 ${typing
+    <div className={`border bg-white rounded-xl h-9 flex gap-2 tablet:gap-0 tablet:flex-row justify-between items-center pl-3 pr-2 ${typing
           ? 'border-blue-400 shadow-buttonFocus bg-white hover:bg-white'
           : 'border-grey-50 shadow-buttonDefault hover:bg-grey-10 hover:border-grey-50'}
           `}  onMouseLeave={handleBlur} // Set typing to false on mouseout
@@ -65,7 +71,7 @@ const sendEmail =()=>{
       />
       <button
         onClick={sendEmail}
-        className="bg-grey-900 py-[6px] w-fit px-3 h-8 rounded-lg shadow-supportButton text-white text-14 font-medium whitespace-nowrap ml-1"
+        className="bg-grey-900 py-[6px] w-fit px-3 rounded-lg shadow-supportButton text-white h-7 text-14 font-medium whitespace-nowrap ml-1"
       >
         Send me Inspiration
       </button>
@@ -73,7 +79,7 @@ const sendEmail =()=>{
 
     {/* Email validation error message */}
     {(email.length > 5 && !emailPattern.test(email)) && (
-      <p className="text-red-500 text-12 mt-[-8px]">
+      <p className="text-red-500 text-12 mt-2">
         Please enter a valid email address
       </p>
     )}

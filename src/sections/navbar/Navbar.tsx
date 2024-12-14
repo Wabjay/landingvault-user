@@ -39,20 +39,19 @@ const Navbar = () => {
     };
 
   return (
-    <header className="w-full bg-white px-4 tablet:px-6 laptop:px-8 xl:px-0 fixed top-0 z-40  border-b border-b-grey-700">
-      <nav className="sticky top-0 z-10 block items-center h-[40px] my-[10px] ">
+    <header className="w-full bg-white px-4 tablet:px-6 laptop:px-8 xl:px-0 fixed top-0 z-40  border-b-[0.5px] border-b-grey-100">
+      <nav className="sticky top-0 z-10 block items-center my-[14px] ">
         <div className="flex gap-16 place-self-center items-center justify-between w-full laptop:max-w-[1152px] mx-auto">
           <Link
             href="/"
-            className={`flex items-center w-[144px] h-fit`}
+            className={`flex items-center h-fit  w-full max-w-[144px]`}
             onClick={() => {
               setSearch(""); // Clear the search input when the logo is clicked
               setVisibility(false);
             }}
           >
-            <Image src={Logo} alt="Logo" width="144" height="38" />
+            <Image src={Logo} alt="Logo" width="144" height="36" layout="intrinsic"/>
           </Link>
-
           {isSmallScreen ? (
             <>
               <div className="flex items-center gap-2">
@@ -72,7 +71,7 @@ const Navbar = () => {
                     <li>
                       <Link
                         href="/"
-                        className={`${getLinkClassName("", params)} text-grey-500`}
+                        className={`${getLinkClassName("", params)} text-14 text-grey-600`}
                         onClick={handleLinkClick}
                       >
                         Landing Pages
@@ -80,7 +79,7 @@ const Navbar = () => {
                     </li>
                     <Search />{" "}
                     <li
-                      className="cursor-pointer flex gap-x-1 mr-4"
+                      className="cursor-pointer flex gap-x-1 mr-4 font-medium text-14 text-grey-600"
                       onClick={() => {
                         setPromoteProduct(true);
                         setSearch(""); // Clear the search input
@@ -89,10 +88,10 @@ const Navbar = () => {
                       <Image src={Vault} alt="" width={20} height={20} /> Become
                       a Sponsor
                     </li>
-                    <li className="w-fit px-6 py-2 bg-white shadow-shareLinks border text-black rounded-lg">
+                    <li className="w-fit px-3 py-2 bg-white shadow-shareLinks border text-grey-800 rounded-lg">
                       <p
                         className={
-                          "cursor-pointer font-medium text-14 desktop:text-16 text-grey-800"
+                          "cursor-pointer font-medium text-14  text-grey-800"
                         }
                         onClick={() => {
                           setSubscribe(true);
@@ -105,7 +104,7 @@ const Navbar = () => {
                     <li className="w-fit px-6 py-2 border-blue-400 border shadow-supportButton bg-blueBg bg-blue-200 rounded-lg">
                       <p
                         className={
-                          "cursor-pointer font-medium text-14 desktop:text-16 text-white"
+                          "cursor-pointer font-medium text-14 text-white"
                         }
                         onClick={() => {
                           setSubmitWebsite(true);
@@ -120,11 +119,11 @@ const Navbar = () => {
               )}
             </>
           ) : (
-            <ul className="whitespace-nowrap text-14 desktop:text-16 flex w-fit font-medium flex-row items-center gap-6 desktop:gap-10">
+            <ul className="text-14 flex w-fit font-medium flex-row items-center gap-6 desktop:gap-[26px]">
               <li>
                 <Link
                   href="/"
-                  className={`${getLinkClassName("", params)} text-grey-500`}
+                  className={`${getLinkClassName("", params)} whitespace-nowrap text-grey-600`}
                   onClick={handleLinkClick}
                 >
                   Landing Pages
@@ -133,7 +132,7 @@ const Navbar = () => {
               <Search />
               <ul className="whitespace-nowrap flex w-fit font-medium flex-row items-center gap-4">
                 <li
-                  className="cursor-pointer px-3 py-2 flex items-center gap-x-1 text-grey-500 mr-3"
+                  className="cursor-pointer px-3 py-2 flex items-center gap-x-1 text-grey-600 mr-3"
                   onClick={() => {
                     setPromoteProduct(true);
                     setSearch(""); // Clear the search input
@@ -145,7 +144,7 @@ const Navbar = () => {
                 <li className="px-3 py-2 h-9 bg-white shadow-shareLinks border border-grey-50 rounded-lg">
                   <p
                     className={
-                      "cursor-pointer font-medium text-14 desktop:text-16 text-grey-800"
+                      "cursor-pointer font-medium text-14 text-grey-800"
                     }
                     onClick={() => {
                       setSubscribe(true);
@@ -157,7 +156,7 @@ const Navbar = () => {
                 </li>
                 <li className="px-3 py-2 h-9 border-blue-400 border shadow-supportButton bg-blue-200 bg-blueBg rounded-lg">
                   <p
-                    className={"cursor-pointer font-medium text-14 desktop:text-16 text-white"}
+                    className={"cursor-pointer font-medium text-14 text-white"}
                     onClick={() => {
                       setSubmitWebsite(true);
                       setSearch(""); // Clear the search input

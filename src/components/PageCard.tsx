@@ -28,7 +28,7 @@ const PageCard = ({ page }: { page: Page }) => {
           src={imageUrl}
           alt={brandName ? `${brandName} logo` : "No image available for this brand"}
           height={380}
-          style={`w-[300px] h-[380px] object-cover group-hover:bg-overlay  group-hover:border-grey-50 group-hover:border`}
+          style={`w-[300px] h-[380px] object-cover group-hover:bg-overlay  group-hover:shadow-shareCard border border-grey-50`}
         />
         <div className="py-2 flex justify-between w-full">
           <div>

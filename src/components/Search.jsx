@@ -49,7 +49,7 @@ export default function Search() {
   return (
     <>
       <div
-        className={`flex gap-2 p-2 bg-white w-[80%] laptop:w-full desktop:w-[313px] rounded-lg max-w-[313px] border ${
+        className={`flex gap-2 p-2 bg-white w-[80%] h-9 laptop:w-full desktop:w-[313px] rounded-lg max-w-[313px] border ${
           typing
             ? "border-blue-400 shadow-buttonFocus bg-white hover:bg-white"
             : "border-grey-50 hover:bg-grey-10 hover:border-grey-50"

@@ -42,7 +42,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-y-10 tablet:gap-y-20 laptop:gap-y-[100px] py-10 tablet:py-20 laptop:py-[100px]">
-      <Hero />
+      <Hero  component={slug}/>
       <div className="w-full max-w-[1150px] mx-auto overflow-hidden no-scrollbar px-4 tablet:px-6 laptop:px-8 desktop:px-0">
         <Tags component={slug} />
 

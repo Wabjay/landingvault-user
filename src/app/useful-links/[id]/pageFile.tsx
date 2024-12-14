@@ -3,9 +3,12 @@ import { websiteLinks } from "@/app/useful-links/links";
 import BackButton from "@/components/BackButton";
 import { createSlug } from "@/components/slug";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
-const PageFile = ({pageName}:{pageName: string}) => {
-  
+const PageFile = () => {
+  const pathname = usePathname();
+  const pageName = pathname.split("/")[2]?.toLowerCase();
+
   // Find the current page's data
   const currentWebsite = websiteLinks.find(
     (website) => createSlug(website.title) === pageName

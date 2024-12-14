@@ -1,10 +1,7 @@
 "use client";
-// import { useEffect } from "react";
-// import { usePathname } from "next/navigation";
 import BackButton from "@/components/BackButton";
 import LoadImage from "@/components/LoadImage";
 import SideSection from "@/sections/SideSection";
-// import { store } from "@/store";
 import { usePathname } from "next/navigation";
 import Skeleton from "@/components/Skeleton";
 import ISRFetcher from "@/lib/ISRFetcher";
@@ -14,16 +11,6 @@ import ErrorFallback from "@/components/FallBack/ErrorFallBack";
 import FooterPages from "@/sections/FooterPages";
 
 const SinglePage = () => {
-  // const {hydrated, fetchSinglePage, page: pageData } = store();
-  // const pathname = usePathname();
-
-  // useEffect(() => {
-  //   const pageName = pathname.split("/")[3]?.toLowerCase(); 
-  //   console.log(pageName)// Ensure page name is in lowercase for matching
-  //   if (hydrated) {
-  //     fetchSinglePage(pageName);  // Fetch the page data based on the page name
-  //   }
-  // }, [fetchSinglePage, pathname, hydrated]);
   const pathname = usePathname();
   const slug = pathname.split("/")[2]?.toLowerCase();
   const pageName = pathname.split("/")[3]?.toLowerCase();

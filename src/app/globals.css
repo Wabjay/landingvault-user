@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -28,6 +29,12 @@ body {
 
 .no-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari, and Opera */
+}
+
+@media screen and (min-width: 1024px){
+.sidesection__top{
+  padding-top:50px;
+}
 }
 
 /* add the code bellow */ 

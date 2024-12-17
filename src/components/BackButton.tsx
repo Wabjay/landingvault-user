@@ -11,7 +11,7 @@ function BackButton({color='green-600', position="sticky"}: {color?:string, posi
 
 
   return (
-    <div className={`w-full mx-auto laptop:px-0 laptop:bg-transparent desktop:px-0  ${position} top-20 z-50 `}>
+    <div className={`w-full mx-auto  laptop:bg-transparent desktop:px-0  ${position} top-20 z-50 `}>
     <button
       className={`flex gap-2 h-10 mb-6 bg-${color}}`}
       onClick={goBack} type="button">

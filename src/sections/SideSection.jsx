@@ -15,7 +15,7 @@ const SideSection = ({ page }) => {
   if (!page) return <Skeleton>Loading...</Skeleton>;
 
   return (
-    <div className="laptop:sticky laptop:top-[66px] py-6 bg-white laptop:h-fit laptop:mt-[-66px] mb-10 w-full laptop:max-w-[500px] pb-4 px-4 tablet:px-6 laptop:px-10 laptop:pb-[100px]">
+    <div className="laptop:sticky laptop:top-[66px] py-6 bg-white laptop:h-fit laptop:mt-[-66px] mb-10 w-full laptop:max-w-[500px] pb-4 px-4 tablet:px-6 laptop:px-10 sidesection__top laptop:pb-[100px]">
       <h1 className="text-24 text-grey-800 font-semibold mb-2">
         <Skeleton>{page?.brandName}</Skeleton>
       </h1>

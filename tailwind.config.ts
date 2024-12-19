@@ -15,6 +15,7 @@ export default {
       'ipad': '768px',
       'laptop': '1024px',
       'desktop': '1280px',
+      'bigScreen': '1440px',
     },
     fontFamily: {
       'Switzer': ['Switzer', 'San-serif'],

@@ -4,28 +4,28 @@ import PageFile from "./pageFile";
 
 export const metadata: Metadata = {
   
-  title: 'Wordiebox About us',
-  description: 'Wordiebox offers a wide range of learning tools designed to improve your learning experience. It includes a random word generator, word counter, character counter and so much more!',
+  title: 'Landingvault - Contact us ',
+  description: 'Get in touch with our support teams for demos, onboarding support, or listing questions.',
   icons: {
-    icon: 'https://wordiebox.com/icon.png',  // This sets the favicon for this specific page
+    icon: 'https://landingvault.com/icon.png',  // This sets the favicon for this specific page
   },
   openGraph: {
     type: "website",
-    siteName: "Wordiebox",
-    title: 'Wordiebox About us',
-    description: 'Wordiebox offers a wide range of learning tools designed to improve your learning experience. It includes a random word generator, word counter, character counter and so much more!',
-    url: 'https://wordiebox.com/about-us-page',
+    siteName: "Landingvault",
+    title: 'Landingvault - Contact us ',
+    description: 'Get in touch with our support teams for demos, onboarding support, or listing questions.',
+    url: 'https://landingvault.com/about-us-page',
     images: [{
-      url: 'https://wordiebox.com/seo-card.png',
+      url: 'https://landingvault.com/seo-card.png',
     }],
   },
   twitter: {
     card: "summary_large_image",
-    site: 'https://wordiebox.com/about-us-page',
-    title: 'Wordiebox About us',
-    description: 'Wordiebox offers a wide range of learning tools designed to improve your learning experience. It includes a random word generator, word counter, character counter and so much more!',
+    site: 'https://landingvault.com/about-us-page',
+    title: 'Landingvault - Contact us ',
+    description: 'Get in touch with our support teams for demos, onboarding support, or listing questions.',
     images: [{
-      url: 'https://wordiebox.com/seo-card.png',
+      url: 'https://landingvault.com/seo-card.png',
     }],
   },
 };

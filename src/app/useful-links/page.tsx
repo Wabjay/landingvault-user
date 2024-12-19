@@ -4,28 +4,28 @@ import PageFile from "./pageFile";
 
 export const metadata: Metadata = {
   
-  title: 'WordieboxUseful Links',
-  description: 'Wordiebox offers a wide range of learning tools designed to improve your learning experience. It includes a random word generator, word counter, character counter and so much more!',
+  title: 'Landingvault Useful Links',
+  description: 'Explore top landing page design inspiration on Landingvault. Get inspired with curated, high-quality landing page examples.',
   icons: {
-    icon: 'https://wordiebox.com/icon.png',  // This sets the favicon for this specific page
+    icon: 'https://landingvault.com/icon.png',  // This sets the favicon for this specific page
   },
   openGraph: {
     type: "website",
-    siteName: "Wordiebox",
-    title: 'WordieboxUseful Links',
-    description: 'Wordiebox offers a wide range of learning tools designed to improve your learning experience. It includes a random word generator, word counter, character counter and so much more!',
-    url: 'https://wordiebox.com/useful-links',
+    siteName: "Landingvault",
+    title: 'Landingvault Useful Links',
+    description: 'Explore top landing page design inspiration on Landingvault. Get inspired with curated, high-quality landing page examples.',
+    url: 'https://landingvault.com/useful-links',
     images: [{
-      url: 'https://wordiebox.com/seo-card.png',
+      url: 'https://landingvault.com/seo-card.png',
     }],
   },
   twitter: {
     card: "summary_large_image",
-    site: 'https://wordiebox.com/useful-links',
-    title: 'WordieboxUseful Links',
-    description: 'Wordiebox offers a wide range of learning tools designed to improve your learning experience. It includes a random word generator, word counter, character counter and so much more!',
+    site: 'https://landingvault.com/useful-links',
+    title: 'Landingvault Useful Links',
+    description: 'Explore top landing page design inspiration on Landingvault. Get inspired with curated, high-quality landing page examples.',
     images: [{
-      url: 'https://wordiebox.com/seo-card.png',
+      url: 'https://landingvault.com/seo-card.png',
     }],
   },
 };

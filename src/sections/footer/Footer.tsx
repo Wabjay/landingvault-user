@@ -27,7 +27,7 @@ const FooterLink = ({ href, onClick, children, target="normal" }: FooterLinkProp
 };
 
 const Footer = () => {
-  const { setSubmitWebsite, setPromoteProduct, setSearch } = store();
+  const { setSubmitWebsite, setPromoteProduct,setSubscribe, setSearch } = store();
   const isSmallScreen = useMediaQuery({ query: "(max-width: 1023px)" });
 
   const handleLinkClick = () => {
@@ -62,37 +62,40 @@ const Footer = () => {
             <div className="flex flex-col laptop:flex-row gap-4 laptop:gap-16">
               <div className="flex flex-col gap-3 desktop:gap-4">
                 <h5 className="text-16 text-grey-200 mb-2">COMPONENTS</h5>
-                <FooterLink href="/" onClick={handleLinkClick}>
+                <FooterLink href="/landing" onClick={handleLinkClick}>
                   Landing page
                 </FooterLink>
-                <FooterLink href="/" onClick={handleLinkClick}>
+                <FooterLink href="/features" onClick={handleLinkClick}>
                   Features
                 </FooterLink>
-                <FooterLink href="/" onClick={handleLinkClick}>
+                <FooterLink href="/pricing" onClick={handleLinkClick}>
                   Pricing
                 </FooterLink>
-                <FooterLink href="/contact-us-page" onClick={handleLinkClick}>
+                <FooterLink href="/contact-us" onClick={handleLinkClick}>
                   Contact us
                 </FooterLink>
-                <FooterLink href="/" onClick={handleLinkClick}>
+                <FooterLink href="/testimonial" onClick={handleLinkClick}>
                   Testimonials
                 </FooterLink>
               </div>
 
               <div className="flex flex-col gap-3 desktop:gap-4">
                 <h5 className="text-16 text-grey-200 mb-2">PRODUCTS</h5>
-                <FooterLink href="/" onClick={handleLinkClick}>
-                  Templates
+                <FooterLink href="/contact-us-page" onClick={handleLinkClick}>
+                  Contact Us
                 </FooterLink>
                 <FooterLink href="/about-us-page" onClick={handleLinkClick}>
                   About Us
                 </FooterLink>
-                <FooterLink href="/" onClick={handleLinkClick}>
+                <p onClick={() => {
+                    setPromoteProduct(true);
+                    handleLinkClick();
+                  }}>
                   Become a sponsor
-                </FooterLink>
+                </p>
                 <p
                   onClick={() => {
-                    setPromoteProduct(true);
+                    setSubscribe(true);
                     handleLinkClick();
                   }}
                   className="cursor-pointer text-sm font-normal laptop:text-[16px] leading-[22px]"

@@ -55,7 +55,7 @@ setPageName(pageName)
       every week
     </p>
 
-    <div className={`border bg-white rounded-xl h-9 flex gap-2 tablet:gap-0 tablet:flex-row justify-between items-center pl-3 pr-2 ${typing
+    <div className={`border bg-white rounded-xl h-11 flex gap-2 tablet:gap-0 tablet:flex-row justify-between items-center pl-3 pr-2 ${typing
           ? 'border-blue-400 shadow-buttonFocus bg-white hover:bg-white'
           : 'border-grey-50 shadow-buttonDefault hover:bg-grey-10 hover:border-grey-50'}
           `}  onMouseLeave={handleBlur} // Set typing to false on mouseout
@@ -71,7 +71,7 @@ setPageName(pageName)
       />
       <button
         onClick={sendEmail}
-        className="bg-grey-900 py-[6px] w-fit px-3 rounded-lg shadow-supportButton text-white h-7 text-14 font-medium whitespace-nowrap ml-1"
+        className="bg-grey-900 py-[6px] w-fit px-3 rounded-lg shadow-supportButton text-white text-14 leading-5 border font-medium whitespace-nowrap ml-1"
       >
         Send me Inspiration
       </button>

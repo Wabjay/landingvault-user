@@ -7,7 +7,7 @@ import LayoutFallBack from "@/components/FallBack/LayoutFallback";
 
 export const metadata: Metadata = {
   title: `Landingvault: The best landing page design inspiration and Examples`,
-  description: ` Landingvault`,
+  description: `Explore top landing page design inspiration on Landingvault. Get inspired with curated, high-quality landing page examples.`,
   icons: {
     icon: "/icon.png",
   },

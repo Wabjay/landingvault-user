@@ -25,7 +25,7 @@ console.log(pathname)
   return (
     <div className="w-full">
     <div className="bg-grey-10">
-      <div className="w-full laptop:max-w-[1440px] mx-auto px-4 tablet:px-6 laptop:px-0 xl:px-0 flex flex-col gap-6 tablet:gap-10 laptop:gap-14 desktop:gap-24">
+      <div className="w-full laptop:max-w-[1440px] mx-auto px-4 tablet:px-6 laptop:px-0 xl:px-0 flex flex-col">
         <div className="">
           <div className="w-full laptop:max-w-[1299px] mx-auto px-4 tablet:px-6 laptop:pl-8 laptop:pr-0 desktop:px-0 desktop:mr-0 desktop:ml-auto">
           <BackButton color={""} />
@@ -53,9 +53,9 @@ console.log(pathname)
              />
           </div>
         </div>
-        <FooterPages slug={slug} />
+      
       </div>
-    </div>
+    </div>  <FooterPages slug={slug} />
   </div>
   );
 };

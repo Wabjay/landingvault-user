@@ -101,7 +101,7 @@ const Navbar = () => {
                         Subscribe
                       </p>
                     </li>
-                    <li className="w-fit px-6 py-2 border-blue-400 border shadow-supportButton bg-blueBg bg-blue-200 rounded-lg">
+                    <li className="w-fit px-6 py-2 border-blue-400 border shadow-supportButton bg-blueBg bg-blue-200 hover:bg-blue-500 rounded-lg">
                       <p
                         className={
                           "cursor-pointer font-medium text-14 text-white"
@@ -141,7 +141,7 @@ const Navbar = () => {
                   <Image src={Vault} alt="" width={20} height={20} /> Become a
                   Sponsor
                 </li>
-                <li className="px-3 py-2 h-9 bg-white shadow-shareLinks border border-grey-50 rounded-lg">
+                <li className="px-3 py-2 h-9 bg-white hover:bg-grey-10 shadow-shareLinks border border-grey-50 rounded-lg">
                   <p
                     className={
                       "cursor-pointer font-medium text-14 text-grey-800"
@@ -154,7 +154,7 @@ const Navbar = () => {
                     Subscribe
                   </p>
                 </li>
-                <li className="px-3 py-2 h-9 border-blue-400 border shadow-supportButton bg-blue-200 bg-blueBg rounded-lg">
+                <li className="px-3 py-2 h-9 border-blue-400 border shadow-supportButton bg-blue-200 bg-blueBg hover:bg-blue-500 rounded-lg">
                   <p
                     className={"cursor-pointer font-medium text-14 text-white"}
                     onClick={() => {

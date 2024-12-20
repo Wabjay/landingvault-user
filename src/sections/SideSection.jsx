@@ -83,7 +83,7 @@ const SideSection = ({ page }) => {
         </p>
       </div>
 <Link target="_blank" href={page?.websiteUrl} >
-      <div className="px-3 py-2 flex items-center justify-center border-blue-400 border shadow-supportButton bg-blue-200 bg-blueBg rounded-lg text-center font-medium  text-white">
+      <div className="px-3 py-2 flex items-center justify-center border-blue-400 border shadow-supportButton bg-blue-200 bg-blueBg hover:bg-blue-500  rounded-lg text-center font-medium  text-white">
       
       View Website
       <Image src="/arrow-button.svg" width={24} height={24} alt="" className="" />

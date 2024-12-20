@@ -67,6 +67,8 @@ export async function generateMetadata({
       images: [
         {
           url: pageIcon,
+          width: 800,
+          height: 600,
         },
       ],
     },
@@ -77,6 +79,8 @@ export async function generateMetadata({
       images: [
         {
           url: pageIcon,
+          width: 800,
+          height: 600,
         },
       ],
     },

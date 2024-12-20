@@ -5,7 +5,7 @@ export async function generateMetadata() {
   
   
   const title = `Landingvault - The best design inspiration for your next project`;
-  const description = `Explore top design inspiration on Landingvault. Get inspired with curated examples featuring screenshots, industry, stack, typography, and color palette ideas.`;
+  const description = `Landingvault is dedicated to curating high-quality branding websites.This is a resource where you can discover some of the best branding and landing page designs for inspiration or reference.`;
 
 
   const image = "/seo-card.png";
@@ -18,7 +18,7 @@ export async function generateMetadata() {
       siteName: "Landingvault",
       title,
       description,
-      url: `https://landingvault.com/`,
+      url: `https://landingvault.com/about-us-page`,
       images: [{ url: image }],
     },
     twitter: {

@@ -71,7 +71,7 @@ setPageName(pageName)
       />
       <button
         onClick={sendEmail}
-        className="bg-grey-900 py-[6px] w-fit px-3 rounded-lg shadow-supportButton text-white text-14 leading-5 border font-medium whitespace-nowrap ml-1"
+        className="bg-grey-900 hover:bg-grey-800 py-[6px] w-fit px-3 rounded-lg shadow-supportButton text-white text-14 leading-5 border font-medium whitespace-nowrap ml-1"
       >
         Send me Inspiration
       </button>

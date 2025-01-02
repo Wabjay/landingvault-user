@@ -1,7 +1,8 @@
 import { useState, ChangeEvent } from "react";
-import axios from "@/lib/axios";
+import axios from "axios";
 import { store } from "@/store";
 import Image from "next/image";
+import Confirm, { Note } from "./Confirm";
 
 // Define types for form data and error states
 interface FormData {
@@ -29,6 +30,7 @@ const SubmitWebsite = () => {
     url: "",
     about: "",
   });
+  const [confirm, setConfirm] = useState<boolean>(false);
 
   const [errors, setErrors] = useState<Errors>({
     name: false,
@@ -41,6 +43,7 @@ const SubmitWebsite = () => {
     url: false,
     about: false,
   });
+  const [notification, setNotification] = useState<Note>({status:"", message:""});
 
   const { setSubmitWebsite, submitWebsite } = store();
 
@@ -94,17 +97,37 @@ const SubmitWebsite = () => {
     return !Object.values(newErrors).includes(true);
   };
 
+  const showNotification =(status:string,message:string )=>{
+    setNotification({status: status, message: message})
+    setConfirm(true);
+    setTimeout(() => setConfirm(false), 3000);
+  }
+
   const handleSubmit = async (): Promise<void> => {
     if (!validateInputs()) return;
 
+    const payload = {
+      name: formData.name,
+      url: formData.url,
+      about: formData.about
+    }
+    
     try {
       await axios.post(
-        "auth/login",
-        { email: formData.url },
+        "/api/submit",payload,
         { headers: { "Content-Type": "application/json" } }
+      );
+      setSubmitWebsite(false);
+      showNotification("success", 'Website Submitted')
+      setFormData(
+        { 
+          name: "",
+          url: "",
+          about: "",}
       );
     } catch (error) {
       console.error("Error submitting form:", error);
+      showNotification("error", 'Error submitting website')
     }
   };
 
@@ -123,7 +146,8 @@ const SubmitWebsite = () => {
   };
 
   return (
-    submitWebsite && (
+    <>
+    {submitWebsite && (
       <div className="w-[100vw] h-[100vh] flex items-baseline justify-center bg-overlay fixed top-0 left-0 z-20">
         <div className="w-[90%] max-w-[480px] mt-[5%] flex flex-col gap-6 p-6 rounded-[12px] bg-white border-[rgb(232,232,234)] border">
           <div className="flex justify-between w-full mb-4">
@@ -222,7 +246,9 @@ const SubmitWebsite = () => {
           </div>
         </div>
       </div>
-    )
+    )}
+{confirm && <Confirm status={notification.status} message={notification.message}/>}
+</>
   );
 };
 

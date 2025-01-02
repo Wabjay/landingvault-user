@@ -1,7 +1,8 @@
 import { useState, ChangeEvent } from "react";
-import axios from "@/lib/axios";
+import axios from "axios";
 import { store } from "@/store";
 import Image from "next/image";
+import Confirm, { Note } from "./Confirm";
 
 // Define types for form data and error states
 interface FormData {
@@ -38,6 +39,9 @@ const PromoteProduct = () => {
 
   const [focusedField, setFocusedField] = useState<keyof FormData | null>(null);
 
+  const [notification, setNotification] = useState<Note>({status:"", message:""});
+  const [confirm, setConfirm] = useState<boolean>(false);
+
   const { setPromoteProduct, promoteProduct } = store();
 
   const emailRegex =
@@ -73,17 +77,36 @@ const PromoteProduct = () => {
     return !Object.values(newErrors).includes(true);
   };
 
+  const showNotification =(status:string,message:string )=>{
+    setNotification({status: status, message: message})
+    setConfirm(true);
+    setTimeout(() => setConfirm(false), 3000);
+  }
+
   const handleSubmit = async (): Promise<void> => {
     if (!validateInputs()) return;
-
+const payload = {
+  email: formData.email,
+  name: formData.name,
+  websiteLink: formData.websiteUrl
+}
     try {
       await axios.post(
-        "auth/login",
-        { email: formData.email },
+        "/api/promote",payload,
         { headers: { "Content-Type": "application/json" } }
       );
+      setFormData(
+        { 
+          name: "",
+          email: "",
+          websiteUrl: "",}
+      )
+      showNotification("success", 'Product Submitted')
+
     } catch (error) {
       console.error("Error submitting form:", error);
+      showNotification("error", 'Error Submitting Product')
+
     }
   };
 
@@ -200,6 +223,8 @@ const PromoteProduct = () => {
             automatically.
           </p>
         </div>
+        {confirm && <Confirm status={notification.status} message={notification.message}/>}
+
       </div>
     )
   );

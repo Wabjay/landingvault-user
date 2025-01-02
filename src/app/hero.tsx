@@ -1,21 +1,45 @@
 "use client"
 import LoadImage from "@/components/LoadImage"
+import Confirm, { Note } from "@/popups/Confirm"
+import axios from "axios"
 import { useEffect, useState } from "react"
 
 const Hero = ({component}:{component: string}) => {  
 const [email, setEmail] = useState<string>("")
 const [typing, setTyping] = useState(false)
 const [pageName, setPageName] = useState<string>("")
+const [confirm, setConfirm] = useState<boolean>(false);
+const [notification, setNotification] = useState<Note>({status:"", message:""});
 
 
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-const sendEmail =()=>{
-  if(emailPattern.test(email)){
-    console.log(email)
-  }
-  
+const showNotification =(status:string,message:string )=>{
+  setNotification({status: status, message: message})
+  setConfirm(true);
+  setTimeout(() => setConfirm(false), 3000);
 }
+
+const sendEmail =  async (): Promise<void> => {
+  console.log(email)
+  if (!email || !emailPattern.test(email)) {
+    console.error("Invalid email address");
+    return;
+  }
+    try {
+        await axios.post(
+          "/api/subscribe",
+          { email: email },
+          { headers: { "Content-Type": "application/json" } }
+        );
+        setEmail("");
+        showNotification("success", 'Subscribed')
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        showNotification("error", 'Error Subscribing')
+      }
+    };
+
 
 useEffect(()=>{
   const pageName = component.replace(/[-/]/g, " ").replace(/\b\w/g, (char) => char.toUpperCase())
@@ -87,6 +111,8 @@ setPageName(pageName)
 </div>
 
       </div>
+      {confirm && <Confirm status={notification.status} message={notification.message}/>}
+
       </div>)
   }
   

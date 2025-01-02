@@ -31,6 +31,7 @@ const Navbar = () => {
   const handleLinkClick = () => {
     setSearch(""); // Clear the search input
     setVisibility(false); // Close the mobile navbar if it's open
+    console.log("closed")
   };
 
     // Helper function to handle link click, clear search, and close modal
@@ -77,11 +78,12 @@ const Navbar = () => {
                         Landing Pages
                       </Link>
                     </li>
-                    <Search />{" "}
+                    <Search />
                     <li
                       className="cursor-pointer flex gap-x-1 mr-4 font-medium text-14 text-grey-600"
                       onClick={() => {
                         setPromoteProduct(true);
+                        handleLinkClick()
                         setSearch(""); // Clear the search input
                       }}
                     >
@@ -95,6 +97,7 @@ const Navbar = () => {
                         }
                         onClick={() => {
                           setSubscribe(true);
+                          handleLinkClick()
                           setSearch(""); // Clear the search input
                         }}
                       >
@@ -108,6 +111,7 @@ const Navbar = () => {
                         }
                         onClick={() => {
                           setSubmitWebsite(true);
+                          handleLinkClick()
                           setSearch(""); // Clear the search input
                         }}
                       >
@@ -172,7 +176,7 @@ const Navbar = () => {
       </nav>
       <SubmitWebsite />
       <PromoteProduct />
-      <Subscribe setConfirm={setConfirmation}/>
+      <Subscribe setConfirmation={setConfirmation}/>
       <ConfirmSubscription setConfirm={setConfirmation} confirm={confirm} />
     </header>
   );

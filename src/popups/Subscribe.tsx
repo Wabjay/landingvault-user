@@ -1,17 +1,19 @@
 import { useState, ChangeEvent } from "react";
-// import axios from "@/lib/axios";
+import axios from "axios";
 import { store } from "@/store";
 import Image from "next/image";
 import LoadImage from "@/components/LoadImage";
-
+import Confirm, { Note } from "./Confirm";
 interface SubscribeProps {
-  setConfirm?: (status: boolean) => void;
+  setConfirmation?: (status: boolean) => void;
 }
 
-const Subscribe = ({ setConfirm = () => {} }: SubscribeProps) => {
+const Subscribe = ({ setConfirmation = () => {} }: SubscribeProps) => {
   const [email, setEmail] = useState<string>("");
   const [error, setError] = useState<boolean>(false);
   const [focused, setFocused] = useState<boolean>(false);
+  const [confirm, setConfirm] = useState<boolean>(false);
+  const [notification, setNotification] = useState<Note>({status:"", message:""});
 
   const { setSubscribe, subscribe } = store();
 
@@ -23,22 +25,29 @@ const Subscribe = ({ setConfirm = () => {} }: SubscribeProps) => {
     setEmail(value);
     setError(!emailRegex.test(value));
   };
-
-  const handleSubmit = async (): Promise<void> => {
-    setSubscribe(false);
+ 
+  const showNotification =(status:string,message:string )=>{
+    setNotification({status: status, message: message})
     setConfirm(true);
-    // if (error || !email) return;
+    setTimeout(() => setConfirm(false), 3000);
+  }
+  const handleSubmit = async (): Promise<void> => {
+    if (error || !email) return;
+    try {
+      await axios.post(
+        "/api/subscribe",
+        { email: email },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      setSubscribe(false);
+      setEmail("");
+    setConfirmation(true);
+      showNotification("success", 'Subscribed')
 
-    // try {
-    //   await axios.post(
-    //     "auth/login",
-    //     { email },
-    //     { headers: { "Content-Type": "application/json" } }
-    //   );
-    //   setConfirm(true);
-    // } catch (error) {
-    //   console.error("Error submitting form:", error);
-    // }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      showNotification("error", 'Error Subscribing')
+    }
   };
 
   const close = (): void => {
@@ -56,7 +65,6 @@ const Subscribe = ({ setConfirm = () => {} }: SubscribeProps) => {
       >
         <div className="relative w-[90%] max-w-[480px] mt-[5%] flex flex-col gap-6 pb-6  overflow-hidden rounded-[12px] bg-white border-[rgb(232,232,234)] border">
           <div className="absolute z-50 flex justify-end w-full p-4">
-            
             <Image
               src="/cancel.svg"
               alt="Close"
@@ -67,14 +75,20 @@ const Subscribe = ({ setConfirm = () => {} }: SubscribeProps) => {
             />
           </div>
 
-          <LoadImage alt="pop-image2" src="/pop-image2.png" style="w-full h-auto bg-grey-10 py-6" height={undefined} />
+          <LoadImage
+            alt="pop-image2"
+            src="/pop-image2.png"
+            style="w-full h-auto bg-grey-10 py-6"
+            height={undefined}
+          />
 
           <div className="w-full text-left px-6">
             <p className="text-20 text-grey-900 font-semibold tablet:text-24 mb-2">
               Subscribe to our weekly Suggestions
             </p>
             <p className="text-14 text-grey-600">
-              Stay ahead of trends, get a weekly roundup of the top websites in your inbox every Monday.
+              Stay ahead of trends, get a weekly roundup of the top websites in
+              your inbox every Monday.
             </p>
           </div>
 
@@ -120,13 +134,16 @@ const Subscribe = ({ setConfirm = () => {} }: SubscribeProps) => {
             className="bg-blue-400 rounded-lg cursor-pointer border-blue-400 hover:bg-blue-500 hover:border-blue-400 shadow-shareLinks inline-flex items-center justify-center py-3 px-6 mt-4 mx-6 text-white text-14 font-medium focus:outline-none capitalize"
             aria-label="Submit your email"
           >
-            Send Proposal
+            Subscribe
           </button>
           <p className="text-center text-14 text-grey-600 capitalize">
             No spam, just design
           </p>
         </div>
+
+        {confirm && <Confirm status={notification.status} message={notification.message}/>}
       </div>
+
     )
   );
 };

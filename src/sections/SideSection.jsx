@@ -51,7 +51,7 @@ const SideSection = ({ page }) => {
           </Skeleton>
           <Skeleton>
             <span className="col-span-2 text-grey-600">Date</span>
-            <span className="col-span-3 text-grey-800 capitalize">{moment(page?.date).format("LL")}</span>
+            <span className="col-span-3 text-grey-800 capitalize">{moment(page?.createdAt).format("LL")}</span>
           </Skeleton>
           <Skeleton>
             <span className="col-span-2 text-grey-600">Font</span>

@@ -5,11 +5,11 @@ export async function generateMetadata({ params }) {
 
   // If no slug (i.e., root path), set a default page title and description
   const formattedSlug = Array.isArray(slug) && slug.length > 0
-      ? slug.join(" ").replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase())
+      ? slug.join(" ").replace(/-/g, " ").replace(/\b\w/g, (char) => char.toLowerCase())
       : "Landing";
 
-  const title = `Landingvault - The best ${formattedSlug} design inspiration for your next project`;
-  const description = `Explore top ${formattedSlug} design inspiration on Landingvault. Get inspired with curated examples featuring screenshots, industry, stack, typography, and color palette ideas.`;
+  const title = `Landingvault - The best ${formattedSlug} page design inspiration for your next project`;
+  const description = `Explore top ${formattedSlug} page design inspiration on Landingvault. Get inspired with curated examples featuring screenshots, industry, stack, typography, and color palette ideas.`;
 
   const image = "https://landingvault.com/cover.webp";
   return {

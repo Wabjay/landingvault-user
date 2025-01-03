@@ -65,7 +65,7 @@ setPageName(pageName)
     The Best <span>{pageName}</span> Page Design Inspiration 
     </h1>
     <p className="text-grey-500 text-16 tablet:text-20 laptop:text-24 laptop:leading-9">
-    Explore top <span>{pageName}</span> design inspiration  on Landingvault. Get inspired with curated, high-quality <span>{pageName}</span> examples.
+    Explore top <span>{pageName}</span> page design inspiration  on Landingvault. Get inspired with curated, high-quality <span>{pageName}</span> examples.
     </p>
   </div>
 

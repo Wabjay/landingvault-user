@@ -21,22 +21,22 @@ console.log(id)
   const pageTitle = page ? page.title : "";
   const pageIcon = page
     ? page.image
-    : "https://wordiebox.com/cover.webp";
+    : "https://landingvault.com/cover.webp";
 
   return {
-    title: `Wordiebox | ${pageTitle}`,
+    title: `Landingvault | ${pageTitle}`,
     description:
-      "Wordiebox offers a wide range of learning tools designed to improve your learning experience. It includes a random word generator, word counter, character counter and so much more!",
+      "Landingvault offers a wide range of learning tools designed to improve your learning experience.",
     icons: {
-      icon: "https://wordiebox.com/cover.webp", // This sets the favicon for this specific page
+      icon: "https://landingvault.com/cover.webp", // This sets the favicon for this specific page
     },
     openGraph: {
       type: "website",
-      siteName: "Wordiebox",
-      title: `Wordiebox | ${pageTitle}`,
+      siteName: "Landingvault",
+      title: `Landingvault | ${pageTitle}`,
       description:
-        "Wordiebox offers a wide range of learning tools designed to improve your learning experience. It includes a random word generator, word counter, character counter and so much more!",
-      url: `https://wordiebox.com/useful-links/${createSlug(title)}`,
+        "Landingvault offers a wide range of learning tools designed to improve your learning experience.",
+      url: `https://landingvault.com/useful-links/${createSlug(title)}`,
       images: [
         {
           url: `${pageIcon}`,
@@ -45,10 +45,10 @@ console.log(id)
     },
     twitter: {
       card: "summary_large_image",
-      site: `https://wordiebox.com/useful-links/${createSlug(title)}`,
-      title: `Wordiebox | ${pageTitle}`,
+      site: `https://landingvault.com/useful-links/${createSlug(title)}`,
+      title: `Landingvault | ${pageTitle}`,
       description:
-        "Wordiebox offers a wide range of learning tools designed to improve your learning experience. It includes a random word generator, word counter, character counter and so much more!",
+        "Landingvault offers a wide range of learning tools designed to improve your learning experience.",
       images: [
         {
           url: `${pageIcon}`,

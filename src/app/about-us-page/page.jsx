@@ -8,11 +8,11 @@ export async function generateMetadata() {
   const description = `Landingvault is dedicated to curating high-quality branding websites.This is a resource where you can discover some of the best branding and landing page designs for inspiration or reference.`;
 
 
-  const image = "/cover.webp";
+  const image = "https://landingvault.com/cover.webp";
   return {
     title,
     description,
-    icons: { icon: "/cover.webp" },
+    icons: { icon: "https://landingvault.com/cover.webp" },
     openGraph: {
       type: "website",
       siteName: "Landingvault",

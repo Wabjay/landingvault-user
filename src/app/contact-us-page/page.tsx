@@ -9,11 +9,11 @@ export async function generateMetadata() {
   const description = `Get in touch with our support teams for demos, onboarding support, or listing questions.`;
 
   
-  const image = "/cover.webp";
+  const image = "https://landingvault.com/cover.webp";
   return {
     title,
     description,
-    icons: { icon: "/cover.webp" },
+    icons: { icon: "https://landingvault.com/cover.webp" },
     openGraph: {
       type: "website",
       siteName: "Landingvault",

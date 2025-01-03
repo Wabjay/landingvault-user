@@ -11,11 +11,11 @@ export async function generateMetadata({ params }) {
   const title = `Landingvault - The best ${formattedSlug} design inspiration for your next project`;
   const description = `Explore top ${formattedSlug} design inspiration on Landingvault. Get inspired with curated examples featuring screenshots, industry, stack, typography, and color palette ideas.`;
 
-  const image = "/cover.webp";
+  const image = "https://landingvault.com/cover.webp";
   return {
     title,
     description,
-    icons: { icon: "/cover.webp" },
+    icons: { icon: "https://landingvault.com/cover.webp" },
     openGraph: {
       type: "website",
       siteName: "Landingvault",

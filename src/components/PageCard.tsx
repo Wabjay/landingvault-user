@@ -17,7 +17,7 @@ const PageCard = ({ page }: { page: Page }) => {
   const components = "categories";
 
   return (
-    <div className="w-full flex h-auto text-16 font-medium focus:outline-none mb-6">
+    <div className="w-full h-auto text-16 font-medium focus:outline-none mb-6">
       <Skeleton width={300} height={undefined}>
       <Link
         href={`/${components}/${tag}/${slug}`}

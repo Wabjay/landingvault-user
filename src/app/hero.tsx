@@ -33,10 +33,10 @@ const sendEmail =  async (): Promise<void> => {
           { headers: { "Content-Type": "application/json" } }
         );
         setEmail("");
-        showNotification("success", 'Subscribed')
+        showNotification("success", 'You will get design inspirations on your email.')
       } catch (error) {
         console.error("Error submitting form:", error);
-        showNotification("error", 'Error Subscribing')
+        showNotification("error", 'There was an error subscribing to the inspiration list.')
       }
     };
 

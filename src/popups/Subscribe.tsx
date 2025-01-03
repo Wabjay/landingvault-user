@@ -42,11 +42,11 @@ const Subscribe = ({ setConfirmation = () => {} }: SubscribeProps) => {
       setSubscribe(false);
       setEmail("");
     setConfirmation(true);
-      showNotification("success", 'Subscribed')
+      showNotification("success", 'Your subscription was successful')
 
     } catch (error) {
       console.error("Error submitting form:", error);
-      showNotification("error", 'Error Subscribing')
+      showNotification("error", 'There was an error subscribing')
     }
   };
 

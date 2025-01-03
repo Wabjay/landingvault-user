@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Landingvault Useful Links',
   description: 'Explore top landing page design inspiration on Landingvault. Get inspired with curated, high-quality landing page examples.',
   icons: {
-    icon: 'https://landingvault.com/icon.png',  // This sets the favicon for this specific page
+    icon: 'https://landingvault.com/cover.webp',  // This sets the favicon for this specific page
   },
   openGraph: {
     type: "website",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     description: 'Explore top landing page design inspiration on Landingvault. Get inspired with curated, high-quality landing page examples.',
     url: 'https://landingvault.com/useful-links',
     images: [{
-      url: 'https://landingvault.com/seo-card.png',
+      url: 'https://landingvault.com/cover.webp',
     }],
   },
   twitter: {
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: 'Landingvault Useful Links',
     description: 'Explore top landing page design inspiration on Landingvault. Get inspired with curated, high-quality landing page examples.',
     images: [{
-      url: 'https://landingvault.com/seo-card.png',
+      url: 'https://landingvault.com/cover.webp',
     }],
   },
 };

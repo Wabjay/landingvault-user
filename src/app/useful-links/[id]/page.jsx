@@ -21,14 +21,14 @@ console.log(id)
   const pageTitle = page ? page.title : "";
   const pageIcon = page
     ? page.image
-    : "https://wordiebox.com/seo-card.png";
+    : "https://wordiebox.com/cover.webp";
 
   return {
     title: `Wordiebox | ${pageTitle}`,
     description:
       "Wordiebox offers a wide range of learning tools designed to improve your learning experience. It includes a random word generator, word counter, character counter and so much more!",
     icons: {
-      icon: "https://wordiebox.com/icon.png", // This sets the favicon for this specific page
+      icon: "https://wordiebox.com/cover.webp", // This sets the favicon for this specific page
     },
     openGraph: {
       type: "website",

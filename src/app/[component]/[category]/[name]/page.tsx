@@ -48,13 +48,13 @@ export async function generateMetadata({
       : pageDescription ||
         "Landingvault offers a wide range of learning tools designed to improve your learning experience.";
   const pageIcon =
-    pageData.data[0]?.pageCoverImage || "https://landingvault.com/seo-card.png";
+    pageData.data[0]?.pageCoverImage || "https://landingvault.com/cover.webp";
 
   return {
     title: `${pageTitle} | Landingvault`,
     description: `${pageDesc} Landingvault`,
     icons: {
-      icon: "https://landingvault.com/icon.png",
+      icon: "https://landingvault.com/cover.webp",
     },
     openGraph: {
       type: "website",
@@ -100,7 +100,7 @@ const Page = async ({ params }: PageProps) => {
       : pageDescription ||
         "Landingvault offers a wide range of learning tools designed to improve your learning experience.";
   const pageIcon =
-    pageData.data[0]?.pageCoverImage || "https://landingvault.com/seo-card.png";
+    pageData.data[0]?.pageCoverImage || "https://landingvault.com/cover.webp";
 
   const schemaData = {
     "@context": "https://schema.org",

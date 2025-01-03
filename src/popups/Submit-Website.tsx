@@ -118,7 +118,7 @@ const SubmitWebsite = () => {
         { headers: { "Content-Type": "application/json" } }
       );
       setSubmitWebsite(false);
-      showNotification("success", 'Website Submitted')
+      showNotification("success", 'Your website has been submitted successfully')
       setFormData(
         { 
           name: "",
@@ -127,7 +127,7 @@ const SubmitWebsite = () => {
       );
     } catch (error) {
       console.error("Error submitting form:", error);
-      showNotification("error", 'Error submitting website')
+      showNotification("error", 'There was an error submitting your website')
     }
   };
 

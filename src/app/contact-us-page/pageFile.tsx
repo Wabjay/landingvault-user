@@ -1,6 +1,7 @@
 "use client";
 import { useState, ChangeEvent } from "react";
 import axios from "@/lib/axios";
+import Confirm, { Note } from "@/popups/Confirm";
 
 // Define types for form data and error states
 interface FormData {
@@ -33,6 +34,10 @@ const PageFile = () => {
     email: false,
     message: false,
   });
+
+  const [confirm, setConfirm] = useState<boolean>(false);
+  const [notification, setNotification] = useState<Note>({status:"", message:""});
+
 
   const emailRegex =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -82,14 +87,30 @@ const PageFile = () => {
     return !Object.values(newErrors).includes(true);
   };
 
+  const showNotification =(status:string,message:string )=>{
+    setNotification({status: status, message: message})
+    setConfirm(true);
+    setTimeout(() => setConfirm(false), 3000);
+  }
+
+
   const handleSubmit = async (): Promise<void> => {
     if (!validateInputs()) return;
 
+    const payload = {
+      name: formData.name,
+      email: formData.email,
+      message: formData.message
+    }
+    
     try {
       await axios.post(
-        "auth/login",
-        { email: formData.email },
+        "/api/contact",payload,
         { headers: { "Content-Type": "application/json" } }
+      );
+      showNotification("success", 'Thank you for sending us a message')
+      setFormData(
+        { name: "", email: "", message: "",}
       );
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -193,6 +214,8 @@ const PageFile = () => {
           </div>
         </div>
       </div>
+      {confirm && <Confirm status={notification.status} message={notification.message}/>}
+
     </div>
   );
 };

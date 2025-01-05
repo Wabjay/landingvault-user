@@ -87,7 +87,7 @@ const Navbar = () => {
                         setSearch(""); // Clear the search input
                       }}
                     >
-                      <Image src={Vault} alt="" width={20} height={20} /> Become
+                      <Image src={Vault} alt="sponsor icon" width={20} height={20} /> Become
                       a Sponsor
                     </li>
                     <li className="w-fit px-3 py-2 bg-white shadow-shareLinks border text-grey-800 rounded-lg">
@@ -142,7 +142,7 @@ const Navbar = () => {
                     setSearch(""); // Clear the search input
                   }}
                 >
-                  <Image src={Vault} alt="" width={20} height={20} /> Become a
+                  <Image src={Vault} alt="sponsor icon" width={20} height={20} /> Become a
                   Sponsor
                 </li>
                 <li className="px-3 py-2 h-9 bg-white hover:bg-grey-10 shadow-shareLinks border border-grey-50 rounded-lg">

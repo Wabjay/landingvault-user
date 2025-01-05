@@ -82,7 +82,7 @@ const SideSection = ({ page }) => {
 </span>          </Skeleton>
         </p>
       </div>
-<Link target="_blank" href={page?.websiteUrl} >
+<Link rel="noreferrer" target="_blank" href={page?.websiteUrl} >
       <div className="px-3 py-2 flex items-center justify-center border-blue-400 border shadow-supportButton bg-blue-200 bg-blueBg hover:bg-blue-500  rounded-lg text-center font-medium  text-white">
       
       View Website

@@ -3,31 +3,37 @@ import PageFile from "./pageFile";
 export async function generateMetadata({ params }) {
   const { slug } = await params;
 
+  function limitChars(str, chars) {
+    if (str.length > chars) {
+      return str.substring(0, chars) + "...";
+    }
+    return str;
+  }
   // If no slug (i.e., root path), set a default page title and description
   const formattedSlug = Array.isArray(slug) && slug.length > 0
       ? slug.join(" ").replace(/-/g, " ").replace(/\b\w/g, (char) => char.toLowerCase())
       : "Landing";
 
-  const title = `Landingvault - The best ${formattedSlug} page design inspiration for your next project`;
+  const title = `The best ${formattedSlug} page design inspiration for your next project - Landingvault`;
   const description = `Explore top ${formattedSlug} page design inspiration on Landingvault. Get inspired with curated examples featuring screenshots, industry, stack, typography, and color palette ideas.`;
 
   const image = "https://landingvault.com/cover.webp";
   return {
-    title,
-    description,
+    title: limitChars(title, 67),
+    description: description.substring(0, 150) + "...",
     icons: { icon: "https://landingvault.com/cover.webp" },
     openGraph: {
       type: "website",
       siteName: "Landingvault",
-      title,
-      description,
+      title: limitChars(title, 67),
+      description: limitChars(description, 150),
       url: `https://landingvault.com/${slug ? slug.join("/") : ""}`,
       images: [{ url: image }],
     },
     twitter: {
       card: "summary_large_image",
-      title,
-      description,
+      title: limitChars(title, 67),
+      description: limitChars(description, 150),
       images: [{ url: image }],
     },
   };

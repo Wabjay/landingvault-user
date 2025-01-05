@@ -33,7 +33,7 @@ async function fetchDynamicComponents() {
       const componentSlug = toSlugWithoutPage(component.name);
       return {
         url: `/${componentSlug}`,
-        changefreq: 'weekly',
+        changefreq: 'daily',
         priority: 0.8,
       };
     });

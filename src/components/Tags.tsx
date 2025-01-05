@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { store } from "@/store";
 import Image from "next/image";
-import Link from "next/link";
+// import Link from "next/link";
 import { createSlug, removeSlug } from "./slug";
 
 interface Tag {
@@ -121,7 +121,7 @@ console.log(cleanSlugA)
         className="flex overflow-x-auto gap-3 py-2 scrollbar-hide w-full max-w-full no-scrollbar"
       >
         {tags.map((tag) => (
-          <Link href={`/${createSlug(tag.name.toLowerCase().replace("page", "").trim())}`} 
+          <a href={`/${createSlug(tag.name.toLowerCase().replace("page", "").trim())}`} 
             key={tag.id}
             onClick={() => sortTag(tag.name)}
             className={`whitespace-nowrap cursor-pointer text-14 font-medium rounded-full px-3 py-2 border capitalize transition-all ${
@@ -131,7 +131,7 @@ console.log(cleanSlugA)
             }`}
           >
             {tag.name}
-          </Link>
+          </a>
         ))}
       </div>
 

@@ -4,7 +4,6 @@ import Confirm, { Note } from "@/popups/Confirm"
 import { store } from "@/store"
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { Page } from "../../types"
 
 
 interface PageDetail {
@@ -16,7 +15,6 @@ interface PageDetail {
 const Hero = ({component}:{component: string}) => {  
 const [email, setEmail] = useState<string>("")
 const [typing, setTyping] = useState(false)
-const [pageName, setPageName] = useState<string>("")
 const [pageData, setPageData] = useState<PageDetail>({name: "",title:"", description:""})
 const [confirm, setConfirm] = useState<boolean>(false);
 const [notification, setNotification] = useState<Note>({status:"", message:""});
@@ -54,9 +52,6 @@ const sendEmail =  async (): Promise<void> => {
 
     useEffect(() => {
       const pageName = `${component.replace(/[-/]/g, " ")} page`;
-    
-      // Update the state with the formatted page name
-      setPageName(pageName);
     
       console.log(`${pageName.trim()} page`);
     

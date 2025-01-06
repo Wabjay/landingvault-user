@@ -40,7 +40,7 @@ export async function generateMetadata({
   const formattedName = (name || "").replace(/-/g, " ");
   const title = formattedName.charAt(0).toUpperCase() + formattedName.slice(1);
 
-  const pageTitle = pageData.data[0]?.brandName || "Default Brand Name";
+  const pageTitle = pageData.data[0]?.brandName + " page" || "Default Brand Name";
   const pageDescription = pageData.data[0]?.brandDescription || "";
   const pageDesc =
     pageDescription.length > 150
@@ -92,7 +92,7 @@ const Page = async ({ params }: PageProps) => {
   const { category, component, name } = resolvedParams;
 
   const pageData = await fetchPageData(name);
-  const pageTitle = pageData.data[0]?.brandName || "Default Brand Name";
+  const pageTitle = pageData.data[0]?.brandName + " page" || "Default Brand Name";
   const pageDescription = pageData.data[0]?.brandDescription || "";
   const pageDesc =
     pageDescription.length > 150

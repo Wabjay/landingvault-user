@@ -1,16 +1,27 @@
 "use client"
 import LoadImage from "@/components/LoadImage"
 import Confirm, { Note } from "@/popups/Confirm"
+import { store } from "@/store"
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { Page } from "../../types"
+
+
+interface PageDetail {
+  name: string,
+  title: string,
+  description: string,
+}
 
 const Hero = ({component}:{component: string}) => {  
 const [email, setEmail] = useState<string>("")
 const [typing, setTyping] = useState(false)
 const [pageName, setPageName] = useState<string>("")
+const [pageData, setPageData] = useState<PageDetail>({name: "",title:"", description:""})
 const [confirm, setConfirm] = useState<boolean>(false);
 const [notification, setNotification] = useState<Note>({status:"", message:""});
 
+const {components} = store()
 
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -41,10 +52,24 @@ const sendEmail =  async (): Promise<void> => {
     };
 
 
-useEffect(()=>{
-  const pageName = component.replace(/[-/]/g, " ").replace(/\b\w/g, (char) => char.toUpperCase())
-setPageName(pageName)
-},[component])
+    useEffect(() => {
+      const pageName = `${component.replace(/[-/]/g, " ")} page`;
+    
+      // Update the state with the formatted page name
+      setPageName(pageName);
+    
+      console.log(`${pageName.trim()} page`);
+    
+      // Find the matching component in the data array (case insensitive)
+      const matchingComponent = components.data.find(
+        (data) => data.name?.toLowerCase() === pageName.toLowerCase().trim()
+      );
+    
+      if (matchingComponent) {
+        setPageData(matchingComponent)
+      }
+    }, [components, component]);
+    
 
   // Handle focus/typing state
   const handleFocus = () => {
@@ -62,10 +87,10 @@ setPageName(pageName)
   {/* Main Content (Text Block) */}
   <div className="laptop:h-full flex flex-col gap-6 text-left laptop:col-span-4">
     <h1 className="text-black font-semibold text-24 tablet:text-40 laptop:text-48 desktop:text-60">
-    The Best <span>{pageName}</span> Page Design Inspiration 
+    {pageData.title}
     </h1>
     <p className="text-grey-500 text-16 tablet:text-20 laptop:text-24 laptop:leading-9">
-    Explore top <span>{pageName.toLowerCase()}</span> page design inspiration  on Landingvault. Get inspired with curated, high-quality <span>{pageName.toLowerCase()}</span> page examples.
+{pageData.description}
     </p>
   </div>
 

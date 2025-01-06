@@ -14,7 +14,7 @@ export async function generateMetadata({ params }) {
       ? slug.join(" ").replace(/-/g, " ").replace(/\b\w/g, (char) => char.toLowerCase())
       : "Landing";
 
-  const title = `The best ${formattedSlug} page design inspiration for your next project - Landingvault`;
+  const title = ` Landingvault - The best ${formattedSlug} page design inspiration for your next project`;
   const description = `Explore top ${formattedSlug} page design inspiration on Landingvault. Get inspired with curated, high-quality ${formattedSlug} page examples featuring screenshots, industry, stack, typography, and color palette ideas.`;
 
   const image = "https://landingvault.com/cover.webp";

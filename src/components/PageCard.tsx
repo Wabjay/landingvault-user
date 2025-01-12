@@ -17,8 +17,8 @@ const PageCard = ({ page }: { page: Page }) => {
   const components = "categories";
 
   return (
-    <div className="w-full h-auto text-16 font-medium focus:outline-none mb-6">
-      <Skeleton width={300} height={undefined}>
+    <div className="pageCard w-full h-auto text-16 font-medium focus:outline-none mb-6">
+      <Skeleton width={'320px'} height={'380px'}>
       <Link
         href={`/${components}/${tag}/${slug}`}
         className="flex flex-col text-left gap-y-2 tablet:max-w-[528px] group" 
@@ -28,7 +28,7 @@ const PageCard = ({ page }: { page: Page }) => {
           src={imageUrl}
           alt={brandName ? `${brandName} logo` : "No image available for this brand"}
           height={380}
-          style={`w-[300px] h-[380px] object-cover  group-hover:bg-overlay  group-hover:shadow-shareCard border border-grey-50`}
+          style={`w-full h-[380px] object-cover  group-hover:bg-overlay  group-hover:shadow-shareCard border border-grey-50`}
         />
         <div className="py-2 flex justify-between w-full">
           <div>

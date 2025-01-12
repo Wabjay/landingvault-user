@@ -59,7 +59,7 @@ const Footer = () => {
               </h2>
             </div>
 
-            <div className="flex flex-col laptop:flex-row gap-4 laptop:gap-16">
+            <div className="flex flex-col laptop:flex-row gap-12 laptop:gap-16">
               <div className="flex flex-col gap-3 desktop:gap-4">
                 <h5 className="text-16 text-grey-200 mb-2">COMPONENTS</h5>
                 <FooterLink href="/landing" onClick={handleLinkClick}>

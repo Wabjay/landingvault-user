@@ -44,15 +44,11 @@ export default function Home() {
       <div className="w-full max-w-[1150px] mx-auto overflow-hidden no-scrollbar px-4 tablet:px-6 laptop:px-8 desktop:px-0">
         <Tags component={slug} />
         {isLoading || pages.length < 1 ? (
-          <>
-          {/* {console.log("pages:", pages.length)} */}
           <IndexFallback />
-          </>
         ) : pages.length > 1 && thisPages.length < 1 ? (
         <EmptyPage />
         ) : (
           <div className="grid tablet:grid-cols-2 laptop:grid-cols-4 gap-5 desktop:gap-6 justify-between">
-           
             {thisPages.map((page) => (
               <PageCard key={page._id} page={page} />
             ))}

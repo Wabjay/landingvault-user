@@ -31,6 +31,10 @@ body {
   display: none; /* Chrome, Safari, and Opera */
 }
 
+.pageCard .lazy-load-image-background.blur.lazy-load-image-loaded{
+  width: 100%;
+}
+
 @media screen and (min-width: 1024px){
 .sidesection__top{
   padding-top:50px;

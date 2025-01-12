@@ -55,7 +55,7 @@ console.log(pathname)
         </div>
       
       </div>
-    </div>  <FooterPages slug={slug} />
+    </div>  <FooterPages slug={slug} pageName={pageName} />
   </div>
   );
 };

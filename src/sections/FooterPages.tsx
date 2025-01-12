@@ -5,7 +5,7 @@ import { store } from "@/store";
 import { createSlug, removeSlug } from "@/components/slug";
 
 
-export default function FooterPages({slug}: {slug:string}) {
+export default function FooterPages({slug, pageName:str}: {slug:string, pageName:string}) {
   const { pages, hydrated } = store(); // Access Zustand store
   const [thisPages, setThisPages] = useState<Page[]>([]);
 
@@ -13,12 +13,18 @@ export default function FooterPages({slug}: {slug:string}) {
   const component = removeSlug(slug)
    // Safely filter pages based on the slug
    useEffect(() => {
+    // convert pagename to lowercase string without slug 
+    const pageName = str.split("-").join(" ").toLowerCase();
+
     const component = slug;
     const newPages = Array.isArray(pages)
       ? pages.filter((page) => {
-          const pageSlug =  createSlug(page.componentType[0]);
-          console.log(pageSlug, component);
+        const pageSlug =  createSlug(page.componentType[0]);
+        
+        // return pageCard aside the current page
+        if(page.brandName.toLowerCase() !== pageName){ 
           return pageSlug === component;
+        }
         })
       : [];
     setThisPages(newPages);

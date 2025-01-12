@@ -9,15 +9,18 @@ export async function generateMetadata({ params }) {
     }
     return str;
   }
+
   // If no slug (i.e., root path), set a default page title and description
   const formattedSlug = Array.isArray(slug) && slug.length > 0
-      ? slug.join(" ").replace(/-/g, " ").replace(/\b\w/g, (char) => char.toLowerCase())
-      : "Landing";
+    ? slug.join(" ").replace(/-/g, " ").replace(/\b\w/g, (char) => char.toLowerCase())
+    : "Landing";
 
   const title = ` Landingvault - The best ${formattedSlug} page design inspiration for your next project`;
   const description = `Explore top ${formattedSlug} page design inspiration on Landingvault. Get inspired with curated, high-quality ${formattedSlug} page examples featuring screenshots, industry, stack, typography, and color palette ideas.`;
 
   const image = "https://landingvault.com/cover.webp";
+  const canonicalUrl = `https://landingvault.com/${slug ? slug.join("/") : ""}`;
+
   return {
     title: limitChars(title, 67),
     description: description.substring(0, 150) + "...",
@@ -27,7 +30,7 @@ export async function generateMetadata({ params }) {
       siteName: "Landingvault",
       title: limitChars(title, 67),
       description: limitChars(description, 150),
-      url: `https://landingvault.com/${slug ? slug.join("/") : ""}`,
+      url: canonicalUrl,
       images: [{ url: image }],
     },
     twitter: {
@@ -35,6 +38,9 @@ export async function generateMetadata({ params }) {
       title: limitChars(title, 67),
       description: limitChars(description, 150),
       images: [{ url: image }],
+    },
+    alternates: {
+      canonical: canonicalUrl, // Add the canonical URL here
     },
   };
 }

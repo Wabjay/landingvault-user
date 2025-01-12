@@ -118,14 +118,14 @@ const PageFile = () => {
   };
 
   return (
-    <div className="w-full bg-[#FFFFFF] py-[50px] tablet:py-[80px] laptop:py-[100px]">
+    <div className="w-full bg-[#FFFFFF] dark:!bg-black py-[50px] tablet:py-[80px] laptop:py-[100px]">
       <div className="relative px-4 tablet:px-6 laptop:px-8 desktop:px-0 max-w-[1152px] mx-auto text-left mb-8">
-        <div className="w-[90%] max-w-[660px] mx-auto flex flex-col gap-12.5 p-6 bg-white">
+        <div className="w-[90%] max-w-[660px] mx-auto flex flex-col gap-12.5 p-6 bg-white dark:!bg-black ">
           <div className="w-full">
-            <p className="text-center text-24 font-semibold text-grey-900 mb-2 tablet:text-32 laptop:text-48 capitalize">
+            <p className="text-center text-24 font-semibold text-grey-900 dark:!text-white mb-2 tablet:text-32 laptop:text-48 capitalize">
               How can we help?
             </p>
-            <p className="text-16 tablet:text-24 text-center text-grey-700">
+            <p className="text-16 tablet:text-24 text-center text-grey-700 dark:!text-white">
               Get in touch with our support teams for demos, onboarding support, or listing questions.
             </p>
           </div>
@@ -135,7 +135,7 @@ const PageFile = () => {
               <div className="text-left flex flex-col" key={field}>
                 <label
                   htmlFor={field}
-                  className="text-14 text-grey-900 font-medium mb-2"
+                  className="text-14 text-grey-900 dark:!text-white font-medium mb-2"
                 >
                   {field === "name" ? "Full Name" : "Email address"}
                 </label>
@@ -177,7 +177,7 @@ const PageFile = () => {
             <div className="text-left flex flex-col">
               <label
                 htmlFor="message"
-                className="text-14 text-grey-900 font-medium mb-2"
+                className="text-14 text-grey-900 dark:!text-white font-medium mb-2"
               >
                 Message
               </label>

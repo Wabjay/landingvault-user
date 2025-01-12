@@ -4,6 +4,7 @@ import { store } from "@/store";
 import Image from "next/image";
 // import Link from "next/link";
 import { createSlug, removeSlug } from "./slug";
+import TagFallback from "./FallBack/TagFallback";
 
 interface Tag {
   id: string;
@@ -114,13 +115,15 @@ console.log(cleanSlugA)
           <Image src="/navArrow.svg" alt="Left Arrow" width={20} height={20} />
         </button>
       )}
-
+<>{console.log(components?.data?.length)}</>
       {/* Tags Container */}
+      {components?.data?.length > 1 ?
       <div
         ref={tagsContainerRef}
         className="flex overflow-x-auto gap-3 py-2 scrollbar-hide w-full max-w-full no-scrollbar"
       >
-        {tags.map((tag) => (
+        {
+        tags.map((tag) => (
           <a href={`/${createSlug(tag.name.toLowerCase().replace("page", "").trim())}`} 
             key={tag.id}
             onClick={() => sortTag(tag.name)}
@@ -133,7 +136,8 @@ console.log(cleanSlugA)
             {tag.name}
           </a>
         ))}
-      </div>
+      </div> :  <TagFallback /> 
+}
 
       {/* Right Arrow */}
       {showRightArrow && (

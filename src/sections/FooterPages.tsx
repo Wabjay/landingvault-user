@@ -30,7 +30,7 @@ export default function FooterPages({slug}: {slug:string}) {
 
 
   return (
-    <div className="bg-white w-full">
+    <div className="bg-white dark:!bg-black dark:!text-white w-full">
       <div className="w-full mx-auto px-4 py-[40px] tablet:px-6 tablet:py-[80px] laptop:max-w-[1152px] laptop:px-8 laptop:py-[100px] desktop:px-0">
         <p className="text-24 font-bold mb-5 tablet:text-32 tablet:mb-10 laptop:text-48 laptop:mb-[50px] capitalize">
         More {component}s

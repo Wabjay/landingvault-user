@@ -2,7 +2,9 @@
 
 const IndexFallback: React.FC = () => {
     return (
-        Array(4)  // Adjust the number of skeletons based on how many cards you want to show as placeholders
+      <div className="grid tablet:grid-cols-2 laptop:grid-cols-4 gap-5 desktop:gap-6 justify-between">
+
+        {Array(4)  // Adjust the number of skeletons based on how many cards you want to show as placeholders
                 .fill(null)
                 .map((_, index) =>
       <div key={index} className="w-full max-w-[264px] flex h-[auto] hover:bg-gray-50 text-16 font-medium focus:outline-none mb-6">
@@ -17,7 +19,8 @@ const IndexFallback: React.FC = () => {
           </div>
         </div>
       </div>
-                )
+                )}
+                </div>
     );
   };
   

@@ -61,7 +61,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`font-Switzer antialiased`}>
+      <body className={`font-Switzer antialiased dark:!bg-black dark:!text-white `}>
         <Navbar />
         <div className="mt-[60px]">
           {/* Wrap children in Suspense for fallback */}

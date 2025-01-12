@@ -262,7 +262,7 @@ export const store = create<Store>(
               console.log(response.data)
             });
         } catch (error) {
-          console.error("Error fetching Data:", error);
+          console.log("Error fetching Data:", error);
           set({ componentLoading: false }); // Corrected from `loading: false`
       }
       },

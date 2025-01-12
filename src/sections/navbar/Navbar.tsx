@@ -40,7 +40,7 @@ const Navbar = () => {
     };
 
   return (
-    <header className="w-full bg-white px-4 tablet:px-6 laptop:px-8 xl:px-0 fixed top-0 z-40  border-b-[0.5px] border-b-grey-100">
+    <header className="w-full bg-white dark:!bg-black dark:!text-white  px-4 tablet:px-6 laptop:px-8 xl:px-0 fixed top-0 z-40  border-b-[0.5px] border-b-grey-100 dark:!border-b-grey-500 ">
       <nav className="sticky top-0 z-10 block items-center my-[14px] ">
         <div className="flex gap-16 place-self-center items-center justify-between w-full laptop:max-w-[1152px] mx-auto">
           <Link
@@ -67,12 +67,12 @@ const Navbar = () => {
               </div>
 
               {visibility && (
-                <div className="fixed top-[60px] left-0 h-full bg-white w-full py-4 px-6 tablet:px-8">
+                <div className="fixed top-[60px] left-0 h-full bg-white dark:!bg-black dark:!text-white w-full py-4 px-6 tablet:px-8">
                   <ul className="flex flex-col font-medium gap-8">
                     <li>
                       <Link
                         href="/"
-                        className={`${getLinkClassName("", params)} text-14 text-grey-600`}
+                        className={`${getLinkClassName("", params)} text-14 text-grey-600 dark:!text-white`}
                         onClick={handleLinkClick}
                       >
                         Landing Pages
@@ -80,7 +80,7 @@ const Navbar = () => {
                     </li>
                     <Search />
                     <li
-                      className="cursor-pointer flex gap-x-1 mr-4 font-medium text-14 text-grey-600"
+                      className="cursor-pointer flex gap-x-1 mr-4 font-medium text-14 text-grey-600 dark:!text-white"
                       onClick={() => {
                         setPromoteProduct(true);
                         handleLinkClick()
@@ -127,7 +127,7 @@ const Navbar = () => {
               <li>
                 <Link
                   href="/"
-                  className={`${getLinkClassName("", params)} whitespace-nowrap text-grey-600`}
+                  className={`${getLinkClassName("", params)} whitespace-nowrap text-grey-600 dark:!text-white`}
                   onClick={handleLinkClick}
                 >
                   Landing Pages
@@ -136,7 +136,7 @@ const Navbar = () => {
               <Search />
               <ul className="whitespace-nowrap flex w-fit font-medium flex-row items-center gap-4">
                 <li
-                  className="cursor-pointer px-3 py-2 flex items-center gap-x-1 text-grey-600 mr-3"
+                  className="cursor-pointer px-3 py-2 flex items-center gap-x-1 text-grey-600 dark:!text-white mr-3"
                   onClick={() => {
                     setPromoteProduct(true);
                     setSearch(""); // Clear the search input

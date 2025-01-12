@@ -28,14 +28,14 @@ const PageCard = ({ page }: { page: Page }) => {
           src={imageUrl}
           alt={brandName ? `${brandName} logo` : "No image available for this brand"}
           height={380}
-          style={`w-[300px] h-[380px] object-cover group-hover:bg-overlay  group-hover:shadow-shareCard border border-grey-50`}
+          style={`w-[300px] h-[380px] object-cover  group-hover:bg-overlay  group-hover:shadow-shareCard border border-grey-50`}
         />
         <div className="py-2 flex justify-between w-full">
           <div>
-            <p className="font-semibold w-full max-w-[255px] text-16 text-[#2E2E27] mb-1">
+            <p className="font-semibold w-full max-w-[255px] text-16 text-[#2E2E27] dark:!text-white mb-1">
               {brandName || "Unnamed Brand"}
             </p>
-            <p className="text-16 text-[#64645F] font-normal">
+            <p className="text-16 text-[#64645F] dark:!text-white  font-normal">
               {componentType[0] || "No Brand Name"}
             </p>
           </div>

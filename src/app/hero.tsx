@@ -1,4 +1,5 @@
 "use client"
+import HeroFallback from "@/components/FallBack/HeroFallback"
 import LoadImage from "@/components/LoadImage"
 import Confirm, { Note } from "@/popups/Confirm"
 import { store } from "@/store"
@@ -56,7 +57,7 @@ const sendEmail =  async (): Promise<void> => {
       console.log(`${pageName.trim()} page`);
     
       // Find the matching component in the data array (case insensitive)
-      const matchingComponent = components.data.find(
+      const matchingComponent = components.data?.find(
         (data) => data.name?.toLowerCase() === pageName.toLowerCase().trim()
       );
     
@@ -80,27 +81,30 @@ const sendEmail =  async (): Promise<void> => {
         <div className='w-full laptop:max-w-[1152px] px-4 tablet:px-6 laptop:px-8 desktop:px-0 mx-auto'>
         <div className="grid laptop:grid-cols-7 items-center justify-between gap-8">
   {/* Main Content (Text Block) */}
+  {pageData.title !== "" ? 
   <div className="laptop:h-full flex flex-col gap-6 text-left laptop:col-span-4">
-    <h1 className="text-black font-semibold text-24 tablet:text-40 laptop:text-48 desktop:text-60">
+    <h1 className="text-black dark:!bg-black dark:!text-white font-semibold text-24 tablet:text-40 laptop:text-48 desktop:text-60">
     {pageData.title}
     </h1>
-    <p className="text-grey-500 text-16 tablet:text-20 laptop:text-24 laptop:leading-9">
+    <p className=" dark:!text-white text-grey-500 text-16 tablet:text-20 laptop:text-24 laptop:leading-9">
 {pageData.description}
     </p>
-  </div>
+  </div> : 
+  <HeroFallback />
 
+}
   {/* Subscription Box */}
   <div className="relative flex flex-col w-full laptop:col-span-3">
   
     <LoadImage alt="Hero" src="/subscribe.png" style=" ml-[10%] !w-fit" height={undefined} />
     <LoadImage alt="Hero" src="/pointer.png" style="animate-bounce overflow-visible ml-[12%] h-[59px] !w-auto" height={undefined} />
-    <p className="text-grey-500 text-16 mb-4">
+    <p className="text-grey-500 dark:!bg-black dark:!text-white text-16 mb-4">
       Get weekly design inspiration sent to your email <br />
       every week
     </p>
 
-    <div className={`border bg-white rounded-xl h-11 flex gap-2 tablet:gap-0 tablet:flex-row justify-between items-center pl-3 pr-2 ${typing
-          ? 'border-blue-400 shadow-buttonFocus bg-white hover:bg-white'
+    <div className={`border bg-white dark:!bg-black dark:!text-white  rounded-xl h-11 flex gap-2 tablet:gap-0 tablet:flex-row justify-between items-center pl-3 pr-2 ${typing
+          ? 'border-blue-400 shadow-buttonFocus bg-white dark:!bg-black dark:!text-white hover:bg-white'
           : 'border-grey-50 shadow-buttonDefault hover:bg-grey-10 hover:border-grey-50'}
           `}  onMouseLeave={handleBlur} // Set typing to false on mouseout
           >
@@ -115,7 +119,7 @@ const sendEmail =  async (): Promise<void> => {
       />
       <button
         onClick={sendEmail}
-        className="bg-grey-900 hover:bg-grey-800 py-[6px] w-fit px-3 rounded-lg shadow-supportButton text-white text-14 leading-5 border font-medium whitespace-nowrap ml-1"
+        className="bg-grey-900 dark:!bg-black dark:!text-white  hover:bg-grey-800 py-[6px] w-fit px-3 rounded-lg shadow-supportButton text-white text-14 leading-5 border font-medium whitespace-nowrap ml-1"
       >
         Send me Inspiration
       </button>

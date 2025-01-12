@@ -115,7 +115,6 @@ console.log(cleanSlugA)
           <Image src="/navArrow.svg" alt="Left Arrow" width={20} height={20} />
         </button>
       )}
-<>{console.log(components?.data?.length)}</>
       {/* Tags Container */}
       {components?.data?.length > 1 ?
       <div

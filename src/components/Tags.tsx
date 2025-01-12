@@ -17,7 +17,7 @@ export default function Tags({component}:{component: string}) {
   const [tags, setTags] = useState<Tag[]>([]);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
-  const tagsContainerRef = useRef<HTMLDivElement | null>(null);
+  const tagsContainerRef = useRef<HTMLUListElement | null>(null);
 
   const { components, loadedPages, fetchPages, fetchComponents, setSearch } = store();
 
@@ -117,14 +117,15 @@ console.log(cleanSlugA)
       )}
       {/* Tags Container */}
       {components?.data?.length > 1 ?
-      <div
+      <ul
         ref={tagsContainerRef}
         className="flex overflow-x-auto gap-3 py-2 scrollbar-hide w-full max-w-full no-scrollbar"
       >
         {
         tags.map((tag) => (
+          <li key={tag.id}>
           <a href={`/${createSlug(tag.name.toLowerCase().replace("page", "").trim())}`} 
-            key={tag.id}
+            
             onClick={() => sortTag(tag.name)}
             className={`whitespace-nowrap cursor-pointer text-14 font-medium rounded-full px-3 py-2 border capitalize transition-all ${
               tag.name.toLowerCase().includes(cleanSlugA.toLowerCase())
@@ -134,8 +135,9 @@ console.log(cleanSlugA)
           >
             {tag.name}
           </a>
+          </li>
         ))}
-      </div> :  <TagFallback /> 
+      </ul> :  <TagFallback /> 
 }
 
       {/* Right Arrow */}

@@ -64,7 +64,7 @@ export default function Search() {
           onFocus={handleFocus} 
           onBlur={handleBlur} 
           onChange={(e) => setSearch(e.target.value)} 
-          className="outline-none w-full bg-transparent"
+          className="outline-none w-full bg-transparent text-grey-900"
         />
       </div>
 

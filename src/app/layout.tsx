@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/sections/navbar/Navbar";
 import Footer from "@/sections/footer/Footer";
 import LayoutFallBack from "@/components/FallBack/LayoutFallback";
+import {GoogleAnalytics, GoogleTagManager} from "@next/third-parties/google"
+
 
 export const metadata: Metadata = {
   title: `Landingvault: The best landing page design inspiration and Examples`,
@@ -70,6 +72,8 @@ export default function RootLayout({
           </Suspense>
         </div>
         <Footer />
+        <GoogleTagManager gtmId="GTM-WTFW68LP" />
+        <GoogleAnalytics gaId="G-ZD2509F16X" />
          <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}

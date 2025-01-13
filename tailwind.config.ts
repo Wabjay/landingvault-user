@@ -28,6 +28,9 @@ export default {
       },
       spacing: {
         '12.5': '50px', // Custom spacing value
+        '15': '60px', // Custom spacing value
+        '25': '100px', // Custom spacing value
+        '100': '400px', // Custom spacing value
       },
       flexBasis: {
         'big': '362px',

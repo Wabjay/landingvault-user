@@ -14,11 +14,11 @@ const EmptyPage = () => {
         className="hover:border-[#F2F1E8] hover:border hover:bg-[#F2F1E8]"
       />
 <div className="w-full max-w-[343px] laptop:max-w-[718px] text-center">
-<h5 className="text-24 text-[#000] font-bold tablet:text-32 laptop:text-[48px] laptop:leading-[56px] laptop:tracking-[-2px]">
+<h5 className="text-24 text-[#000] dark:!text-white font-bold tablet:text-32 laptop:text-[48px] laptop:leading-[56px] laptop:tracking-[-2px]">
         No result found
       </h5>
 
-      <p className="text-[16px] whitespace-normal laptop:text-20 font-normal text-[#64645F]">
+      <p className="text-[16px] whitespace-normal laptop:text-20 font-normal text-[#64645F] dark:!text-white">
       Oops! It seems like there are no search results matching your query. Please try again with different keywords or refine your search criteria to find what you’re looking for.
       </p>
 </div>

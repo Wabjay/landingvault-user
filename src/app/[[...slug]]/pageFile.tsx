@@ -35,12 +35,12 @@ export default function Home() {
         return pageSlug === component;
       });
       setThisPages(newPages);
-      console.log("Pages:", newPages);
+      // console.log("Pages:", newPages);
     } else {
       setThisPages([]);
     }
     // console.log("Pathname:", pathname);
-    console.log("Slug:", slug);
+    // console.log("Slug:", slug);
     // console.log("Hydrated:", hydrated);
     
   }, [pages, slug]);

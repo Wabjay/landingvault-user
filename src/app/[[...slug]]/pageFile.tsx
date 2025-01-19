@@ -16,45 +16,51 @@ export default function Home() {
   const hydrated = store((state: { hydrated: boolean; }) => state.hydrated);
   const pathname = usePathname();
   const [thisPages, setThisPages] = useState<Page[]>([]);
+  const [slug, setSlug] = useState<string>('');
 
   // Generate slug
   // const slug = pathname ? (pathname === "/" ? "/landing" : pathname) : "";
-  const slug = pathname && pathname !== "/" ? pathname : "/landing";
+  // const slug = pathname && pathname !== "/" ? pathname : "/landing";
 
   // Filter pages based on slug
   useEffect(() => {
-    if (hydrated && Array.isArray(pages)) {
+    const slug = window.location.pathname === "/" ? "/landing" : window.location.pathname;    setSlug(slug)
+     if (Array.isArray(pages)) {
       const component = slug + "-page";
       const newPages = pages.filter((page) => {
         const pageSlug = "/" + createSlug(page.componentType[0]);
         return pageSlug === component;
       });
       setThisPages(newPages);
+      console.log("Pages:", newPages);
     } else {
       setThisPages([]);
     }
 
 
-    // console.log("Pathname:", pathname);
-    // console.log("Slug:", slug);
-    // console.log("Pages:", pages);
-    // console.log("Hydrated:", hydrated);
+    console.log("Pathname:", pathname);
+    console.log("Slug:", slug);
+    console.log("Hydrated:", hydrated);
     
   }, [pages, slug, hydrated]);
 
   // Loading state
-  const isLoading = !hydrated;
+  // const isLoading = !hydrated;
 
-  // if (isLoading || pages.length < 1) {
-  //   console.log("Fallback: Loading or no pages available");
-  //   console.log("Filtered Pages:", thisPages);
-  // } else if (pages.length > 1 && thisPages.length < 1) {
-  //   console.log("Fallback: No matching pages found");
-  //   console.log("Filtered Pages:", thisPages);
-  // } else {
-  //   console.log("Fallback: Page found");
-  //   console.log("Filtered Pages:", thisPages);
+  // if (!hydrated) {
+  //   return null; // Prevent rendering until hydrated
   // }
+
+  if (pages.length < 1) {
+    console.log("Fallback: Loading or no pages available");
+    console.log("Filtered Pages:", thisPages);
+  } else if (pages.length > 1 && thisPages.length < 1) {
+    console.log("Fallback: No matching pages found");
+    console.log("Filtered Pages:", thisPages);
+  } else {
+    console.log("Fallback: Page found");
+    console.log("Filtered Pages:", thisPages);
+  }
   
 
   return (
@@ -62,7 +68,7 @@ export default function Home() {
       <Hero component={slug} />
       <div className="w-full max-w-[1150px] mx-auto overflow-hidden no-scrollbar px-4 tablet:px-6 laptop:px-8 desktop:px-0">
         <Tags component={slug} />
-        {isLoading || pages.length < 1 ? (
+        {pages.length < 1 ? (
           <IndexFallback />
         ) : pages.length > 1 && thisPages.length < 1 ? (
         <EmptyPage />

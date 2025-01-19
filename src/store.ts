@@ -215,6 +215,16 @@ const fetchData = async (url: string, setState: any, stateKey: string) => {
   }
 };
 
+// const fetchPagesData = async (url: string, setState: any, stateKey: string) => {
+//   try {
+//     const response = await axios.get(url);
+//     setState({ [stateKey]: response.data.data.data, loading: false });
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//     setState({ [stateKey]: [], loading: false });
+//     setState({ error: "Failed to fetch data" }); // Set error in the store
+//   }
+// };
 
 // Middleware for persistence
 type StorePersist = (
@@ -247,6 +257,7 @@ export const store = create<Store>(
 
       fetchUsers: () => fetchData("/user", set, "users"),
       fetchComponents: async () => await fetchData("/components", set, "components"),
+      // fetchPages: async () => await fetchPagesData("/page", set, "pages"),
       fetchIndustries: () => fetchData("/industry", set, "industries"),
       fetchStacks: () => fetchData("/stack", set, "stacks"),
       fetchTypes: () => fetchData("/type", set, "types"),
@@ -258,7 +269,7 @@ export const store = create<Store>(
           await axios
             .get(`/page`)
             .then(function (response) {
-              set({ loadedPages: response.data , componentLoading: false });
+              set({ loadedPages: response.data, componentLoading: false });
               console.log(response.data)
             });
         } catch (error) {

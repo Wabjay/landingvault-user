@@ -11,7 +11,7 @@ const PageCard = ({ page }: { page: Page }) => {
   const { brandName, pageCoverImage, componentType } = page;
   const { setSearch } = store();
 
-  const imageUrl = pageCoverImage || "/path/to/default-image.jpg"; 
+  const imageUrl = pageCoverImage || ""; 
   const slug = createSlug(brandName || "default");
   const tag = createSlug(componentType?.[0] || "tag");
   const components = "categories";

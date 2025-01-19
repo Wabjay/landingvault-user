@@ -64,7 +64,7 @@ export default function Tags({component}:{component: string}) {
 console.log(cleanSlugA)
     fetchPages(loadedPages?.data);
     // fetchPages(sortPagesByTagOrSearch());
-  }, []);
+  }, [loadedPages?.data]);
 
   const updateArrowsVisibility = () => {
     const container = tagsContainerRef.current;

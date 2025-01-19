@@ -122,8 +122,8 @@ const Navbar = () => {
                 </div>
               )}
             </>
-          ) : (
-            <ul className="text-14 flex w-fit font-medium flex-row items-center gap-6 desktop:gap-[26px]">
+          ) : 
+            <div className="text-14 flex w-fit font-medium flex-row items-center gap-6 desktop:gap-[26px]">
               <li>
                 <Link
                   href="/"
@@ -170,8 +170,8 @@ const Navbar = () => {
                   </p>
                 </li>
               </ul>
-            </ul>
-          )}
+            </div>
+          }
         </div>
       </nav>
       <SubmitWebsite />

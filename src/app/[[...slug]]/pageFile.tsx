@@ -6,15 +6,18 @@ import Hero from "../hero";
 import Tags from "@/components/Tags";
 import IndexFallback from "@/components/FallBack/IndexFallback";
 import EmptyPage from "@/components/EmptyPage";
-import { usePathname } from "next/navigation";
+// import { usePathname } from "next/navigation";
 import { createSlug } from "@/components/slug";
 import { useEffect, useState } from "react";
 import { Page } from "../../../types";
+import axios from "@/lib/axios";
 
 export default function Home() {
-  const pages = store((state: { pages: Page[]; }) => state.pages); // Zustand reactive store
-  const hydrated = store((state: { hydrated: boolean; }) => state.hydrated);
-  const pathname = usePathname();
+  const { pages, fetchPages, loadedPages } = store();
+
+  // const pages = store((state: { pages: Page[]; }) => state.pages); // Zustand reactive store
+  // const hydrated = store((state: { hydrated: boolean; }) => state.hydrated);
+  // const pathname = usePathname();
   const [thisPages, setThisPages] = useState<Page[]>([]);
   const [slug, setSlug] = useState<string>('');
 
@@ -36,13 +39,27 @@ export default function Home() {
     } else {
       setThisPages([]);
     }
-
-
-    console.log("Pathname:", pathname);
+    // console.log("Pathname:", pathname);
     console.log("Slug:", slug);
-    console.log("Hydrated:", hydrated);
+    // console.log("Hydrated:", hydrated);
     
-  }, [pages, slug, hydrated]);
+  }, [pages, slug]);
+
+
+
+  useEffect(() => {
+      try {
+         axios
+          .get(`/page`)
+          .then(function (response) {
+            fetchPages(response.data.data)
+            console.log(response.data.data)
+          });
+      } catch (error) {
+        console.log("Error fetching Data:", error);
+    }
+    }, []);
+
 
   // Loading state
   // const isLoading = !hydrated;
@@ -75,7 +92,7 @@ export default function Home() {
         ) : 
         (
           <div className="grid tablet:grid-cols-2 laptop:grid-cols-4 gap-5 desktop:gap-6 justify-between">
-            {thisPages.map((page) => (
+            {thisPages && thisPages.map((page) => (
               <PageCard key={page._id} page={page} />
             ))}
           </div>

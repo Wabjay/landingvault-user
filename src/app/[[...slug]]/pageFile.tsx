@@ -6,7 +6,7 @@ import Hero from "../hero";
 import Tags from "@/components/Tags";
 import IndexFallback from "@/components/FallBack/IndexFallback";
 import EmptyPage from "@/components/EmptyPage";
-// import { usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { createSlug } from "@/components/slug";
 import { useEffect, useState } from "react";
 import { Page } from "../../../types";
@@ -17,17 +17,18 @@ export default function Home() {
 
   // const pages = store((state: { pages: Page[]; }) => state.pages); // Zustand reactive store
   // const hydrated = store((state: { hydrated: boolean; }) => state.hydrated);
-  // const pathname = usePathname();
+  const pathname = usePathname();
   const [thisPages, setThisPages] = useState<Page[]>([]);
-  const [slug, setSlug] = useState<string>('');
+  // const [slug, setSlug] = useState<string>('');
 
   // Generate slug
-  // const slug = pathname ? (pathname === "/" ? "/landing" : pathname) : "";
+  const slug = pathname ? (pathname === "/" ? "/landing" : pathname) : "";
   // const slug = pathname && pathname !== "/" ? pathname : "/landing";
 
   // Filter pages based on slug
   useEffect(() => {
-    const slug = window.location.pathname === "/" ? "/landing" : window.location.pathname;    setSlug(slug)
+    // const slug = window.location.pathname === "/" ? "/landing" : window.location.pathname;    
+    // setSlug(slug)
      if (Array.isArray(pages)) {
       const component = slug + "-page";
       const newPages = pages.filter((page) => {

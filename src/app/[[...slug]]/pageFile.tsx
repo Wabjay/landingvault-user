@@ -18,11 +18,12 @@ export default function Home() {
   const [thisPages, setThisPages] = useState<Page[]>([]);
 
   // Generate slug
-  const slug = pathname ? (pathname === "/" ? "/landing" : pathname) : "";
+  // const slug = pathname ? (pathname === "/" ? "/landing" : pathname) : "";
+  const slug = pathname && pathname !== "/" ? pathname : "/landing";
 
   // Filter pages based on slug
   useEffect(() => {
-    if (Array.isArray(pages)) {
+    if (hydrated && Array.isArray(pages)) {
       const component = slug + "-page";
       const newPages = pages.filter((page) => {
         const pageSlug = "/" + createSlug(page.componentType[0]);
@@ -33,10 +34,28 @@ export default function Home() {
       setThisPages([]);
     }
 
-  }, [pages, slug]);
+
+    // console.log("Pathname:", pathname);
+    // console.log("Slug:", slug);
+    // console.log("Pages:", pages);
+    // console.log("Hydrated:", hydrated);
+    
+  }, [pages, slug, hydrated]);
 
   // Loading state
   const isLoading = !hydrated;
+
+  // if (isLoading || pages.length < 1) {
+  //   console.log("Fallback: Loading or no pages available");
+  //   console.log("Filtered Pages:", thisPages);
+  // } else if (pages.length > 1 && thisPages.length < 1) {
+  //   console.log("Fallback: No matching pages found");
+  //   console.log("Filtered Pages:", thisPages);
+  // } else {
+  //   console.log("Fallback: Page found");
+  //   console.log("Filtered Pages:", thisPages);
+  // }
+  
 
   return (
     <div className="flex flex-col gap-y-10 bg-white dark:!bg-black dark:!text-white tablet:gap-y-20 laptop:gap-y-[100px] py-10 tablet:py-20 laptop:py-[100px]">
@@ -47,7 +66,8 @@ export default function Home() {
           <IndexFallback />
         ) : pages.length > 1 && thisPages.length < 1 ? (
         <EmptyPage />
-        ) : (
+        ) : 
+        (
           <div className="grid tablet:grid-cols-2 laptop:grid-cols-4 gap-5 desktop:gap-6 justify-between">
             {thisPages.map((page) => (
               <PageCard key={page._id} page={page} />

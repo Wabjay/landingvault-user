@@ -13,7 +13,7 @@ import { Page } from "../../../types";
 import axios from "@/lib/axios";
 
 export default function Home() {
-  const { pages, fetchPages, loadedPages } = store();
+  const { pages, fetchPages } = store();
 
   // const pages = store((state: { pages: Page[]; }) => state.pages); // Zustand reactive store
   // const hydrated = store((state: { hydrated: boolean; }) => state.hydrated);
@@ -53,7 +53,7 @@ export default function Home() {
           .get(`/page`)
           .then(function (response) {
             fetchPages(response.data.data)
-            console.log(response.data.data)
+            // console.log(response.data.data)
           });
       } catch (error) {
         console.log("Error fetching Data:", error);
@@ -68,16 +68,16 @@ export default function Home() {
   //   return null; // Prevent rendering until hydrated
   // }
 
-  if (pages.length < 1) {
-    console.log("Fallback: Loading or no pages available");
-    console.log("Filtered Pages:", thisPages);
-  } else if (pages.length > 1 && thisPages.length < 1) {
-    console.log("Fallback: No matching pages found");
-    console.log("Filtered Pages:", thisPages);
-  } else {
-    console.log("Fallback: Page found");
-    console.log("Filtered Pages:", thisPages);
-  }
+  // if (pages.length < 1) {
+  //   console.log("Fallback: Loading or no pages available");
+  //   console.log("Filtered Pages:", thisPages);
+  // } else if (pages.length > 1 && thisPages.length < 1) {
+  //   console.log("Fallback: No matching pages found");
+  //   console.log("Filtered Pages:", thisPages);
+  // } else {
+  //   console.log("Fallback: Page found");
+  //   console.log("Filtered Pages:", thisPages);
+  // }
   
 
   return (

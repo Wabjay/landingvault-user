@@ -124,7 +124,6 @@ const Navbar = () => {
             </>
           ) : 
             <div className="text-14 flex w-fit font-medium flex-row items-center gap-6 desktop:gap-[26px]">
-              <li>
                 <Link
                   href="/"
                   className={`${getLinkClassName("", params)} whitespace-nowrap text-grey-600 dark:!text-white`}
@@ -132,7 +131,6 @@ const Navbar = () => {
                 >
                   Landing Pages
                 </Link>
-              </li>
               <Search />
               <ul className="whitespace-nowrap flex w-fit font-medium flex-row items-center gap-4">
                 <li

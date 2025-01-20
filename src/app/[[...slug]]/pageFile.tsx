@@ -13,22 +13,19 @@ import { Page } from "../../../types";
 import axios from "@/lib/axios";
 
 export default function Home() {
-  const { pages, fetchPages } = store();
+  const { pages, fetchPages, fetchComponents, } = store();
 
   // const pages = store((state: { pages: Page[]; }) => state.pages); // Zustand reactive store
-  // const hydrated = store((state: { hydrated: boolean; }) => state.hydrated);
+  const hydrated = store((state: { hydrated: boolean; }) => state.hydrated);
   const pathname = usePathname();
   const [thisPages, setThisPages] = useState<Page[]>([]);
-  // const [slug, setSlug] = useState<string>('');
 
   // Generate slug
   const slug = pathname ? (pathname === "/" ? "/landing" : pathname) : "";
-  // const slug = pathname && pathname !== "/" ? pathname : "/landing";
 
   // Filter pages based on slug
   useEffect(() => {
-    // const slug = window.location.pathname === "/" ? "/landing" : window.location.pathname;    
-    // setSlug(slug)
+   
      if (Array.isArray(pages)) {
       const component = slug + "-page";
       const newPages = pages.filter((page) => {
@@ -36,17 +33,16 @@ export default function Home() {
         return pageSlug === component;
       });
       setThisPages(newPages);
-      // console.log("Pages:", newPages);
     } else {
       setThisPages([]);
     }
-    // console.log("Pathname:", pathname);
-    // console.log("Slug:", slug);
-    // console.log("Hydrated:", hydrated);
+ 
     
   }, [pages, slug]);
 
-
+  useEffect(() => {
+    fetchComponents();
+  }, [fetchComponents]);
 
   useEffect(() => {
       try {
@@ -54,7 +50,6 @@ export default function Home() {
           .get(`/page`)
           .then(function (response) {
             fetchPages(response.data.data)
-            // console.log(response.data.data)
           });
       } catch (error) {
         console.log("Error fetching Data:", error);
@@ -63,22 +58,9 @@ export default function Home() {
 
 
   // Loading state
-  // const isLoading = !hydrated;
+  const isLoading = !hydrated;
 
-  // if (!hydrated) {
-  //   return null; // Prevent rendering until hydrated
-  // }
 
-  // if (pages.length < 1) {
-  //   console.log("Fallback: Loading or no pages available");
-  //   console.log("Filtered Pages:", thisPages);
-  // } else if (pages.length > 1 && thisPages.length < 1) {
-  //   console.log("Fallback: No matching pages found");
-  //   console.log("Filtered Pages:", thisPages);
-  // } else {
-  //   console.log("Fallback: Page found");
-  //   console.log("Filtered Pages:", thisPages);
-  // }
   
 
   return (
@@ -86,7 +68,7 @@ export default function Home() {
       <Hero component={slug} />
       <div className="w-full max-w-[1150px] mx-auto overflow-hidden no-scrollbar px-4 tablet:px-6 laptop:px-8 desktop:px-0">
         <Tags component={slug} />
-        {pages.length < 1 ? (
+        {isLoading || pages.length < 1 ? (
           <IndexFallback />
         ) : pages.length > 1 && thisPages.length < 1 ? (
         <EmptyPage />

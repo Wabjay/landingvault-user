@@ -6,48 +6,69 @@ import { Page } from "../../types";
 import { store } from "@/store";
 import LoadImage from "./LoadImage";
 import Skeleton from "./Skeleton";
+import { useEffect, useState } from "react";
 
 const PageCard = ({ page }: { page: Page }) => {
   const { brandName, pageCoverImage, componentType } = page;
-  const { setSearch } = store();
+  const { setSearch, components: tags } = store();
+  const [componentList, setComponentList] = useState<string[]>([]);
 
-  const imageUrl = pageCoverImage || ""; 
+  const imageUrl = pageCoverImage || "";
   const slug = createSlug(brandName || "default");
   const tag = createSlug(componentType?.[0] || "tag");
   const components = "categories";
 
+  useEffect(() => {
+    const transformedNames = tags.data.map((item) =>
+      item.name.replace(" page", "").toLowerCase()
+    );
+    setComponentList(transformedNames);
+  }, []);
+
   return (
     <div className="pageCard w-full h-auto text-16 font-medium focus:outline-none mb-6">
-      <Skeleton width={'320px'} height={'380px'}>
-      <Link
-        href={`/${components}/${tag}/${slug}`}
-        className="flex flex-col text-left gap-y-2 tablet:max-w-[528px] group" 
-        onClick={() => setSearch("")}
-      >
+      <Skeleton width={"320px"} height={"380px"}>
+        <Link
+          href={`/${components}/${tag}/${slug}`}
+          className="flex flex-col text-left gap-y-2 tablet:max-w-[528px] group"
+          onClick={() => setSearch("")}
+        >
           <LoadImage
-          src={imageUrl}
-          alt={brandName ? `${brandName} logo` : "No image available for this brand"}
-          height={380}
-          style={`w-full h-[380px] object-cover  group-hover:bg-overlay  group-hover:shadow-shareCard border border-grey-50`}
-        />
-        <div className="py-2 flex justify-between w-full">
-          <div>
-            <p className="font-semibold w-full max-w-[255px] text-16 text-[#2E2E27] dark:!text-white mb-1">
-              {brandName || "Unnamed Brand"}
-            </p>
-            <p className="text-16 text-[#64645F] dark:!text-white  font-normal">
-              {componentType[0] || "No Brand Name"}
-            </p>
-          </div>
-          <Image
-            src="/arrow-button.png"
-            alt="Arrow button"
-            width={32}
-            height={32}
-            className="w-8 h-8 object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-in-out"
+            src={imageUrl}
+            alt={
+              brandName
+                ? `${brandName} logo`
+                : "No image available for this brand"
+            }
+            height={380}
+            style={`w-full h-[380px] object-cover  group-hover:bg-overlay  group-hover:shadow-shareCard border border-grey-50`}
           />
-        </div>
-      </Link>
+          <div className="py-2 flex justify-between w-full">
+            <div>
+              <p className="font-semibold w-full max-w-[255px] text-16 text-[#2E2E27] dark:!text-white mb-1">
+                {/* Remove the component name from the title */}
+                {componentList.some((name) => brandName.includes(name))
+                  ? componentList.reduce(
+                      (acc, name) =>
+                        acc.includes(name) ? acc.replace(name, "") : acc,
+                      brandName
+                    )
+                  : "Unnamed Brand"}
+                {/* {componentList.map(name => brandName.includes(name) && brandName.replace(name, "")) || "Unnamed Brand"} */}
+              </p>
+              <p className="text-16 text-[#64645F] dark:!text-white  font-normal">
+                {componentType[0] || "No Brand Name"}
+              </p>
+            </div>
+            <Image
+              src="/arrow-button.png"
+              alt="Arrow button"
+              width={32}
+              height={32}
+              className="w-8 h-8 object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-in-out"
+            />
+          </div>
+        </Link>
       </Skeleton>
     </div>
   );

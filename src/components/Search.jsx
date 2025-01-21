@@ -16,19 +16,16 @@ export default function Search({ enter }) {
 
   useEffect(() => {
     // Proceed with search logic
-    const wordsArray = searchInput.split(/\s+/);
+    const wordsArray = searchInput;
     const sortPagesByTagOrSearch = () => {
       if (!searchInput) {
         return loadedPages.data;
       }
 
       return loadedPages.data.filter((page) =>
-        wordsArray.some(
-          (word) =>
-            page.brandName.toLowerCase().includes(word) ||
-            page.brandDescription.toLowerCase().includes(word)
+            page.brandName.toLowerCase().includes(wordsArray) ||
+            page.brandDescription.toLowerCase().includes(wordsArray)
         ) || page.componentType.some((type) => type.toLowerCase().includes(searchInput.toLowerCase()))
-      );
     };
 
     fetchSearchedPages(sortPagesByTagOrSearch());

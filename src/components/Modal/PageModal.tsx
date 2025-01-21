@@ -19,7 +19,7 @@ export const PageModal =({type}:{type: string})=> {
           <>
           <div>
           <p className="mb-2 text-16 tablet:text-24 text-grey-500 dark:!text-white">{searchedPages.length} search result for</p>
-          <p className="font-bold w-full max-w-[255px] text-24 tablet:text-32 laptop:text-40 text-grey-800 dark:!text-white mb-1 capitalize">{type}</p>
+          <p className="font-bold w-full text-24 tablet:text-32 laptop:text-40 text-grey-800 dark:!text-white mb-1 capitalize">{type}</p>
           </div>
 
           <div className="grid tablet:grid-cols-2 laptop:grid-cols-4 gap-5 desktop:gap-6 justify-between">

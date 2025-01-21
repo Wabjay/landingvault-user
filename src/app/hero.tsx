@@ -54,7 +54,7 @@ const sendEmail =  async (): Promise<void> => {
     useEffect(() => {
       const pageName = `${component.replace(/[-/]/g, " ")} page`;
     
-      console.log(`${pageName.trim()} page`);
+      // console.log(`${pageName.trim()} page`);
     
       // Find the matching component in the data array (case insensitive)
       const matchingComponent = components.data?.find(

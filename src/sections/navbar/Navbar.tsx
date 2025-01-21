@@ -24,19 +24,16 @@ const Navbar = () => {
   const [confirm, setConfirm] = useState<boolean>(false);
   const { setSubmitWebsite, setSubscribe, setPromoteProduct, setSearch } =
     store();
-  // const [search, setSearch] = useState(''); // To control the search input
   const toggleNavbar = () => setVisibility((prev) => !prev);
 
   const searchNavbar =(res: boolean) => {
     setVisibility(res)
-    console.log(res)
    };
 
   // Helper function to handle link click, clear search, and close modal
   const handleLinkClick = () => {
     setSearch(""); // Clear the search input
     setVisibility(false); // Close the mobile navbar if it's open
-    console.log("closed")
   };
 
     // Helper function to handle link click, clear search, and close modal

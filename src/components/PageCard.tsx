@@ -22,7 +22,7 @@ const PageCard = ({ page }: { page: Page }) => {
     const transformedNames = tags.data.map((item) =>
       item.name.toLowerCase().replace(" page", "")
     );
-    console.log(transformedNames)
+    // console.log(transformedNames)
     setComponentList(transformedNames);
   }, []);
 

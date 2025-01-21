@@ -50,6 +50,9 @@ const Footer = () => {
                   className="h-10 w-[209px]"
                   src="/footer-logo.png"
                   fill
+                  sizes="209px"
+                  // width={200}
+                  // height={40}
                   alt="Landingvault Logo"
                 />
               </Link>
@@ -158,6 +161,7 @@ const Footer = () => {
         </div>
         <Image
           src="/footer-bg.svg"
+          priority
           width={100}
           height={100}
           className="w-full"

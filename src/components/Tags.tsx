@@ -2,7 +2,6 @@
 import { useState, useEffect, useRef } from "react";
 import { store } from "@/store";
 import Image from "next/image";
-// import Link from "next/link";
 import { createSlug, removeSlug } from "./slug";
 import TagFallback from "./FallBack/TagFallback";
 
@@ -50,20 +49,7 @@ export default function Tags({component}:{component: string}) {
   const cleanSlugA = removeSlug(activeTag.replace('/', ''));
 
   useEffect(() => {
-    // const sortPagesByTagOrSearch = () => {
-    //   if (activeTag === "All Tags") {
-    //     return loadedPages?.data;
-    //   }
-    //   if (activeTag) {
-    //     return loadedPages?.data?.filter((page) =>
-    //       page.componentType.includes(activeTag)
-    //     );
-    //   }
-    //   return loadedPages?.data;
-    // };
-console.log(cleanSlugA)
     fetchPages(loadedPages?.data);
-    // fetchPages(sortPagesByTagOrSearch());
   }, [loadedPages?.data]);
 
   const updateArrowsVisibility = () => {

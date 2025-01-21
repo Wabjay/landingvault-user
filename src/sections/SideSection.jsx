@@ -19,7 +19,7 @@ const SideSection = ({ page }) => {
     createdAt,
     font,
   } = page;
-  const component = componentType[0].replace(" page", "").toLowerCase();
+  const component = componentType[0].toLowerCase().replace(" page", "");
   const pageName = brandName.includes(component) && brandName.replace(component, "");
 
   // Conditional rendering for page data

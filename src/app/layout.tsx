@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import "./globals.css";
 import Navbar from "@/sections/navbar/Navbar";
 import Footer from "@/sections/footer/Footer";
-import LayoutFallBack from "@/components/FallBack/LayoutFallback";
 import {GoogleAnalytics, GoogleTagManager} from "@next/third-parties/google"
+import Main from "@/sections/main/Main";
 
 
 export const metadata: Metadata = {
@@ -61,15 +60,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
     <html lang="en">
       <body className={`font-Switzer antialiased dark:!bg-black dark:!text-white `}>
         <Navbar />
         <div className="mt-[60px]">
-          {/* Wrap children in Suspense for fallback */}
-          <Suspense fallback={<LayoutFallBack />}>
-            {children}
-          </Suspense>
+        <Main>{children}</Main>
         </div>
         <Footer />
         <GoogleTagManager gtmId="GTM-WTFW68LP" />

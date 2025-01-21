@@ -27,6 +27,11 @@ const Navbar = () => {
   // const [search, setSearch] = useState(''); // To control the search input
   const toggleNavbar = () => setVisibility((prev) => !prev);
 
+  const searchNavbar =(res: boolean) => {
+    setVisibility(res)
+    console.log(res)
+   };
+
   // Helper function to handle link click, clear search, and close modal
   const handleLinkClick = () => {
     setSearch(""); // Clear the search input
@@ -78,7 +83,7 @@ const Navbar = () => {
                         Landing Pages
                       </Link>
                     </li>
-                    <Search />
+                    <Search enter={searchNavbar}/>
                     <li
                       className="cursor-pointer flex gap-x-1 mr-4 font-medium text-14 text-grey-600 dark:!text-white"
                       onClick={() => {
@@ -131,7 +136,7 @@ const Navbar = () => {
                 >
                   Landing Pages
                 </Link>
-              <Search />
+              <Search enter={searchNavbar}/>
               <ul className="whitespace-nowrap flex w-fit font-medium flex-row items-center gap-4">
                 <li
                   className="cursor-pointer px-3 py-2 flex items-center gap-x-1 text-grey-600 dark:!text-white mr-3"

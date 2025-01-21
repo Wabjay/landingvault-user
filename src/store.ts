@@ -155,12 +155,6 @@ const initialState: StoreState = {
     errors: null,
   },
   error: null,
-  // users: [],
-  // components: [],
-  // industries: [],
-  // stacks: [],
-  // styles: [],
-  // types: [],
   pages: [],
   submitWebsite: false,
   subscribe: false,
@@ -270,7 +264,7 @@ export const store = create<Store>(
             .get(`/page`)
             .then(function (response) {
               set({ loadedPages: response.data, componentLoading: false });
-              console.log(response.data)
+              // console.log(response.data)
             });
         } catch (error) {
           console.log("Error fetching Data:", error);

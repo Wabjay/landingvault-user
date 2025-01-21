@@ -19,46 +19,48 @@ const SinglePage = () => {
     return <div>Error: Page name is missing in the URL.</div>;
   }
 
-  
-
-console.log(pathname)
+  console.log(pathname);
   return (
     <div className="w-full">
-    <div className="bg-grey-10 dark:!bg-black dark:!text-white ">
-      <div className="w-full laptop:max-w-[1440px] mx-auto px-4 tablet:px-6 laptop:px-0 xl:px-0 flex flex-col">
-        <div className="">
-          <div className="w-full laptop:max-w-[1299px] mx-auto px-4 tablet:px-6 laptop:pl-8 laptop:pr-0 desktop:px-0 desktop:mr-0 desktop:ml-auto">
-          <BackButton color={""} />
-            <ISRFetcher<PagesResponse>
-          url={`page/name/${pageName}`}
-          fallback={<SinglePageFallBack/>}
-          errorFallback={<ErrorFallback />}
-          render={(page) => (
-            <div className="laptop:flex laptop:gap-6 desktop:gap-8 laptop:justify-between">
-              <SideSection page={page?.data[0]} />
-              <div className=" order-first w-full">
-                <div className="mx-auto w-fit">
-                  <Skeleton width={'w-full'} height={'90vh'}>
-                  <div className="flex flex-col gap-8 laptop:w-fit">
-                    <LoadImage
-                        alt={page?.data[0].brandName || "Page Image"}
-                        src={page?.data[0].pageImage || "/path/to/placeholder.jpg"}
-                        style="w-full h-full laptop:w-[640px]" height={undefined}                    />
+      <div className="bg-grey-10 dark:!bg-black dark:!text-white ">
+        <div className="w-full laptop:max-w-[1440px] mx-auto px-4 tablet:px-6 laptop:px-0 xl:px-0 flex flex-col">
+          <div className="">
+            <div className="w-full laptop:max-w-[1299px] mx-auto px-4 tablet:px-6 laptop:pl-8 laptop:pr-0 desktop:px-0 desktop:mr-0 desktop:ml-auto">
+              <BackButton color={""} />
+              <ISRFetcher<PagesResponse>
+                url={`page/name/${pageName}`}
+                fallback={<SinglePageFallBack />}
+                errorFallback={<ErrorFallback />}
+                render={(page) => (
+                  <div className="laptop:flex laptop:gap-6 desktop:gap-8 laptop:justify-between">
+                    <SideSection page={page?.data[0]} />
+                    <div className=" order-first w-full">
+                      <div className="mx-auto w-fit">
+                        <Skeleton width={"w-full"} height={"90vh"}>
+                          <div className="flex flex-col gap-8 laptop:w-fit">
+                            <LoadImage
+                              alt={page?.data[0].brandName || "Page Image"}
+                              src={
+                                page?.data[0].pageImage ||
+                                "/path/to/placeholder.jpg"
+                              }
+                              style="w-full h-full laptop:w-[640px]"
+                              height={undefined}
+                            />
+                          </div>
+                        </Skeleton>
+                      </div>
+                    </div>
                   </div>
-                  </Skeleton>
-                </div>
-              </div>
+                )}
+              />
             </div>
-             )}
-             />
           </div>
         </div>
-      
       </div>
-    </div>  <FooterPages slug={slug} pageName={pageName} />
-  </div>
+      <FooterPages slug={slug} pageName={pageName} />
+    </div>
   );
 };
 
 export default SinglePage;
-

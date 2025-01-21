@@ -5,7 +5,7 @@ import Image from "next/image";
 import { store } from "@/store";
 // import { PageModal } from "./Modal/PageModal";
 
-export default function Search() {
+export default function Search({ enter }) {
   const [typing, setTyping] = useState(false);
   const { fetchAllPages, loadedPages, fetchPages, fetchSearchedPages, setSearch, searchInput } = store();
   // const { fetchAllPages, loadedPages, fetchPages, fetchSearchedPages, setSearch, searchInput, showSearch } = store();
@@ -15,8 +15,6 @@ export default function Search() {
   }, [fetchAllPages]);
 
   useEffect(() => {
-
-
     // Proceed with search logic
     const wordsArray = searchInput.split(/\s+/);
     const sortPagesByTagOrSearch = () => {
@@ -37,6 +35,15 @@ export default function Search() {
     fetchPages(sortPagesByTagOrSearch());
   }, [searchInput, fetchSearchedPages, loadedPages.data]);
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") { // Check if the Enter key is pressed
+      if (typeof enter === "function") {
+        enter(false); // Call the enter function
+      } else {
+        console.error("Enter function is not defined");
+      }
+    }
+  }
   // Handle focus/typing state
   const handleFocus = () => {
     setTyping(true);
@@ -64,12 +71,11 @@ export default function Search() {
           onFocus={handleFocus} 
           onBlur={handleBlur} 
           onChange={(e) => setSearch(e.target.value)} 
+          onKeyDown={handleKeyDown} 
           className="outline-none w-full bg-transparent text-grey-900"
         />
       </div>
 
-      {/* Show modal when search is not empty */}
-      {/* {showSearch && <PageModal />} */}
     </>
   );
 }

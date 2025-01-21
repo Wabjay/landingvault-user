@@ -16,7 +16,7 @@ export default function Search({ enter }) {
 
   useEffect(() => {
     // Proceed with search logic
-    const wordsArray = searchInput;
+    const wordsArray = searchInput.toLowerCase();
     const sortPagesByTagOrSearch = () => {
       if (!searchInput) {
         return loadedPages.data;

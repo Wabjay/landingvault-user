@@ -26,7 +26,7 @@ const SideSection = ({ page }) => {
   if (!page) return <Skeleton>Loading...</Skeleton>;
 
   return (
-    <div className="laptop:sticky laptop:top-[66px] py-6 bg-white dark:!bg-black dark:!text-white laptop:h-inherit laptop:mt-[-66px] mb-10 laptop:mb-0 w-full laptop:max-w-[500px] pb-4 px-4 tablet:px-6 laptop:px-10 sidesection__top laptop:pb-[100px] bigScreen:max-w-[700px] bigScreen:pr-[136px]">
+    <div className="laptop:sticky overflow-hidden laptop:top-[66px] py-6 bg-white dark:!bg-black dark:!text-white laptop:h-fit laptop:mt-[-66px] mb-10 laptop:mb-0 w-full laptop:max-w-[500px] pb-4 px-4 tablet:px-6 laptop:px-10 sidesection__top laptop:pb-[100px] bigScreen:max-w-[700px] bigScreen:pr-[136px]">
       <h1 className="text-24 text-grey-800 dark:!text-white font-semibold mb-2">
         <Skeleton width={"100%"} height={"20px"}>
           {pageName}

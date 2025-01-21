@@ -32,7 +32,7 @@ const SinglePage = () => {
                 fallback={<SinglePageFallBack />}
                 errorFallback={<ErrorFallback />}
                 render={(page) => (
-                  <div className="laptop:flex laptop:gap-6 desktop:gap-8 laptop:justify-between">
+                  <div className="relative laptop:flex laptop:gap-6 desktop:gap-8 laptop:justify-between">
                     <SideSection page={page?.data[0]} />
                     <div className=" order-first w-full">
                       <div className="mx-auto w-fit">

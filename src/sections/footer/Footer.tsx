@@ -51,8 +51,6 @@ const Footer = () => {
                   src="/footer-logo.png"
                   fill
                   sizes="209px"
-                  // width={200}
-                  // height={40}
                   alt="Landingvault Logo"
                 />
               </Link>

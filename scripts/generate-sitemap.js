@@ -66,10 +66,12 @@ async function fetchDynamicPages() {
 // Generate sitemap
 async function generateSitemap() {
   const smStream = new SitemapStream({ hostname: 'https://www.landingvault.com' });
+  const smStreams = new SitemapStream({ hostname: 'http://www.landingvault.com' });
   const pipeline = smStream.pipe(createGzip());
 
   // Add static pages
   smStream.write({ url: '/', changefreq: 'daily', priority: 1.0 });
+  smStreams.write({ url: '/', changefreq: 'daily', priority: 1.0 });
   smStream.write({ url: '/contact-us-page', changefreq: 'weekly', priority: 1.0 });
   smStream.write({ url: '/about-us-page', changefreq: 'weekly', priority: 1.0 });
   smStream.write({ url: '/useful-link', changefreq: 'weekly', priority: 1.0 });

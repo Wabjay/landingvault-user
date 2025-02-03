@@ -4,6 +4,7 @@ import Navbar from "@/sections/navbar/Navbar";
 import Footer from "@/sections/footer/Footer";
 import {GoogleAnalytics, GoogleTagManager} from "@next/third-parties/google"
 import Main from "@/sections/main/Main";
+import { CSPostHogProvider } from "@/lib/providers";
 
 
 export const metadata: Metadata = {
@@ -64,6 +65,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+            <CSPostHogProvider>
       <body className={`font-Switzer antialiased dark:!bg-black dark:!text-white `}>
         <Navbar />
         <div className="mt-[60px]">
@@ -77,7 +79,7 @@ export default function RootLayout({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
       </body>
-     
+      </CSPostHogProvider>
     </html>
   );
 }

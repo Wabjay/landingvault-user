@@ -10,10 +10,10 @@ if (typeof window !== 'undefined') {
   })
 }
 
-interface CSPostHogProviderProps {
+interface CSPostHogProviderProp {
   children: ReactNode
 }
 
-export function CSPostHogProvider({ children }: CSPostHogProviderProps) {
+export function CSPostHogProvider({ children }: CSPostHogProviderProp) {
   return <PostHogProvider client={posthog}>{children}</PostHogProvider>
 }

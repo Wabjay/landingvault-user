@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 import { createSlug } from "@/components/slug";
 import { useEffect, useState } from "react";
 import { Page } from "../../../types";
-import axios from "@/lib/axios";
+import axios, { axioss } from "@/lib/axios";
 
 export default function Home() {
   const { pages, fetchPages, fetchComponents, } = store();
@@ -46,15 +46,16 @@ export default function Home() {
 
   useEffect(() => {
       try {
-         axios
-          .get(`/page`)
+        console.log("first")
+         axioss
+          .get(`/pages?search=${slug}`)
           .then(function (response) {
             fetchPages(response.data.data)
           });
       } catch (error) {
         console.log("Error fetching Data:", error);
     }
-    }, []);
+    }, [slug]);
 
 
   // Loading state

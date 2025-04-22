@@ -14,7 +14,7 @@ interface PageProps {
   params: Promise<Params>; // Always treat `params` as a Promise
 }
 
-const fetchPageData = async ({category, name}:{category:string, name: string}): Promise<Page> => {
+const fetchPageData = async ({category, name}:{category:string, name: string}) => {
   try {
 
     const response = await axios.get(`/page/${category}/${name}`);
@@ -22,13 +22,7 @@ const fetchPageData = async ({category, name}:{category:string, name: string}): 
     return result.page as Page;
   } catch (error) {
     console.error("Error fetching page data:", error);
-    return {
-      page: {},
-      status: false,
-      statusCode: 0,
-      message: "",
-      errors: null,
-    };
+  
   }
 };
 
@@ -41,15 +35,15 @@ export async function generateMetadata({
   const formattedName = (name || "").replace(/-/g, " ");
   const title = formattedName.charAt(0).toUpperCase() + formattedName.slice(1);
 
-  const pageTitle = pageData.brandName + " page" || "Default Brand Name";
-  const pageDescription = pageData.brandDescription || "";
+  const pageTitle = pageData?.brandName + " page" || "Default Brand Name";
+  const pageDescription = pageData?.brandDescription || "";
   const pageDesc =
     pageDescription.length > 150
       ? pageDescription.slice(0, 150) + "..."
       : pageDescription ||
         "Landingvault offers a wide range of learning tools designed to improve your learning experience.";
   const pageIcon =
-    pageData.pageCoverImage || "https://landingvault.com/cover.webp";
+    pageData?.pageCoverImage || "https://landingvault.com/cover.webp";
 
   return {
     title: `${pageTitle} | Landingvault`,
@@ -93,15 +87,15 @@ const MainPage = async ({ params }: PageProps) => {
   const { category, name } = resolvedParams;
 
   const pageData = await fetchPageData({category, name});
-  const pageTitle = pageData.brandName + " page" || "Default Brand Name";
-  const pageDescription = pageData.brandDescription || "";
+  const pageTitle = pageData?.brandName + " page" || "Default Brand Name";
+  const pageDescription = pageData?.brandDescription || "";
   const pageDesc =
     pageDescription.length > 150
       ? pageDescription.slice(0, 150) + "..."
       : pageDescription ||
         "Landingvault offers a wide range of learning tools designed to improve your learning experience.";
   const pageIcon =
-    pageData.pageCoverImage || "https://landingvault.com/cover.webp";
+    pageData?.pageCoverImage || "https://landingvault.com/cover.webp";
 
   const schemaData = {
     "@context": "https://schema.org",

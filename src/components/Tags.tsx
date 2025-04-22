@@ -11,19 +11,15 @@ interface Tag {
   title: string;
 }
 
-export default function Tags({component}:{component: string}) {
-  const [activeTag, setActiveTag] = useState<string>(component);
+export default function Tags({activeTag}:{activeTag: string}) {
+  // const [activeTag, setActiveTag] = useState<string>(component);
   const [tags, setTags] = useState<Tag[]>([]);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
   const tagsContainerRef = useRef<HTMLUListElement | null>(null);
 
-  const { components, loadedPages, fetchPages, fetchComponents, setSearch } = store();
+  const { components, fetchComponents } = store();
 
-  const sortTag = (tag: string) => {
-    setActiveTag(tag);
-    setSearch("");
-  };
 
   useEffect(() => {
     fetchComponents();
@@ -39,7 +35,6 @@ export default function Tags({component}:{component: string}) {
         if (b.name === "Landing page") return 1;   // Keep "Landing Page" at the front
         return 0; // Keep other tags in the same order
       });
-    
       setTags(newTags);
     } else {
       setTags([]);
@@ -47,10 +42,14 @@ export default function Tags({component}:{component: string}) {
   }, [components?.data]);
   
   const cleanSlugA = removeSlug(activeTag.replace('/', ''));
+  
+  // console.log(cleanSlugA)
 
-  useEffect(() => {
-    fetchPages(loadedPages?.data);
-  }, [loadedPages?.data]);
+  // useEffect(() => {
+  //   // fetchPages(loadedPages?.data);
+  //   fetchPages({ component: cleanSlugA, page: "" });
+
+  // }, [cleanSlugA, fetchPages]);
 
   const updateArrowsVisibility = () => {
     const container = tagsContainerRef.current;
@@ -111,8 +110,7 @@ export default function Tags({component}:{component: string}) {
         tags.map((tag) => (
           <li key={tag.id}>
           <a href={`/${createSlug(tag.name.toLowerCase().replace("page", "").trim())}`} 
-            
-            onClick={() => sortTag(tag.name)}
+            // onClick={() => sortTag(tag.name)}
             className={`whitespace-nowrap cursor-pointer text-14 font-medium rounded-full px-3 py-2 border capitalize transition-all ${
               tag.name.toLowerCase().includes(cleanSlugA.toLowerCase())
                 ? "border-blue-500 text-blue-500 bg-blue-100"

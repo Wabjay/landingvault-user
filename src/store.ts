@@ -30,13 +30,14 @@ type Page = {
   brandName: string;
   brandDescription: string;
   websiteUrl: string;
-  componentType: string[]; // Array of component names
-  industry: string[];      // Array of industry names
-  stacks: string[];        // Array of stack names
-  style: string[];         // Array of style names
-  type: string[];          // Array of type names
+  componentType: any[]; // Array of component names
+  industry: any[];      // Array of industry names
+  stacks: any[];        // Array of stack names
+  style: any[];         // Array of style names
+  type: any[];          // Array of type names
   mode: "light" | "dark";  // Mode can be 'light' or 'dark'
   colorPalette: string[];  // Array of color hex codes
+  font: string[];  // Array of color hex codes
   createdAt: string;       // ISO string format
   updatedAt: string;       // ISO string format
   __v: number;             // Version key (usually for internal use)
@@ -65,6 +66,7 @@ const initialPageData: Page = {
   type: [],
   mode: "light", // Default mode can be "light" or "dark"
   colorPalette: [],
+  font: [],
   createdAt: "",
   updatedAt: "",
   __v: 0,
@@ -109,7 +111,7 @@ type StoreState = {
   page: PagesResponse;
   pages: Page[];
   loadedPages: {
-    data: Page[];
+    pages: Page[];
     message: string;
     status: number;
     pagination: { total: number; page: number; pages: number };
@@ -142,7 +144,7 @@ const initialState: StoreState = {
   tags: [],
   images: [],
   loadedPages: {
-    data: [],
+    pages: [],
     message: "",
     status: 0,
     pagination: { total: 0, page: 0, pages: 0 },
@@ -187,9 +189,10 @@ interface Store extends StoreState {
   // setTags: () => void;
   setImages: (images: string[]) => void;
   fetchAllPages: () => void;
-  fetchPages: (pages: Page[]) => void;
-  fetchSearchedPages: (pages: Page[]) => void;
-  fetchSinglePage: (id: string) => void;
+  // fetchPages: (pages: Page[]) => void;
+  fetchPages: (params: { component?: string; page?: string }) => Promise<void>;
+  fetchSearchedPages: (params: { component?: string; page?: string }) => Promise<void>;
+  fetchSinglePage: (component: string, title: string ) => Promise<void>;
   fetchSingle: (id: string, type: string) => void;
   resetState: () => void;
   setError: (message: string) => void;  // Action to set error state
@@ -261,10 +264,10 @@ export const store = create<Store>(
         set({ componentLoading: true });
         try {
           await axios
-            .get(`/page`)
+            .get(`/pages`)
             .then(function (response) {
               set({ loadedPages: response.data, componentLoading: false });
-              // console.log(response.data)
+              console.log(response.data)
             });
         } catch (error) {
           console.log("Error fetching Data:", error);
@@ -272,25 +275,59 @@ export const store = create<Store>(
       }
       },
 
-      fetchPages: async (response: any) => {
-        // console.log(response)
-        set({ pages: response });
+      // fetchPages: async (response: any) => {
+      //   // console.log(response)
+      //   set({ pages: response });
+      // },
+      fetchPages: async ({ component, page }: { component?: string; page?: string }) => {
+        try {
+          set({ overlayLoading: true });
+      
+          // const queryParams = `${component ? component : "Landing page"}`;
+          const queryParams = `search=${component ? component : "Landing page"}&page=${page ? page : "1"}`;
+          const { data } = await axios.get(`/pages?${queryParams}`);
+      
+          set({ pages: data.pages });
+          console.log(data.pages);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        } finally {
+          set({ overlayLoading: false });
+        }
       },
-      fetchSearchedPages: async (response: any) => {
-        // console.log(response)
-        set({ searchedPages: response });
+      
+      fetchSearchedPages: async ({ component, page }: { component?: string; page?: string }) => {
+        try {
+          set({ overlayLoading: true });
+      
+          // const queryParams = `${component ? component : "Landing page"}`;
+          const queryParams = `search=${component ? component : "Landing page"}&page=${page ? page : "1"}`;
+          const { data } = await axios.get(`/pages?${queryParams}`);
+      
+          set({ searchedPages: data.pages });
+          console.log(data.pages);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        } finally {
+          set({ overlayLoading: false });
+        }
       },
+      
+      
+      // fetchSearchedPages: async (response: any) => {
+      //   // console.log(response)
+      //   set({ searchedPages: response });
+      // },
 
-      fetchSinglePage: async (title: string) => {
-        console.log(title)
+      fetchSinglePage: async (component: string, title: string ) => {
+        console.log(component, title)
         set({ componentLoading: true });
         try {
-          await axios
-            .get(`/page/name/${title}`)
-            .then(function (response) {
-              set({ page: response.data , componentLoading: false });
+          const url = component ? `/page/${component}/${title}` : `/page/${title}`;
+          const response = await axios.get(url);
+          const pageData = response.data.page;
+          set({ page: pageData, componentLoading: false });
               console.log(response.data)
-            });
         } catch (error) {
           console.error("Error fetching Data:", error);
           set({ componentLoading: false }); // Corrected from `loading: false`

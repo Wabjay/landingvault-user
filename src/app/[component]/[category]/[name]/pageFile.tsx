@@ -12,14 +12,14 @@ import FooterPages from "@/sections/FooterPages";
 
 const SinglePage = () => {
   const pathname = usePathname();
-  const slug = pathname.split("/")[2]?.toLowerCase();
-  const pageName = pathname.split("/")[3]?.toLowerCase();
+  const slug = pathname.split("/")[2];
+  const pageName = pathname.split("/")[3];
 
   if (!pageName) {
     return <div>Error: Page name is missing in the URL.</div>;
   }
 
-  console.log(pathname);
+  // console.log(pathname);
   return (
     <div className="w-full">
       <div className="bg-grey-10 dark:!bg-black dark:!text-white ">
@@ -28,20 +28,20 @@ const SinglePage = () => {
             <div className="w-full laptop:max-w-[1299px] mx-auto px-4 tablet:px-6 laptop:pl-8 laptop:pr-0 desktop:px-0 desktop:mr-0 desktop:ml-auto">
               <BackButton color={""} />
               <ISRFetcher<PagesResponse>
-                url={`page/name/${pageName}`}
+                url={`landing-vault/page/${slug}/${pageName}`}
                 fallback={<SinglePageFallBack />}
                 errorFallback={<ErrorFallback />}
                 render={(page) => (
                   <div className="relative laptop:flex laptop:gap-6 desktop:gap-8 laptop:justify-between">
-                    <SideSection page={page?.data[0]} />
+                    <SideSection page={page} />
                     <div className=" order-first w-full">
                       <div className="mx-auto w-fit">
                         <Skeleton width={"w-full"} height={"90vh"}>
                           <div className="flex flex-col gap-8 laptop:w-fit">
                             <LoadImage
-                              alt={page?.data[0].brandName || "Page Image"}
+                              alt={page.page?.brandName || "Page Image"}
                               src={
-                                page?.data[0].pageImage ||
+                                page.page?.pageImage ||
                                 "/path/to/placeholder.jpg"
                               }
                               style="w-full h-full laptop:w-[640px]"

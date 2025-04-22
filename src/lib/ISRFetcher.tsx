@@ -21,9 +21,10 @@ const ISRFetcher = <T,>({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`https://api.landingvault.com/${url}`);
+        const response = await fetch(`https://ideal-palm-tree-two.vercel.app/api/v1/${url}`);
         if (!response.ok) throw new Error("Failed to fetch data");
         const result = await response.json();
+        // console.log(result.page)
         setData(result);
       } catch {
         setError(true);
@@ -34,7 +35,6 @@ const ISRFetcher = <T,>({
 
     fetchData();
   }, [url]);
-
   if (loading) return fallback;
   if (error || !data) return errorFallback;
 

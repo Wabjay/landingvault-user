@@ -1,30 +1,23 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { createSlug } from "./slug";
+// import { createSlug } from "./slug";
 import { Page } from "../../types";
 import { store } from "@/store";
 import LoadImage from "./LoadImage";
 import Skeleton from "./Skeleton";
-import { useEffect, useState } from "react";
 
 const PageCard = ({ page }: { page: Page }) => {
   const { brandName, pageCoverImage, componentType } = page;
   const { setSearch, components: tags } = store();
-  const [componentList, setComponentList] = useState<string[]>([]);
 
   const imageUrl = pageCoverImage || "";
-  const slug = createSlug(brandName || "default");
-  const tag = createSlug(componentType?.[0] || "tag");
+  const slug = (brandName);
+  const tag: string = componentType?.[0]?.title || "tag";
   const components = "categories";
 
-  useEffect(() => {
-    const transformedNames = tags.data.map((item) =>
-      item.name.toLowerCase().replace(" page", "")
-    );
-    // console.log(transformedNames)
-    setComponentList(transformedNames);
-  }, []);
+  console.log(tags, "Pages")
+
 
   return (
     <div className="pageCard w-full h-auto text-16 font-medium focus:outline-none mb-6">
@@ -47,20 +40,11 @@ const PageCard = ({ page }: { page: Page }) => {
           <div className="py-2 flex justify-between w-full">
             <div>
               <p className="font-semibold w-full max-w-[255px] text-16 text-[#2E2E27] dark:!text-white mb-1">
-                {/* Remove the component name from the title */}
-                {/* {componentList.some((name) => brandName.includes(name))
-                  ? componentList.reduce(
-                      (acc, name) =>
-                        acc.includes(name) ? acc.replace(name, "") : acc,
-                      brandName
-                    )
-                  : "Unnamed Brand"} */}
-                {componentList.map(name => brandName.includes(name) && brandName.replace(name, "")) || "Unnamed Brand"}
-                {/* {brandName} */}
+                {brandName}
               </p>
-              <p className="text-16 text-[#64645F] dark:!text-white  font-normal">
-                {componentType[0] || "No Brand Name"}
-              </p>
+              {/* <p className="text-16 text-[#64645F] dark:!text-white  font-normal">
+                {tag || "No Brand Name"}
+              </p> */}
             </div>
             <Image
               src="/arrow-button.png"

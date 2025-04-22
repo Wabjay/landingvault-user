@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import SinglePage from "./pageFile";
 import { createSlug } from "@/components/slug";
 import axios from "@/lib/axios";
-import { PagesResponse } from "../../../../../types";
+import { Page } from "../../../../../types";
 
 interface Params {
   name: string;
@@ -14,14 +14,16 @@ interface PageProps {
   params: Promise<Params>; // Always treat `params` as a Promise
 }
 
-const fetchPageData = async (name: string): Promise<PagesResponse> => {
+const fetchPageData = async ({category, name}:{category:string, name: string}): Promise<Page> => {
   try {
-    const response = await axios.get(`/page/name/${name}`);
-    return response.data as PagesResponse;
+
+    const response = await axios.get(`/page/${category}/${name}`);
+    const result = await response.data;
+    return result.page as Page;
   } catch (error) {
     console.error("Error fetching page data:", error);
     return {
-      data: [],
+      page: {},
       status: false,
       statusCode: 0,
       message: "",
@@ -35,20 +37,19 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const resolvedParams = await params; // Always resolve the Promise
   const { category, component, name } = resolvedParams;
-
-  const pageData = await fetchPageData(name);
+  const pageData = await fetchPageData({category, name});
   const formattedName = (name || "").replace(/-/g, " ");
   const title = formattedName.charAt(0).toUpperCase() + formattedName.slice(1);
 
-  const pageTitle = pageData.data[0]?.brandName + " page" || "Default Brand Name";
-  const pageDescription = pageData.data[0]?.brandDescription || "";
+  const pageTitle = pageData.brandName + " page" || "Default Brand Name";
+  const pageDescription = pageData.brandDescription || "";
   const pageDesc =
     pageDescription.length > 150
       ? pageDescription.slice(0, 150) + "..."
       : pageDescription ||
         "Landingvault offers a wide range of learning tools designed to improve your learning experience.";
   const pageIcon =
-    pageData.data[0]?.pageCoverImage || "https://landingvault.com/cover.webp";
+    pageData.pageCoverImage || "https://landingvault.com/cover.webp";
 
   return {
     title: `${pageTitle} | Landingvault`,
@@ -87,27 +88,27 @@ export async function generateMetadata({
   };
 }
 
-const Page = async ({ params }: PageProps) => {
+const MainPage = async ({ params }: PageProps) => {
   const resolvedParams = await params;
-  const { category, component, name } = resolvedParams;
+  const { category, name } = resolvedParams;
 
-  const pageData = await fetchPageData(name);
-  const pageTitle = pageData.data[0]?.brandName + " page" || "Default Brand Name";
-  const pageDescription = pageData.data[0]?.brandDescription || "";
+  const pageData = await fetchPageData({category, name});
+  const pageTitle = pageData.brandName + " page" || "Default Brand Name";
+  const pageDescription = pageData.brandDescription || "";
   const pageDesc =
     pageDescription.length > 150
       ? pageDescription.slice(0, 150) + "..."
       : pageDescription ||
         "Landingvault offers a wide range of learning tools designed to improve your learning experience.";
   const pageIcon =
-    pageData.data[0]?.pageCoverImage || "https://landingvault.com/cover.webp";
+    pageData.pageCoverImage || "https://landingvault.com/cover.webp";
 
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: `${pageTitle} | Landingvault`,
     description: `${pageDesc} Landingvault`,
-    url: `https://landingvault.com/${createSlug(component)}/${createSlug(
+    url: `https://landingvault.com/${createSlug(category)}/${createSlug(
       category
     )}/${createSlug(name)}`,
     author: {
@@ -135,4 +136,4 @@ const Page = async ({ params }: PageProps) => {
   );
 };
 
-export default Page;
+export default MainPage;

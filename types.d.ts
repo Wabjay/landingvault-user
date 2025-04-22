@@ -5,14 +5,22 @@ type FormData = {
   brandName: string;
   brandDescription: string;
   websiteUrl: string;
-  componentType: string[]; // Array of component names
-  industry: string[];      // Array of industry names
-  stacks: string[];        // Array of stack names
-  style: string[];         // Array of style names
-  type: string[];          // Array of type names
+  componentType: Tag[] // Array of component names
+  industry: Tag[]      // Array of industry names
+  stacks: Tag[]        // Array of stack names
+  style: Tag[]         // Array of style names
+  type: Tag[]          // Array of type names
   mode: "light" | "dark";  // Mode can be 'light' or 'dark'
   colorPalette: string[];
+  font: string[];
 }
+
+interface Tag {
+  id: string;
+  title: string;
+  name: string;
+}
+
 interface Page {
   _id: string;
   pageImage: string;
@@ -20,19 +28,21 @@ interface Page {
   brandName: string;
   brandDescription: string;
   websiteUrl: string;
-  componentType: string[]; // Array of component names
-  industry: string[];      // Array of industry names
-  stacks: string[];        // Array of stack names
-  style: string[];         // Array of style names
-  type: string[];          // Array of type names
+  componentType: Tag[] // Array of component names
+  industry: Tag[]      // Array of industry names
+  stacks: Tag[]        // Array of stack names
+  style: Tag[]         // Array of style names
+  type: Tag[]          // Array of type names
   mode: "light" | "dark";  // Mode can be 'light' or 'dark'
   colorPalette: string[];  // Array of color hex codes
+  font: string[];  // Array of Font
   createdAt: string;       // ISO string format
   updatedAt: string;       // ISO string format
   __v: number;             // Version key (usually for internal use)
   id: string; 
 };
 interface PagesResponse {
+  page: any;
   // _id: Key | null | undefined;
   data: Page[];
   status: boolean;

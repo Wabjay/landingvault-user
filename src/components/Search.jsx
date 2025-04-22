@@ -7,7 +7,7 @@ import { store } from "@/store";
 
 export default function Search({ enter }) {
   const [typing, setTyping] = useState(false);
-  const { fetchAllPages, loadedPages, fetchPages, fetchSearchedPages, setSearch, searchInput } = store();
+  const { fetchAllPages, fetchSearchedPages, setSearch, searchInput } = store();
   // const { fetchAllPages, loadedPages, fetchPages, fetchSearchedPages, setSearch, searchInput, showSearch } = store();
 
   useEffect(() => {
@@ -15,22 +15,8 @@ export default function Search({ enter }) {
   }, [fetchAllPages]);
 
   useEffect(() => {
-    // Proceed with search logic
-    const wordsArray = searchInput.toLowerCase();
-    const sortPagesByTagOrSearch = () => {
-      if (!searchInput) {
-        return loadedPages.data;
-      }
-
-      return loadedPages.data.filter((page) =>
-            page.brandName.toLowerCase().includes(wordsArray) ||
-            page.brandDescription.toLowerCase().includes(wordsArray)
-        ) || page.componentType.some((type) => type.toLowerCase().includes(searchInput.toLowerCase()))
-    };
-
-    fetchSearchedPages(sortPagesByTagOrSearch());
-    fetchPages(sortPagesByTagOrSearch());
-  }, [searchInput, fetchSearchedPages, loadedPages.data]);
+    fetchSearchedPages({ component: searchInput, page: "" });
+  }, [searchInput, fetchSearchedPages]);
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") { // Check if the Enter key is pressed

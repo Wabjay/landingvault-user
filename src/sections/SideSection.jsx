@@ -18,9 +18,11 @@ const SideSection = ({ page }) => {
     mode,
     createdAt,
     font,
-  } = page;
-  const component = componentType[0].toLowerCase().replace(" page", "");
-  const pageName = brandName.includes(component) && brandName.replace(component, "");
+  } = page.page;
+  // const component = componentType[0]?.title.toLowerCase().replace(" page", "");
+  const pageName = brandName;
+  // const pageName = brandName.includes(component) && brandName.replace(component, "");
+
 
   // Conditional rendering for page data
   if (!page) return <Skeleton>Loading...</Skeleton>;
@@ -43,7 +45,7 @@ const SideSection = ({ page }) => {
               Industry
             </span>
             <span className="col-span-3 text-grey-800 dark:!text-white capitalize">
-              {industry.join(", ")}
+              {industry?.length ? industry.map(item => item.title).join(", ") : "N/A"}
             </span>
           </Skeleton>
           <Skeleton>
@@ -51,7 +53,7 @@ const SideSection = ({ page }) => {
               Component Type
             </span>
             <span className="col-span-3 text-grey-800 dark:!text-white capitalize">
-              {componentType.join(", ")}
+              {componentType?.length ? componentType.map(item => item.title).join(", ") : "N/A".join(", ")}
             </span>
           </Skeleton>
           <Skeleton>
@@ -59,8 +61,8 @@ const SideSection = ({ page }) => {
               Stack
             </span>
             <span className="col-span-3 text-grey-800 dark:!text-white capitalize">
-              {" "}
-              {stacks.join(", ")}
+              
+              {stacks?.length ? stacks.map(item => item.title).join(", ") : "N/A"}
             </span>
           </Skeleton>
           <Skeleton>
@@ -68,7 +70,7 @@ const SideSection = ({ page }) => {
               Type
             </span>
             <span className="col-span-3 text-grey-800 dark:!text-white capitalize">
-              {type.join(", ")}
+              {type?.length ? type.map(item => item.title).join(", ") : "N/A"}
             </span>
           </Skeleton>
           <Skeleton>
@@ -76,7 +78,7 @@ const SideSection = ({ page }) => {
               Style
             </span>
             <span className="col-span-3 text-grey-800 dark:!text-white capitalize">
-              {style.join(", ")}
+              {style?.length ? style.map(item => item.title).join(", ") : "N/A"}
             </span>
           </Skeleton>
           <Skeleton>
